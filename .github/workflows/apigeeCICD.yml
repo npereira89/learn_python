@@ -1,0 +1,19 @@
+name: '[ INSTAGRAM ] CICD'
+on:
+  workflow_dispatch:
+    inputs:
+      USERNAME:
+        description: 'User instagram to download'
+        required: true
+        type: string     
+
+jobs:
+    saved:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Download photos saved from instagram
+          run: |
+            pip3 install instaloader
+            instaloader -l YOUR-USERNAME -p YOUR-PASSWORD :saved
+
+    
