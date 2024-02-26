@@ -106,7 +106,6 @@ while True:
         try:
             os.makedirs(path)
             print(f"Folder created successfully at {path}")
-            os.chmod(path, 0o777)
         except FileExistsError:
             print(f"Folder already exists at {path}")
 
