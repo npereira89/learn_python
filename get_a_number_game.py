@@ -5,7 +5,6 @@ import random
 import os
 
 def sorted_number():
-    #numbers = random.randrange(1, 100)
     numbers= random.randint(1,100)
     return numbers
 
