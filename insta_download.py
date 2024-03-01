@@ -35,16 +35,16 @@ def menu():
     print(" 1 - Download Profile picture")
     print(" 2 - Download Profile Feed")
     print(" 3 - Download Saved Photos")
-    print(" 4 - Exit")
+    print(" 4 - Download Videos Stories")
+    print(" 5 - Exit")
     print("********************************")
 
     operation = int(input("Select action: "))
 
-    if operation >= 5:
+    if operation >= 6:
         print("Invalid operation")
-        menu()
-    elif operation <= 4:
-        return int(operation)
+    
+    return int(operation)
     
 L=instaloader.Instaloader(max_connection_attempts=3,
                 download_pictures=True,
@@ -61,7 +61,7 @@ while True:
 
     operation = menu()
     
-    if operation <=3:
+    if operation <=4:
         profile_name = input("Insert instagram profile: ")
 
     if operation == 1:            
@@ -123,6 +123,24 @@ while True:
         os.system('cls')
 
     elif operation == 4:
+
+        L.interactive_login(profile_name)
+
+        print("Downloading story instagram....")
+        profile = instaloader.Profile.from_username(L.context, profile_name)
+        
+        path = os.path.join('.\\', f"{profile_name}")
+
+        try:
+            os.makedirs(path)
+            print(f"Folder created successfully at {path}")
+        except FileExistsError:
+            print(f"Folder already exists at {path}")
+
+        os.chdir(path)
+        L.download_stories(userids=[profile.userid],filename_target='stories')
+
+    elif operation == 5:
 
         print("Exiting the program...")
         os.sys.exit(0) 
