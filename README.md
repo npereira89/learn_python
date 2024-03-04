@@ -10,6 +10,10 @@
 
 * **get_a_number_game.py**: In this script, I did a game to figure out a number between 1 a 100. Just have 3 attemps. I give some clues. In the end of the 3 attemps, I told you the number sorted. Is it fun? Let's play!; 
 
+* **prime_number.py**: I did this script to figure out if number is prime or not.
+
+* **reverse_sentence.py**: I did this script to reverse the sentence you wrote with a specific function, without using a module Python.
+
 * **test_insta_login.py**: In this script, I'll test a login in instagram. It's can help you to test before the next script;
 
 * **insta_download.py**: It does download profile photos user's instagram, all feed photos and all saved photos instagram with since a determinated date through a menu;
@@ -39,6 +43,3 @@ If you do not want to use pip, even though it is highly recommended, and prefer 
 > [!CAUTION]
 > NOT USE IT WITH A VPN
 
-* **prime_number.py**: I did this script to figure out if number is prime or not.
-
-* **reverse_sentence.py**: I did this script to reverse the sentence you wrote with a specific function, without using a module Python.
