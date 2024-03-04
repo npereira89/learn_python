@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 from array import array
 import locale
 
-## Exercises from https://github.com/rmveiga/exercicios_python?tab=readme-ov-file#%C3%ADndice
 ### working with date ###
 
 print(f"Date two days forward: {(datetime.now() + timedelta(2))}")

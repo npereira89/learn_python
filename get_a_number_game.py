@@ -1,6 +1,3 @@
-## This application is built to get the number the machine get.
-## The goal is catch the number between 1 and 100
-
 import random
 import os
 
