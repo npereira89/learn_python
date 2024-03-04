@@ -38,7 +38,7 @@ If you do not want to use pip, even though it is highly recommended, and prefer 
     pip3 install --pre instaloader
 ```
 > [!WARNING]
-> The use of those Instagram scripts, could result in temporarily IP address banned to login in your Instagram account. Beware, when you use it.
+> The use of those Instagram scripts, could result in temporarily IP address banned to login in your Instagram account. Beware, when you use it. Probably you'll get an error 404, 401 but it's normal because you are using an Graph API. **In future, I will update those scripts you Graph.**
 
 > [!CAUTION]
 > NOT USE IT WITH A VPN
