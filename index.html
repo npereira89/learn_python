@@ -12,18 +12,21 @@
         <link rel="stylesheet" href="./assets/css/examples.css" />
 
         <!-- This script tag bootstraps PyScript -->
-        <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+        <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"
+            integrity="sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC">
+        </script>
 
-        <title>Naked Photos</title>
+        <title>Photos Content</title>
     </head>
     <body>
         <section class="pyscript">
-            Hello guys! <br />
-            This is a website about naked photos where we watch naked content!! 
             <script type="py">
                 from pyscript import display
                 from datetime import datetime
                 import code
+                
+                name_people='Nuno'
+                display("Hello "+name_people+". This is a website where we watch photo and video content!!" )
 
                 now = datetime.now()
 
@@ -31,5 +34,27 @@
                 display(now.strftime("%d %B of %Y"))
             </script>
         </section>
+        <p id="mytext"><b>Results 2024</b></p>
+        <table description="table_ppl" aria-hidden="true"> 
+            <tr> 
+              <td><video width="650" height="500" controls autoplay unmuted>  <!-- video with sound -->
+                      <source src="./img/maddy_fuck.mp4" type="video/mp4" type="audio/mp4">
+                      <track label="English" kind="captions" srclang="en" src="resources/myvideo-en.vtt" default>
+              </video></td>
+              <td><image src="./img/5feqxmv8aiqc1.jpg" width="350" height="500"></image></td>
+              <td><image src="./img/141895070005594.jpg" width="440" height="500"></image></td>
+              <td><image src="./img/154s5rt3hd34fh22th.jpg" width="440" height="500"></image></td>
+            </tr>
+            <tr>
+              <td><image src="./img/q90934tgidsrgj.jpg" width="650" height="500"></image></td>
+              <td><image src="./img/8hgh84hte8934.jpg" width="350" height="500"></image></td>
+              <td><image src="./img/hx3bc4dt72sc1.webp"  width="440" height="500"></image></td>
+              <td><video width="440" height="500" controls autoplay unmuted>  <!-- video with sound -->
+                <source src="./img/C.mp4" type="video/mp4" type="audio/mp4">
+                <track label="English" kind="captions" srclang="en" src="resources/myvideo-en.vtt" default>
+            </video></td>
+            </tr>
+        </table>
+        <br></br>
     </body>
 </html>

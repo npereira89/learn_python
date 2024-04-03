@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: bisque;
+    background-color: antiquewhite;
 }
 
 .pyscript {
@@ -30,7 +30,7 @@ html {
     text-decoration: none;
     text-decoration-line: none;
     text-decoration-style: initial;
-    text-decoration-color: initial;
+    text-decoration-color: brown;
     font-weight: 400;
     font-size: 1.5em;
     line-height: 2em;
@@ -41,4 +41,28 @@ html {
     display: flex;
     align-items: center;
     padding: 0.5rem 1rem;
+}
+
+td { 
+    width: 50%;
+    align-content: center;
+    padding: center;
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: max-content;
+    height: max-content;
+    border-color: transparent;
+}
+
+table, th, tr {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: max-content;
+    height: max-content;
+    border-color: transparent;
+}
+
+p {
+    color:chocolate;
+    text-align: center
 }

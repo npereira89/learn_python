@@ -92,3 +92,43 @@ print(phrase.replace("Java", "Python"))
 ### Title a string or full name ### 
 full_name = ' nuno pereira '
 print("Hello, " + full_name.strip() + "!")
+
+### Table number, square and cube
+
+def square_number(number):
+    number *= number
+    return number
+
+print("Number\tSquare\tCube")
+
+print("1\t"+str(square_number(1))+"\t"+str(square_number(1)*1))
+print("2\t"+str(square_number(2))+"\t"+str(square_number(2)*2))
+print("3\t"+str(square_number(3))+"\t"+str(square_number(3)*3))
+print("4\t"+str(square_number(4))+"\t"+str(square_number(4)*4))
+print("5\t"+str(square_number(5))+"\t"+str(square_number(5)*5))
+
+## String module
+
+import string
+ 
+print(string.ascii_letters)  # Output: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+print(string.ascii_lowercase)   # Output: abcdefghijklmnopqrstuvwxyz
+print(string.ascii_uppercase)   # Output: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+print(string.digits)            # Output: 0123456789
+print(string.hexdigits)         # Output: 0123456789abcdefABCDEF
+print(string.punctuation)       # Output: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+print(string.ascii_letters)     # Output: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+def find_right_most_digit(text):
+    count=0
+    
+    for ch in text:
+        if ch.isdigit() == True:
+            count += 1
+
+    return count
+         
+            
+print(find_right_most_digit('The value is 42 dsds2323'))  # Output: 2
+print(find_right_most_digit('No digits heredssd34'))  # Output: -1
+

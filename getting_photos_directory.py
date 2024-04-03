@@ -1,9 +1,15 @@
+from datetime import datetime
+import code
 import os.path
 from PIL import Image
-import datetime 
+
+now = datetime.now()
+
+print(now.strftime("%d/%m/%Y, %H:%M:%S"))
+print(now.strftime("%d %B of %Y"))
 
 images = []
-path = "C://Users/NunoPereira/Downloads/"
+path = "C://<your directory>"
 valid_files = [".jpg", ".gif", ".png"]
 
 for f in os.listdir(path):

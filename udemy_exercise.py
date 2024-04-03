@@ -209,3 +209,126 @@ for i in range(1,11):
     print()
 print()
  
+#In this exercise, your task is to create a Python function named sum_of_cubes_upto_limit that determines the value of sum all the cube number
+#until a limit
+
+def sum_of_cubes_upto_limit(limit):
+    sum_limit = 0
+    i = 1 
+    
+    while ( i * i * i  <= limit):
+        sum_limit += i * i * i 
+        i += 1
+    return sum_limit
+
+print(sum_of_cubes_upto_limit(30))  # Output: 36
+
+#In this exercise, your task is to create a Python function named get_number_of_digits that determines the number of digits in a given integer.
+#The number of digits in an integer is the count of digits present. For example, the number 12345 has 5digits, and the number 90 has 2 digits.
+#If the input number is 0, return 1 as 0 is considered to have one digit.
+#If the input number is negative, return -1 as the count of digits for negative numbers will not be considered in this problem.
+
+
+def get_number_of_digits(number):
+    
+    if number < 0:
+        return -1
+    
+    if number == 0:
+        return 1
+    
+    number_of_digits = 0
+    
+    while number > 0:
+        number = number//10 
+        number_of_digits += 1
+            
+    return number_of_digits
+
+print(get_number_of_digits(123))  # Output: 3
+print(get_number_of_digits(9087))  # Output: 4
+print(get_number_of_digits(6))  # Output: 1
+
+#In this exercise, you are tasked with creating a Python function named next_fibonacci that identifies the first Fibonacci number 
+#that exceeds a given threshold, using a while loop.
+
+def next_fibonacci (threshold):
+    if threshold < 0:
+        return 1
+        
+    precedent_b = 1
+    sequence_fibonacci = 0
+    precedent_a = 0
+    
+    while True:
+        sequence_fibonacci = precedent_a + precedent_b
+
+        if sequence_fibonacci > threshold:
+            break
+        
+        precedent_a = precedent_b
+        precedent_b = sequence_fibonacci 
+
+    return sequence_fibonacci
+    
+print(next_fibonacci(30)) 
+
+#In this exercise, your task is to create a Python function named is_vowel that determines whether a given character is a vowel or not.
+
+def is_vowel (char):
+    vowel_string='aeiouAEIOU'
+    return char in vowel_string
+    
+print(is_vowel('a'))  # Output: True
+print(is_vowel('b'))  # Output: False
+
+
+#In this exercise, your task is to create a Python function named count_uppercase_letters 
+#that counts the number of uppercase letters in a given string.
+
+import string
+
+def count_uppercase_letters(text):
+    count = 0
+    for ch in text:
+        if ch in string.ascii_uppercase:
+            count += 1
+            
+    return count    
+
+print(count_uppercase_letters('HELLO dsds'))  # Output: 6
+
+#In this exercise, your task is to create a Python function named has_consecutive_identical_characters that checks 
+#if a given string has at least two consecutive identical characters.
+
+def has_consecutive_identical_characters(text):
+    for i in range(0, len(text) -2 ):
+        current_char = text[i]
+        next_char = text[i + 1]
+        
+        if current_char == next_char:
+             return True
+    return False
+
+print(has_consecutive_identical_characters('Hheello Worrld'))  # Output: True
+
+#In this exercise, your task is to create a Python function named find_right_most_digit that returns the right-most digit found in a given string.
+#The input consists of a single parameter: text. Text is the string where you will search for the right-most digit.
+
+def find_right_most_digit(text):
+    for char in reversed(text):
+        if char.isdigit():
+            return int(char)
+    return -1
+
+def find_right_most_digit(text):
+    count=0
+    
+    for ch in text:
+        if ch.isdigit() == True:
+            count += 1
+
+    return count
+
+print(find_right_most_digit('The value is 42'))  # Output: 2
+print(find_right_most_digit('No digits here'))  # Output: -1  
