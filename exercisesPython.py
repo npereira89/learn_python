@@ -135,14 +135,15 @@ print(find_right_most_digit('No digits heredssd34'))  # Output: -1
 ###############################################################################
 
 from random import randint
+import random
 
-x = randint(0,99)
+x = random.randint(0,9) # 
 print(x)
 
 y = int(input("Give a number: "))
 
 if y == x:
-    print (f"Great!! You got it!!")
+    print ("Great!! You got it!!")
 else:
     print("Try more later...!!")
 
