@@ -137,7 +137,7 @@ print(find_right_most_digit('No digits heredssd34'))  # Output: -1
 from random import randint
 import random
 
-x = random.randint(0,9) # 
+x = randrange(10)
 print(x)
 
 y = int(input("Give a number: "))
