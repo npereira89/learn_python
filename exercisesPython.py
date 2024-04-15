@@ -132,3 +132,121 @@ def find_right_most_digit(text):
 print(find_right_most_digit('The value is 42 dsds2323'))  # Output: 2
 print(find_right_most_digit('No digits heredssd34'))  # Output: -1
 
+###############################################################################
+
+from random import randint
+
+x = randint(0,99)
+print(x)
+
+y = int(input("Give a number: "))
+
+if y == x:
+    print (f"Great!! You got it!!")
+else:
+    print("Try more later...!!")
+
+###############################################################
+
+name = input("What is your name? ")
+fav_color = input("What is your favourite color? ")
+
+print(f"{name} likes {fav_color}")
+print(name + " likes " + fav_color)
+
+###############################################################
+# Convert pounds for Kg
+###############################################################
+
+weight = float(input("What is your weight (in pounds)? "))
+
+print(f"{weight*0.45} Kg")
+###############################################################
+# Check the name has between 3 and 50 characters. If the name
+# is above 50 characters the name is wrong but it's minor
+# 3 chars must be at least 3 chars too
+###############################################################
+name = input("What's your name? ")
+
+if len(name) < 3:
+    print("Name must be at least 3 characters")
+elif len(name) > 50:
+    print("Name can be 50 characters")
+else:
+    print("name looks good")
+
+###############################################################
+# THE PROGRAMMER IS BUILT FOR CAR RUN ON THE STREET
+###############################################################
+command = ""
+tries_car_run = 0
+tries_car_stop = 0
+
+while command.lower() != "quit":
+    command = input("> ").lower()
+
+    if command == "help":
+        print('''start - to start the car\nstop - to stop the car\nquit - to exit''')
+    elif command == "start" and tries_car_run == 0:
+        tries_car_stop = 0
+        print("Car started... Ready to go!")
+        tries_car_run += 1
+    elif command == "start" and tries_car_run >= 1:
+        print("Car is already run")
+    elif command == "stop" and tries_car_stop == 0 and tries_car_run == 1:
+        tries_car_run = 0
+        print("Car stopped.")
+        tries_car_stop += 1
+    elif command == "stop" and tries_car_stop >= 1:
+        print("Car is already stopped")
+    elif command == "stop" and tries_car_run == 0 and tries_car_stop == 0:
+        print("Car isn't run")
+    elif command == "quit":
+        exit(0)
+    else:
+        print("I don't understand that...")
+###############################################################
+# Program to read a keyboard value and show last input value,
+# through a array variable with 3 values.
+###############################################################
+valor = ["text_write"]
+size_array = int(len(valor))
+
+while size_array < 3:
+    text = input("Put a value: ")
+    valor.append(text)
+    print(valor[size_array-1])
+    size_array += 1
+###############################################################
+# Write a program to read the dimensions of rectangle
+# (base and height) calculate and showing the total area.
+###############################################################
+base = float(input("Input the value of base: "))
+height = float(input("Input the value of height: "))
+
+area_rect = base * height
+print (f"The area of rectangle is {area_rect}")
+
+###############################################################
+# Escreva um programa para ler o número total de eleitores de um município, o
+# numero de votos brancos, nulos e válidos. Apresente a percentagem que cada
+# um representa em relação ao total de eleitores.
+###############################################################
+city = input("Where do you vote? ")
+votes = int(input("How many votes? "))
+blank_votes = int(input("How many blank votes do you have? "))
+null_votes = int(input("How many null votes do you have? "))
+valid_votes = votes - blank_votes - null_votes
+people = 15325
+
+# Use f-string formatting to control decimal places for percentages
+percentage_blank_votes = (blank_votes / votes) * 100 if valid_votes > 0 else 0  # Handle zero division
+percentage_null_votes = (null_votes / votes) * 100 if valid_votes > 0 else 0
+percentage_votes = (votes / people) * 100 if valid_votes > 0 else 0
+
+print (f'''
+There are {percentage_votes:.2f}% votes in {city}, which {valid_votes} votes are valid.
+At last elections, there was {percentage_blank_votes:.2f} % of electors did a blank vote and {percentage_null_votes:.2f}% for null votes.
+''')
+
+
