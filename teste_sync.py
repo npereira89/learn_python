@@ -47,19 +47,19 @@ def replica_files_check(replica_path, source_path, source_hash_md5, files):
     else:
         full_path = os.path.join(replica_path, files)
         srcpath = os.path.dirname(source_path)
-        for filesReplica in os.listdir(replica_path):
-            file_path = os.path.join(srcpath, filesReplica)
+        for filesreplica in os.listdir(replica_path):
+            file_path = os.path.join(srcpath, filesreplica)
             if not os.path.exists(file_path):
-                rmv_file = os.path.join(replica_path, filesReplica)
+                rmv_file = os.path.join(replica_path, filesreplica)
                 os.remove(rmv_file)
-                print(f"Info: The file {filesReplica} was removed from {replica_path} successfully")
-                write_to_log(f"Info: The file {filesReplica} was removed from {replica_path} successfully",
+                print(f"Info: The file {filesreplica} was removed from {replica_path} successfully")
+                write_to_log(f"Info: The file {filesreplica} was removed from {replica_path} successfully",
                              log_filename)
         if os.path.exists(full_path):
             if os.path.isfile(full_path):
                 dict_replica.append(full_path)
-                for filesRep in os.listdir(replica_path):
-                    if filesRep == files:
+                for filesrep in os.listdir(replica_path):
+                    if filesrep == files:
                         replica_hash_md5 = calculate_md5(full_path)
                         if source_hash_md5 == replica_hash_md5:
                             print(f"Error: The file {files} exists in {replica_path}")
@@ -111,9 +111,7 @@ while True:
                 dict_source_md5.append(md5_hash)
                 replica_files_check(def_replica_path, SrcFilePath, md5_hash, file)
             elif os.path.isdir(SrcFilePath):
-                if len(os.listdir(SrcFilePath)) == 0:
-                    pass
-                else:
+                if len(os.listdir(SrcFilePath)) > 0:
                     create_folder = os.path.join(def_replica_path, file)
                     if not os.path.exists(create_folder):
                         os.mkdir(create_folder)
