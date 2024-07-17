@@ -141,7 +141,7 @@ print(x)
 y = int(input("Give a number: "))
 
 if y == x:
-    print (f"Great!! You got it!!")
+    print ("Great!! You got it!!")
 else:
     print("Try more later...!!")
 
@@ -398,7 +398,6 @@ john.is_eligible()
 import openpyxl
 from openpyxl.workbook import Workbook
 
-# wb = xl.load_workbook(filename='testes_afr.xlsx',read_only=False)
 wb = Workbook()
 ws = wb.active
 data = [
