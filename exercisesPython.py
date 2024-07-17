@@ -2,6 +2,7 @@ import os
 import re
 import time
 import statistics
+from random import randint
 from datetime import datetime, timedelta
 from array import array
 import locale
@@ -134,16 +135,13 @@ print(find_right_most_digit('No digits heredssd34'))  # Output: -1
 
 ###############################################################################
 
-from random import randint
-import random
-
-x = randrange(10)
+x = randint(0,99)
 print(x)
 
 y = int(input("Give a number: "))
 
 if y == x:
-    print ("Great!! You got it!!")
+    print (f"Great!! You got it!!")
 else:
     print("Try more later...!!")
 
@@ -250,4 +248,173 @@ There are {percentage_votes:.2f}% votes in {city}, which {valid_votes} votes are
 At last elections, there was {percentage_blank_votes:.2f} % of electors did a blank vote and {percentage_null_votes:.2f}% for null votes.
 ''')
 
+################################################################
+# Program to open images files in Python
+################################################################
+import os.path
+from PIL import Image
 
+images = []
+path = "C://Users/Nuno/Downloads"
+valid_files = [".jpg", ".gif", ".png"]
+for f in os.listdir(path):
+    ext = os.path.splitext(f)[1]
+    if ext.lower() not in valid_files:
+        continue
+    image_path = os.path.join(path, f)
+    with Image.open(image_path) as img:
+        img.show()
+
+##########################################
+# Calculate the sum of price of products there in store shop.
+#######################################
+prices = [22,10,5,5,8,3]
+total_prices = 0
+
+for total in prices:
+    total_prices += total
+
+print(f"o valor total é {total_prices}")
+#########################################
+# Making a "F" and "L" with a nested loop
+#########################################
+number_xs = [5,2,5,2,2]
+number_ls = [2,2,2,2,5,5]
+
+size_xs = len(number_xs)
+size_ls = len(number_ls)
+
+for i in range(0,size_xs,1):
+    for xs in range(number_xs[i]):
+        print("X",end="")
+    print("",end="\n")
+print("\n")
+for ls_count in range(0,size_ls,1):
+    for ls in range(number_ls[ls_count]):
+        print("X",end="")
+    print("", end="\n")
+
+#########################################
+# Get a largest number in a list variable
+#########################################
+number_list = [10,2,20,14,3,7,1,4,5]
+
+size = number_list[0]
+
+for number in number_list:
+    if number > size:
+        size = number
+
+print(size)
+########################################
+# Remove the duplicates
+########################################
+number_list = [10,10,20,20,2,7,7,5]
+
+check = number_list[0]
+number = 0
+
+for number in number_list:
+    if number_list.count(number) > 1:
+        number_list.remove(number)
+
+print(number_list)
+######### other example ###############
+number_list = [10,10,20,20,2,7,7,5]
+numbers_list = []
+
+for number in number_list:
+    if number not in numbers_list:
+        numbers_list.append(number)
+
+print(numbers_list)
+#####################################
+# Write a program where you describe the number in text
+####################################
+phone_number = input("Phone: ")
+
+phone =  {
+    "1": "One",
+    "2": "Two",
+    "3": "Three",
+    "4": "Four",
+    "5": "Five",
+    "6": "Six",
+    "7": "Seven",
+    "8": "Eight",
+    "9": "Nine"
+}
+
+for numbers in phone_number:
+    print(phone[numbers], end=" ")
+
+#####################################
+# Using emojis
+#####################################
+def emojis(message):
+    words = message.split(" ")
+    emojis = {
+
+        ":)": "🙂",
+        ":(": "😔",
+        "*_*": "😍"
+    }
+    output = ""
+    for word in words:
+        output += emojis.get(word, word) + " "
+
+    return output
+
+
+message = input("> ")
+print(emojis(message))
+
+######################################
+# Using class and constructor
+#####################################
+
+class Person:
+    def __init__(self, name, age): # constructor
+        self.name = name
+        self.age = age
+
+    def is_eligible(self):
+        if self.age >= 18:
+            print(f"Hi {self.name} \nYou can see pornography!!")
+        else:
+            print(f"Go away {self.name} \nYou are not allow to see pornography, cuz you're {self.age} yo!")
+
+
+name_in = str(input("Name: "))
+age_in = int(input("Age: "))
+
+john = Person( str(name_in), int(age_in))
+john.is_eligible()
+
+########################################################
+# Create a file excel with some columns and values
+# using the module openpyxl to built the file
+########################################################
+import openpyxl
+from openpyxl.workbook import Workbook
+
+# wb = xl.load_workbook(filename='testes_afr.xlsx',read_only=False)
+wb = Workbook()
+ws = wb.active
+data = [
+    ["Data Subscribe","Value Subscribe","Data Renew","Debs Tax","Recover"],
+    ["28/12/2022",100, '28/03/2023', "284%","TRUE" ],
+    ["06/01/2023",4000, '06/04/2023', "3,09%","TRUE" ],
+    ["23/01/2023",1100, '23/04/2023', "3,09%","TRUE" ],
+    ["06/03/2023",2000, '06/06/2023', "3,50%","TRUE" ],
+    ["22/05/2023",2000, '22/08/2023', "3,50%","TRUE" ],
+    ["31/07/2023",3000, '31/10/2023', "2,75%","TRUE" ],
+    ["25/09/2023",2500, '25/12/2023', "2,75%","TRUE" ],
+    ["01/02/2024",3000, '01/05/2024', "2,75%","FALSE" ],
+    ["27/03/2024",1500, '27/06/2024', "2,75%","FALSE" ],
+   ]
+
+for r in data:
+    ws.append(r)
+
+wb.save(filename='teste_file.xlsx')
