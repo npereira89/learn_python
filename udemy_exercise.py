@@ -332,3 +332,11 @@ def find_right_most_digit(text):
 
 print(find_right_most_digit('The value is 42'))  # Output: 2
 print(find_right_most_digit('No digits here'))  # Output: -1  
+
+# Write a file using a script program
+data = ('matters', 34728374, '2024-08-09')
+try:
+    with open('my_file.txt', 'a') as file:
+        file.write(', '.join(map(str, data)) + '\n')  # Join tuple elements with commas
+except OSError:
+    print("There is an error!! 😞")
