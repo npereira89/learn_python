@@ -3,10 +3,8 @@ import shutil
 from datetime import datetime
 
 now = datetime.now()
-print(now.strftime("%m/%d/%Y, %H:%M:%S"))
-print("This is a HTML webpage using PyScript!!")
 
-path_folder = input("What's the folder!!")
+path_folder = input("What's the folder: ")
 dst = os.path.join(os.getcwd(), "copy_gdrive")
 
 if not os.path.exists(dst):
@@ -19,7 +17,7 @@ if len(os.listdir(dst)) > 0:
 if len(os.listdir(dst)) == 0:
     try:
         # List of file used to import for the replica folder
-        valid_files = [".jpg", ".jpeg", ".gif", ".png", ".rar", ".mp4", ".jfif", ".webp"]
+        valid_files = [".jpg", ".jpeg", ".gif", ".png", ".rar", ".mp4", ".jfif", ".webp", ".webm"]
         for files in os.listdir(path_folder):
             ext = os.path.splitext(files)[1]
             if ext.lower() in valid_files:
