@@ -63,7 +63,7 @@ while True:
 
     elif operation == 2:
 
-        get_is_private(profile_name)
+        get_is_private(profile_name, user)
 
         print("Downloading media feed....")
 
