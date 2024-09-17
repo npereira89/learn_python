@@ -102,7 +102,7 @@ for i in range(1,5):
 
 print(f"A nota mais baixa é {min(array_notas)}")
 print(f"A nota mais alta é {max(array_notas)}")
-print(f"A nota mais alta é {(sum(array_notas) / len(array_notas))}")
+print(f"A média de todas as notas é {(sum(array_notas) / len(array_notas))}")
 
 ### Develop a program to store 4 notes on list and get avarage, max and minimun note ###
 
