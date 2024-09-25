@@ -27,15 +27,15 @@ def calculate_md5(data):
 
 
 def list_all_files(dire, replica):
-    files, list_files = [], []
+    files = []
     if len(os.listdir(dire)) != 0:
         remove_files(dire, replica)
         for content in os.listdir(dire):
             path_folder = os.path.join(dire, content)
             replica_folder = os.path.join(replica, content)
+            if len(os.listdir(path_folder)) != 0 and not os.path.exists(replica_folder):
+                os.mkdir(replica_folder)
             if os.path.isdir(path_folder):
-                if len(os.listdir(path_folder)) != 0 and not os.path.exists(replica_folder):
-                    os.mkdir(replica_folder)
                 list_all_files(path_folder, replica_folder)
             elif os.path.isfile(path_folder):
                 files += [path_folder]
