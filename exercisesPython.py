@@ -3,11 +3,12 @@ import re
 import time
 import string
 import statistics
+import locale
+import openpyxl
+import math
 from random import randint
 from datetime import datetime, timedelta
 from array import array
-import locale
-import openpyxl
 from openpyxl.workbook import Workbook
 
 class Person:
@@ -447,3 +448,153 @@ for r in data:
     ws.append(r)
 
 wb.save(filename='teste_file.xlsx')
+################################################################							
+## Livro de Introduçcao a Algoritmia e Programação com Python ##
+################################################################
+	
+#### E.2.1.1 Exercise 1, Page 256 ####
+
+A, B = 4.0, 6.0
+I = 3
+
+C = A * B - I
+print(f"The result of the first operation is {C}")
+K = I / 4 * 6
+print(f"The result of the second operation is {K}")
+C = B / A + 1.5
+print(f"The result of the third operation is {C}")
+K = math.trunc(B / A + 4.7)
+print(f"The result of the fourth operation is {K}")
+J = round(A / (5 / I))
+print(f"The result of the fifth operation is {J}")
+K = abs(A - B) * 2 + I
+print(f"The result of the sixth operation is {K}")
+
+#### E.2.1.1 Exercise 2, Page 256 ####
+
+a, b, c, d, e, f = 1, 5, 3, 6, 5, 4
+
+align_a = a/b + 1
+print(f"The result of the first operation is {align_a}")
+align_b = (a + b) / (c-d)
+print(f"The result of the second operation is {align_b}")
+align_c = a + (b/c) / d + (e/f)
+print(f"The result of the third operation is {align_c}")
+align_d = a + (b / (c - d))
+print(f"The result of the fourth operation is {align_d}")
+align_e = (a+b) * b/d
+print(f"The result of the fifth operation is {align_e}")
+align_f = ((a+b) ** c)**d
+print(f"The result of the sixth operation is {align_f}")
+align_g = math.sin(a) + math.cos(a)/math.tan(a)
+print(f"The result of the seventh operation is {align_g:2f}")
+align_h = -b + math.sqrt(b**2 - 4*a*c)/2*a
+print(f"The result of the eight operation is {float(align_h):2f}")
+
+#### E.2.1.4 Exercise 4, Page 257 ####
+
+def calc_price(qtd_hmb, qtd_ch, qtd_shp, qtd_itea, qtd_shk):
+    price = (qtd_hmb * 6.5) + (qtd_ch * 7.5) + (qtd_shp * 3.5) + (qtd_itea * 0.7) + (qtd_shk * 0.8)
+    return float(price)
+
+
+print("""##### MENU #####\n(1) Hamburger -> 6,50€\n(2) Cheeseburger -> 7,50€\n(3) Sheep -> 3, 50€\n(4) Ice Tea -> 0,70€
+(5) Shake milk -> 0,80€\n""")
+
+qtd_hamb = int(input("quantity of Hamburger: "))
+qtd_cheese = int(input("quantity of Cheeseburger: "))
+qtd_sheep = int(input("quantity of Sheep: "))
+qtd_tea = int(input("quantity of Ice Tea: "))
+qtd_shake = int(input("quantity of Shake milk: "))
+subtotal = calc_price(qtd_hamb, qtd_cheese, qtd_sheep, qtd_tea, qtd_shake)
+
+total = subtotal * 0.23
+print(f"The total of the shop is {total:.2f} €.\nThanks for your visit!! See you soon!!\n")
+
+
+#### E.2.2.1 Exercise 5, Page 257 ####
+
+
+def formula_delta(value_a, value_b, value_c):
+    delta = value_b**2 - (4 * value_a * value_c)
+    if delta == 0:
+        return print(f"The delta value is {delta}.\nThe discriminante is null")
+    if delta > 0:
+        return print(f"The delta value is {delta}.\nThe discriminante is positive")
+    if delta < 0:
+        return print("Not possible calculate the quadratic equation")
+
+
+print("Let's calculate the quadratic equation:")
+A = int(input("Define the value of coefficient a: "))
+B = int(input("Define the value of coefficient b: "))
+C = int(input("Define the value of coefficient c: "))
+formula_delta(A, B, C)
+
+#### E.2.2.2 Exercise 6, Page 257 ####
+
+def consumer_price(farmer_cost):
+    if farmer_cost <= 10000:
+        rate_distribution = 0.08
+    elif farmer_cost > 10000:
+        rate_distribution = 0.06
+
+    if rate_distribution <= 0.06:
+        rate_taxes = 0.35
+    if rate_distribution > 0.06:
+        rate_taxes = 0.45
+
+    total = farmer_cost + (farmer_cost * rate_distribution) + (farmer_cost * rate_taxes)
+    return print(f"The consumer price is {total:2f} €")
+
+
+cost_factory = int(input("What's factory cost for a new car??\n"))
+consumer_price(cost_factory)
+
+
+#### E.2.2.3 Exercise 7, Page 258 ####
+
+def calc_area(side1, side2, side3):
+    if side1 >= 0 and side2 >= 0 and side3 >= 0:
+        a = side1 + side2 + side3 / 2
+        area = math.sqrt(a * (a - side1) * (a - side2) * (a - side3))
+        return print(f"The value of area is {area:.2f} m2")
+    else:
+        print("Not possible calculate area of triangle, because one of the values are not positive")
+
+
+s1 = int(input("Measure 1: "))
+s2 = int(input("Measure 2: "))
+s3 = int(input("Measure 3: "))
+
+calc_area(s1, s2, s3)
+
+
+#### E.2.2.4 Exercise 8, Page 258 ####
+
+def round_number(value):
+    valor_approach = round(value, 0)
+    if valor_approach > value:
+        return print(f"The excess approach is {valor_approach:.0f}")
+    else:
+        return print(f"The default approach is {value:.0f}")
+
+
+number = float(input("Input the number float: "))
+round_number(number)
+
+
+#### E.2.2.4 Exercise 8, Page 258 ####
+
+def round_number(value):
+    valor_approach = round(value, 0)
+    if valor_approach > value:
+        return print(f"The excess approach is {valor_approach:.0f}")
+    else:
+        return print(f"The default approach is {value:.0f}")
+
+
+round_number(float(input("Input the number float: ")))
+
+#### E.2.2.9 Exercise 9, Page 258 ####
+### It will be continue
