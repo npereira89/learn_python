@@ -11,6 +11,10 @@ from datetime import datetime, timedelta
 from array import array
 from openpyxl.workbook import Workbook
 
+###############################
+### ALL FUNCTIONS AND CLASS ###
+###############################
+
 class Person:
     def __init__(self, name, age): # constructor
         self.name = name
@@ -74,36 +78,217 @@ def get_latest_behind(num):
     last = num + 1
     return print(f"The number is {num}. The next one is {last} and the ancestor is {ant}")
 
-### Sum two numbers using a function which use lambda function (MUST LEARN MORE ABOUT IT)
+def remove_data(list_num):
+    i = 0
+    while i< len(list_num):
+       if list_num[i] > 50:
+           list_num.remove(list_num[i])
+           i -= 1
+       else:
+           i += 1
+    return print(list_num)
+    
+def greeting_out_func(x, y):
+    def inner_greeting(x,y):
+        return x + y
 
-print(sum_values(5, 2))
+    greet = inner_greeting(x,y)
+    return greet + 'Developers'
+
+
+##################################
+### STRINGS AND CHAR EXERCISES ###
+##################################
+
+#########################################
+# Making a "F" and "L" with a nested loop
+#########################################
+number_xs = [5,2,5,2,2]
+number_ls = [2,2,2,2,5,5]
+
+size_xs = len(number_xs)
+size_ls = len(number_ls)
+
+for i in range(0,size_xs,1):
+    for xs in range(number_xs[i]):
+        print("X",end="")
+    print("",end="\n")
+print("\n")
+for ls_count in range(0,size_ls,1):
+    for ls in range(number_ls[ls_count]):
+        print("X",end="")
+    print("", end="\n")
+
+################################################################
+# Program to open images files in Python
+################################################################
+import os.path
+from PIL import Image
+
+images = []
+path = "path_folder_images"
+valid_files = [".jpg", ".gif", ".png"]
+for f in os.listdir(path):
+    ext = os.path.splitext(f)[1]
+    if ext.lower() not in valid_files:
+        continue
+    image_path = os.path.join(path, f)
+    with Image.open(image_path) as img:
+        img.show()
+
+### String module ###
+ 
+print(string.ascii_letters)  # Output: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+print(string.ascii_lowercase)   # Output: abcdefghijklmnopqrstuvwxyz
+print(string.ascii_uppercase)   # Output: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+print(string.digits)            # Output: 0123456789
+print(string.hexdigits)         # Output: 0123456789abcdefABCDEF
+print(string.punctuation)       # Output: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+print(string.ascii_letters)     # Output: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+         
+            
+print(find_right_most_digit('The value is 42 dsds2323'))  # Output: 2
+print(find_right_most_digit('No digits heredssd34'))  # Output: -1
+
+#####################################
+# Write a program where you describe the number in text
+####################################
+phone_number = input("Phone: ")
+
+phone =  {
+    "1": "One",
+    "2": "Two",
+    "3": "Three",
+    "4": "Four",
+    "5": "Five",
+    "6": "Six",
+    "7": "Seven",
+    "8": "Eight",
+    "9": "Nine"
+}
+
+for numbers in phone_number:
+    print(phone[numbers], end=" ")
 
 ### working with date ###
 
 print(f"Date two days forward: {(datetime.now() + timedelta(2))}")
 print(f"Date with date format: {time.strftime("%Y-%m-%d")}")
 
+### Create an inner function to concat two string. ###
+
+print(greeting_out_func('Nuno', 'Pereira'))
+
+
 ### working with dictionary ###
 valor = {'m1': {'m2': 'Hi World', 'm3': 'Hello Mickey', "m4": "Hii Mr. Dolittle"}}
 
 print(valor["m1"]["m3"])
 
-### check number is pair or unpair ###
+### Reverting dictionary values ###
 
-is_pair_or_not(15)
+ascii_dict = {'A': 65, 'B': 66, 'C': 67, 'D': 68}
 
-### Develop a program to store 4 notes on list and get avarage, max and minimun note ###
+reverse_dict = {value: key for key, value in ascii_dict.items()}
+print(reverse_dict)
+### Working with dict using json string ###
 
-array_notas = []
+import json
 
-for i in range(1,5):
-    nota = int(input(f"Input the note {i}: "))
-    array_notas.append(nota)
-    i += 1
+emp_dict = {
+    "company": {
+        "employee": {
+            "professional": {
+                "id": "001",
+                "name": "Jess",
+                "payable": {
+                    "salary": 9000,
+                    "increment": 1,
+                    "method": 'diary'
+                },
+            }
+        }
+    }
+}
 
-print(f"A nota mais baixa é {min(array_notas)}")
-print(f"A nota mais alta é {max(array_notas)}")
-print(f"A média de todas as notas é {(sum(array_notas) / len(array_notas))}")
+formatted_json_data = json.dumps(emp_dict['company']['employee']['professional'], indent=2, separators=(",", ": ")).encode("ascii")
+
+# Output the JSON string
+print(formatted_json_data)
+
+### Message of gretting someone ###
+      
+name = input("What is your name? ")
+print(f"Hello World {name}")
+
+#### Try to show the name and the last name ####
+
+greeting("Patricia Silva Santos Pereira")
+
+### Develop a program that change in real time a word Java for Python in sentence 
+
+phrase = 'Exercises for Java'
+print(phrase.replace("Java", "Python"))
+
+### Title a string or full name using a strip command ### 
+full_name = ' nuno pereira '
+print("Hello, " + full_name.strip() + "!")
+
+###############################################################
+# Check the name has between 3 and 50 characters. If the name
+# is above 50 characters the name is wrong but it's minor
+# 3 chars must be at least 3 chars too
+###############################################################
+name = input("What's your name? ")
+
+if len(name) < 3:
+    print("Name must be at least 3 characters")
+elif len(name) > 50:
+    print("Name can be 50 characters")
+else:
+    print("name looks good")
+
+###############################################################
+
+name = input("What is your name? ")
+fav_color = input("What is your favourite color? ")
+
+print(f"{name} likes {fav_color}")
+print(name + " likes " + fav_color)
+
+###############################################################
+# Program to read a keyboard value and show last input value,
+# through a array variable with 3 values.
+###############################################################
+valor = ["text_write"]
+size_array = int(len(valor))
+
+while size_array < 3:
+    text = input("Put a value: ")
+    valor.append(text)
+    print(valor[size_array-1])
+    size_array += 1
+
+######################################
+# Using class and constructor
+#####################################
+
+
+name_in = str(input("Name: "))
+age_in = int(input("Age: "))
+
+john = Person( str(name_in), int(age_in))
+john.is_eligible()
+
+
+##################################
+### 	NUMBER EXERCISES       ###
+##################################
+
+### Sum two numbers using a function which use lambda function (MUST LEARN MORE ABOUT IT) ####
+
+print(sum_values(5, 2))
 
 ### Develop a program to store 4 notes on list and get avarage, max and minimun note ###
 
@@ -125,25 +310,21 @@ else:
    else:
       print("REPROVED!!")
 
-### Message of gretting someone ###
-      
-name = input("What is your name? ")
-print(f"Hello World {name}")
-
-#### Try to show the name and the last name ####
-
-greeting("Patricia Silva Santos Pereira")
-
 ### Figure out the next number and the ancestor number ####
 
 get_latest_behind(99)
 
-### Numbers exercises ###
+### Removing numbers above 50 ###
+
+number_list = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+remove_data(number_list)
+
+### Get the number before and the after number ###
 
 number = int(input("Write a number (not a float)"))
 print(f"The number before is {number-1} and number after is {number+1}")
 
-# Get a float number with 2 decimais houses
+### Get a float number with 2 decimais houses ####
 
 print(f"The number with 2 decimals {number:.2f} ") 
 
@@ -153,15 +334,48 @@ array_notas = [55,25,58,88,787,551]
 
 print(f"The avarage is {round(statistics.mean(array_notas),2)}")
 
+### Display all duplicate items from a list ### 
 
-### Develop a program that change in real time a word Java for Python in sentence 
+sample_list = [10, 20, 60, 30, 20, 40, 30, 60, 70, 80]
 
-phrase = 'Exercises for Java'
-print(phrase.replace("Java", "Python"))
+list_number_dupl = []
+for i in range (0, len(sample_list)):
+    if int(sample_list.count(sample_list[i])) >= 2:
+        if sample_list[i] not in (list_number_dupl):
+            list_number_dupl.append(sample_list[i])
 
-### Title a string or full name using a strip command ### 
-full_name = ' nuno pereira '
-print("Hello, " + full_name.strip() + "!")
+print(list_number_dupl)
+
+### Filter dictionary to contain keys present in the given list ###
+
+# Dictionary
+d1 = {'A': 65, 'B': 66, 'C': 67, 'D': 68, 'E': 69, 'F': 70}
+
+# Filter dict using following keys
+l1 = ['A', 'C', 'F']
+
+filtered_d1 = {key: d1[key] for key in l1}
+print(filtered_d1)
+
+### check number is pair or unpair ###
+
+is_pair_or_not(15)
+
+### Develop a program to store 4 notes on list and get avarage, max and minimun note ###
+
+array_notas = []
+
+for i in range(1,5):
+    nota = int(input(f"Input the note {i}: "))
+    array_notas.append(nota)
+    i += 1
+
+print(f"A nota mais baixa é {min(array_notas)}")
+print(f"A nota mais alta é {max(array_notas)}")
+print(f"A média de todas as notas é {(sum(array_notas) / len(array_notas))}")
+
+
+
 
 ### Table number, square and cube ###
 
@@ -174,21 +388,7 @@ print("3\t"+str(square_number(3))+"\t"+str(square_number(3)*3))
 print("4\t"+str(square_number(4))+"\t"+str(square_number(4)*4))
 print("5\t"+str(square_number(5))+"\t"+str(square_number(5)*5))
 
-### String module ###
 
- 
-print(string.ascii_letters)  # Output: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
-print(string.ascii_lowercase)   # Output: abcdefghijklmnopqrstuvwxyz
-print(string.ascii_uppercase)   # Output: ABCDEFGHIJKLMNOPQRSTUVWXYZ
-print(string.digits)            # Output: 0123456789
-print(string.hexdigits)         # Output: 0123456789abcdefABCDEF
-print(string.punctuation)       # Output: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
-print(string.ascii_letters)     # Output: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
-
-         
-            
-print(find_right_most_digit('The value is 42 dsds2323'))  # Output: 2
-print(find_right_most_digit('No digits heredssd34'))  # Output: -1
 
 ###############################################################################
 
@@ -202,13 +402,7 @@ if y == x:
 else:
     print("Try more later...!!")
 
-###############################################################
 
-name = input("What is your name? ")
-fav_color = input("What is your favourite color? ")
-
-print(f"{name} likes {fav_color}")
-print(name + " likes " + fav_color)
 
 ###############################################################
 # Convert pounds for Kg
@@ -217,19 +411,7 @@ print(name + " likes " + fav_color)
 weight = float(input("What is your weight (in pounds)? "))
 
 print(f"{weight*0.45} Kg")
-###############################################################
-# Check the name has between 3 and 50 characters. If the name
-# is above 50 characters the name is wrong but it's minor
-# 3 chars must be at least 3 chars too
-###############################################################
-name = input("What's your name? ")
 
-if len(name) < 3:
-    print("Name must be at least 3 characters")
-elif len(name) > 50:
-    print("Name can be 50 characters")
-else:
-    print("name looks good")
 
 ###############################################################
 # THE PROGRAMMER IS BUILT FOR CAR RUN ON THE STREET
@@ -261,18 +443,7 @@ while command.lower() != "quit":
         exit(0)
     else:
         print("I don't understand that...")
-###############################################################
-# Program to read a keyboard value and show last input value,
-# through a array variable with 3 values.
-###############################################################
-valor = ["text_write"]
-size_array = int(len(valor))
 
-while size_array < 3:
-    text = input("Put a value: ")
-    valor.append(text)
-    print(valor[size_array-1])
-    size_array += 1
 ###############################################################
 # Write a program to read the dimensions of rectangle
 # (base and height) calculate and showing the total area.
@@ -305,24 +476,20 @@ There are {percentage_votes:.2f}% votes in {city}, which {valid_votes} votes are
 At last elections, there was {percentage_blank_votes:.2f} % of electors did a blank vote and {percentage_null_votes:.2f}% for null votes.
 ''')
 
-################################################################
-# Program to open images files in Python
-################################################################
-import os.path
-from PIL import Image
-
-images = []
-path = "path_folder_images"
-valid_files = [".jpg", ".gif", ".png"]
-for f in os.listdir(path):
-    ext = os.path.splitext(f)[1]
-    if ext.lower() not in valid_files:
-        continue
-    image_path = os.path.join(path, f)
-    with Image.open(image_path) as img:
-        img.show()
 
 ##########################################
+# Print the following number pattern
+##########################################
+
+rows = 5
+line = 0
+for num in range(rows, 0, -1):
+    line += 1
+    for time in range(1, num + 1):
+        print(line, end=' ')
+    print('\r')
+
+#######################################
 # Calculate the sum of price of products there in store shop.
 #######################################
 prices = [22,10,5,5,8,3]
@@ -332,24 +499,6 @@ for total in prices:
     total_prices += total
 
 print(f"o valor total é {total_prices}")
-#########################################
-# Making a "F" and "L" with a nested loop
-#########################################
-number_xs = [5,2,5,2,2]
-number_ls = [2,2,2,2,5,5]
-
-size_xs = len(number_xs)
-size_ls = len(number_ls)
-
-for i in range(0,size_xs,1):
-    for xs in range(number_xs[i]):
-        print("X",end="")
-    print("",end="\n")
-print("\n")
-for ls_count in range(0,size_ls,1):
-    for ls in range(number_ls[ls_count]):
-        print("X",end="")
-    print("", end="\n")
 
 #########################################
 # Get a largest number in a list variable
@@ -385,25 +534,6 @@ for number in number_list:
         numbers_list.append(number)
 
 print(numbers_list)
-#####################################
-# Write a program where you describe the number in text
-####################################
-phone_number = input("Phone: ")
-
-phone =  {
-    "1": "One",
-    "2": "Two",
-    "3": "Three",
-    "4": "Four",
-    "5": "Five",
-    "6": "Six",
-    "7": "Seven",
-    "8": "Eight",
-    "9": "Nine"
-}
-
-for numbers in phone_number:
-    print(phone[numbers], end=" ")
 
 #####################################
 # Using emojis
@@ -411,17 +541,6 @@ for numbers in phone_number:
 
 message = input("> ")
 print(emojis(message))
-
-######################################
-# Using class and constructor
-#####################################
-
-
-name_in = str(input("Name: "))
-age_in = int(input("Age: "))
-
-john = Person( str(name_in), int(age_in))
-john.is_eligible()
 
 ########################################################
 # Create a file excel with some columns and values
@@ -448,6 +567,7 @@ for r in data:
     ws.append(r)
 
 wb.save(filename='teste_file.xlsx')
+
 ################################################################							
 ## Livro de Introduçcao a Algoritmia e Programação com Python ##
 ################################################################
