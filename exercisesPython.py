@@ -108,9 +108,8 @@ def is_leap(year):
 def is_capt(s):
     chars = str.split(s, ' ')
     for i in chars:
-        result = print(''.join(i.capitalize()), end = ' ')
-        
-    return result
+        result = ''.join(i.capitalize())
+    return print(result, end = ' ')
 
 def split_and_join(line):
     text = line.split()
