@@ -6,6 +6,8 @@ import statistics
 import locale
 import openpyxl
 import math
+import numpy as np
+from colorama import Fore, Style
 from random import randint
 from datetime import datetime, timedelta
 from array import array
@@ -95,10 +97,77 @@ def greeting_out_func(x, y):
     greet = inner_greeting(x,y)
     return greet + 'Developers'
 
+def is_leap(year):
+    leap = False
+    
+    if (year%4==0 and year%100!=0) or year%400==0:
+        leap = True 
+            
+    return leap
+
+def is_capt(s):
+    chars = str.split(s, ' ')
+    for i in chars:
+        result = ''.join(i.capitalize())
+    return print(result, end = ' ')
+
+def split_and_join(line):
+    text = line.split()
+    return "-".join(text)
+    
+def mutate_string(string, position, character):
+    text = string[:position] + character + string[position+1:]
+    return text
 
 ##################################
 ### STRINGS AND CHAR EXERCISES ###
 ##################################
+
+### Read a given string, change the character at a given index and then print the modified string.
+
+if __name__ == '__main__':
+    s = input()
+    i, c = input().split()
+    s_new = mutate_string(s, int(i), c)
+    print(s_new)
+
+### You are given a string. Split the string on a " " (space) delimiter and join using a - hyphen.
+    
+if __name__ == '__main__':
+    line = input()
+    result = split_and_join(line)
+    print(result)
+    
+#########################################
+# Captalize the firts letter of the name
+#########################################
+
+name = input()
+is_capt(name)
+
+#########################################
+# Making a Christmas Tree with date
+#########################################
+
+now = datetime.now()
+x = np.arange(7, 16)
+y = np.arange(1, 18, 2)
+z = np.column_stack((x[::-1], y))
+
+print('')
+
+for i, j in z:
+    if j == 1:
+        print(Style.BRIGHT + Fore.YELLOW + ' ' * i + '*' * j)
+    else:
+        print(Style.BRIGHT + Fore.GREEN + ' ' * i + '*' * j)
+for r in range(4):
+    print('\x1b[38;2;139;69;19m' + ' ' * 13, '**')
+
+print(Style.RESET_ALL)
+print(Style.NORMAL + Fore.LIGHTRED_EX + ' ' * 7, end='Merry Christmas!! 🎅\n')
+print(Style.NORMAL + Fore.LIGHTRED_EX + ' ' * 7, end=now.strftime("%d/%m/%Y %H:%M:%S"))
+print('')
 
 #########################################
 # Making a "F" and "L" with a nested loop
@@ -285,6 +354,65 @@ john.is_eligible()
 ##################################
 ### 	NUMBER EXERCISES       ###
 ##################################
+
+##################################
+##  Rupal has a huge collection of country stamps. She decided to count the total number of distinct 
+##  country stamps in her collection. She asked for your help. You pick the stamps one by one from a 
+##  stack of  country stamps. Find the total number of distinct country stamps.
+##################################
+
+N = int(input())
+conta, total = N, 0
+list_country = set('')
+
+for put in range(N):
+    country = input()
+    
+    if country not in list_country:
+        list_country.add(country)
+        total += 1
+
+print(total)
+
+
+##################################
+##  The provided code stub will read in a dictionary 
+##  containing key/value pairs of name:[marks] for a list of students. 
+##  Print the average of the marks array for the student name provided, 
+##  showing 2 places after the decimal.
+##################################
+
+if __name__ == '__main__':
+    n = int(input())
+    student_marks = {}
+    for _ in range(n):
+        name, *line = input().split()
+        scores = list(map(float, line))
+        student_marks[name] = scores
+    query_name = input()
+    subtotal, total = 0, 0
+    
+    for rate in student_marks[query_name]:
+        subtotal += rate
+        
+    total = float(subtotal/len(student_marks[query_name]))
+    print("%.2f" % total)
+
+##################################
+## 	An extra day is added to the calendar almost every four years as February 29, and the day is called a leap day. 
+## 	It corrects the calendar for the fact that our planet takes approximately 365.25 days to orbit the sun. 
+## 	A leap year contains a leap day.
+##
+##	In the Gregorian calendar, three conditions are used to identify leap years:
+##
+##	The year can be evenly divided by 4, is a leap year, unless:
+##	The year can be evenly divided by 100, it is NOT a leap year, unless:
+##	The year is also evenly divisible by 400. Then it is a leap year.
+##	This means that in the Gregorian calendar, the years 2000 and 2400 are leap years, while 1800, 1900, 2100, 2200, 2300 and 2500 are NOT leap years
+###################################
+    
+year = int(input())
+print(is_leap(year))
 
 ### Sum two numbers using a function which use lambda function (MUST LEARN MORE ABOUT IT) ####
 
@@ -716,5 +844,64 @@ def round_number(value):
 
 round_number(float(input("Input the number float: ")))
 
-#### E.2.2.9 Exercise 9, Page 258 ####
-### It will be continue
+#### E.2.2.5 Exercise 9, Page 258 ####
+
+def thought_exame(exam1, exam2, work):
+    total = (exam1 * 0.3) + (exam2 * 0.3) + (work * 0.4)
+    if total < 50:
+        return print("Scale 5. You repproved this year 😔😢")
+    elif  59 <= float(total) >= 50:
+        return print("Scale 4. You need to improve 😐")
+    elif  60 <= total >= 69:
+        return print("Scale 3. It's enought but you can do better!! 😉")
+    elif  70 <= total >= 79:
+        return print("Scale 2. You make a good job this year!! 😍")
+    elif  80 <= total >= 100:
+        return print("Scale 2. Fantastic!! You're master this year! 💖")
+
+name = input("What's your name? ")
+first_exam = int(input("What's first exame note? (%) "))
+second_exam = int(input("What's second exame note? (%) "))
+work_exam = int(input("What's work exame note? (%) "))
+
+thought_exame(first_exam, second_exam, work_exam)
+
+#### E.2.2.6 Exercise 10, Page 258 ####
+
+def calc_area(ba, alt):
+    area = (ba * alt) / 2
+    return print(f"The area of triangle is {area:.2f}")
+
+base = float(input("What's the measure of base of triangle? "))
+hight = float(input("What's the measure of hight of triangle? "))
+calc_area(base, hight)
+
+#### E.2.2.7 Exercise 11, Page 259 ####
+
+import colorama
+from colorama import Style, Fore
+listA = ['Vista Alegre', 'Quinta Nova','Magres']
+listB = ['Teka', 'MarketShop','Porcel']
+listC = ['Cimpor', 'AEK','Mitsub']
+
+value_pol = float(input("What's rate of polution? "))
+
+if  value_pol >= 0.05 and value_pol <= 0.29:
+    print(Fore.GREEN + Style.BRIGHT + "Good!! You contribute for a greeen environment!! 🍀")
+if value_pol >= 0.30 and value_pol <= 0.39:
+    print(Fore.YELLOW + Style.BRIGHT + f"{listA} should suspend operations until values will be normal!!")
+if value_pol >= 0.40 and value_pol <= 0.49:
+    print(Fore.YELLOW + Style.BRIGHT +f"{listA + listB} should suspend operations until values will be normal!!")
+if value_pol >= 0.50:
+    print(Fore.RED + Style.BRIGHT + f"{listA + listB + listC} all activities should be suspended!! ")
+
+#### E.2.2.8 Exercise 12, Page 259 ####
+
+number = int(input("Type an integer value: "))
+
+if number % 2 == 0:
+    print(f"The number {number} is pair")
+else:
+    print(f"The number {number} is not pair")
+
+#### E.2.2.8 Exercise 12, Page 259 ####
