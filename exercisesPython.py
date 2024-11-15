@@ -884,7 +884,7 @@ listA = ['Vista Alegre', 'Quinta Nova','Magres']
 listB = ['Teka', 'MarketShop','Porcel']
 listC = ['Cimpor', 'AEK','Mitsub']
 
-value_pol = float(input(f"What's rate of polution? "))
+value_pol = float(input("What's rate of polution? "))
 
 if  value_pol >= 0.05 and value_pol <= 0.29:
     print(Fore.GREEN + Style.BRIGHT + "Good!! You contribute for a greeen environment!! 🍀")
