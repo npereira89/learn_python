@@ -40,7 +40,7 @@ def celsius_para_fahrenheit(celsius_temp):
 def revert_phrase(string):
     return string[::-1]
 
-def revert_phrase(string):
+def get_vowel(string):
     vowel = "aeiouAEIOU"
     count = 0
     for letra in string:
@@ -91,7 +91,7 @@ is_pair(value)
 ## Crie uma função que receba um número e retorne o dobro desse número.
 #################################
 
-number = int(input("Number: "))
+number = int(input("Number to double: "))
 print(f"The double is {double_numb(number)}")
 
 #################################
@@ -99,7 +99,7 @@ print(f"The double is {double_numb(number)}")
 ## Faça um programa que converta uma temperatura de Celsius para Fahrenheit.
 #################################
 
-value_celsius = int(input("Number: "))
+value_celsius = int(input("Temperature Celsius: "))
 print(f"The double is {celsius_para_fahrenheit(value_celsius)}")
 
 
@@ -135,7 +135,7 @@ print(revert_phrase(phrase))
 ##################################
 
 phrase = input("Input the phrase: ")
-print(revert_phrase(phrase))
+print(get_vowel(phrase))
 
 ##################################
 ## EXERCICIO 4
