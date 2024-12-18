@@ -20,9 +20,15 @@
 
 * **udemy_exercise.py**: In this script, there are some solutions about udemy labs exercises founded in udemy. The exercises are write in the following [udemy trainner](https://devoteamlearning.udemy.com/course/python-programming-for-beginners-with-exercises/)
 
+* **zip_folder.py**: Zipping all the image with a range of image's extension.
+
+* **sync_folders.py**: Syncronize the folders between source and destiny where the path is defined. 
+
 * **search_lyrics.py**: Get the lyrics about the song. Only input the name of the song and the band.
 
 * **gdrive_folders.py**: Download the files from a folder in Google Drive. It only download 50 files once. (**IN MAINTENANCE**)
+
+* **translation_inputs.py**: Translate string used in folder locales/ 
 
 * **insta_download.py**: It does download profile photos user's instagram, all feed photos and all saved photos instagram with since a determinated date through a menu;
 
