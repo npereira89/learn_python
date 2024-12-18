@@ -18,7 +18,11 @@
 
 * **test_insta_login.py**: In this script, I'll test a login in instagram. It's can help you to test before the next script;
 
-* **udemy_exercise.py**: In this script, there are some solutions about udemy labs exercises. The exercises are write in the following [udemy trainner](https://devoteamlearning.udemy.com/course/python-programming-for-beginners-with-exercises/)
+* **udemy_exercise.py**: In this script, there are some solutions about udemy labs exercises founded in udemy. The exercises are write in the following [udemy trainner](https://devoteamlearning.udemy.com/course/python-programming-for-beginners-with-exercises/)
+
+* **search_lyrics.py**: Get the lyrics about the song. Only input the name of the song and the band.
+
+* **gdrive_folders.py**: Download the files from a folder in Google Drive. It only download 50 files once. (**IN MAINTENANCE**)
 
 * **insta_download.py**: It does download profile photos user's instagram, all feed photos and all saved photos instagram with since a determinated date through a menu;
 
@@ -46,8 +50,3 @@ If you do not want to use pip, even though it is highly recommended, and prefer 
 
 > [!CAUTION]
 > NOT USE IT WITH A VPN
-
-
- ## HTML PAGE ##
-
- There is a page website index.html to show content photos and videos specify in gitignore folder. We use CSS to format the text and page (dimensions, text format, color and other parameters).
