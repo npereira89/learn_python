@@ -115,7 +115,7 @@ print(f"The double is {celsius_para_fahrenheit(value_celsius)}")
 numeros_aleatorios = set()
 
 while len(numeros_aleatorios) < 10:
-    numero = random.randint(1, 50)
+    numero = randint(1, 50)
     if numero % 2 == 0:
         numeros_aleatorios.add(numero)
 
@@ -152,7 +152,7 @@ print(factorial(num))
 
 listnum = []
 for _ in range(10):
-    numero = random.randint(1, 40)
+    numero = randint(1, 40)
     listnum.append(numero)
 
 print(listnum)
@@ -168,7 +168,7 @@ print(f"Da lista gerada o valor minimo é {min(listnum)} e o máximo {max(listnu
 
 listnum = []
 for _ in range(10):
-    numero = random.randint(1, 40)
+    numero = randint(1, 40)
     listnum.append(numero)
 
 print(sorted(listnum))
@@ -190,7 +190,7 @@ with open('words_to_cv.txt', 'r') as file:
 ##################################
 
 tries, x = 3, 0
-sort_numb = random.randint(1, 40)
+sort_numb = randint(1, 40)
 
 while x != tries:
     guess_n = int(input("Guess number between 1 and 40: "))
