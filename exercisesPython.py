@@ -6,6 +6,9 @@ import statistics
 import locale
 import openpyxl
 import math
+import random
+import sys
+import textwrap
 import numpy as np
 from colorama import Fore, Style
 from random import randint
@@ -108,8 +111,9 @@ def is_leap(year):
 def is_capt(s):
     chars = str.split(s, ' ')
     for i in chars:
-        result = ''.join(i.capitalize())
-    return print(result, end = ' ')
+        result = print(''.join(i.capitalize()), end = ' ')
+        
+    return result
 
 def split_and_join(line):
     text = line.split()
@@ -119,9 +123,98 @@ def mutate_string(string, position, character):
     text = string[:position] + character + string[position+1:]
     return text
 
+def print_formatted(number):
+    width = len(bin(number)[2:])
+    for i in range(1, number+1):
+        deci = str(i)
+        octa = oct(i)[2:]
+        hexa = hex(i)[2:].upper()
+        bina = bin(i)[2:]
+        print(deci.rjust(width),octa.rjust(width),hexa.rjust(width),bina.rjust(width))
+
+def solve(meal_cost, tip_percent, tax_percent):
+    tip = float((meal_cost * tip_percent)/100)
+    tax = float((meal_cost * tax_percent)/100)
+    total_cost = meal_cost + tip + tax
+    return print(round(total_cost))
+
+def wrap(string, max_width):
+    for i in range(0,len(string)+1,max_width):
+        result = string[i:max_width+i]
+        if len(result) == max_width:
+            print(result)
+        else:
+            return(result)
+
+def swap_case(s):
+    num = ""
+    for let in s:
+        if let.isupper() == True:
+            num+=(let.lower())
+        else:
+            num+=(let.upper())
+    return num
+
 ##################################
 ### STRINGS AND CHAR EXERCISES ###
 ##################################
+
+##################################
+## You are given a string and your task is to swap cases. 
+## In other words, convert all lowercase letters to uppercase letters and vice versa.
+##################################
+s = input()
+result = swap_case(s)
+print(result)
+
+##################################
+## Your task is to find the first occurrence of an alphanumeric character in  
+## (read from left to right) that has consecutive repetitions. 
+##################################
+
+string = input()
+ans = re.search(r'([^\W_])\1+', string)
+print(ans.group(1) if ans else -1)
+
+##################################
+### Your task is to complete the regex_pattern defined below, 
+##  which will be used to re.split() all of the , and . symbols
+##################################
+
+regex_pattern = r"[.,]" # Do not delete 'r'.
+print("\n".join(re.split(regex_pattern, input())))
+
+##################################
+##   Complete the code in the editor below. The variables are already declared and initialized for you. You must:
+##    - Declare  variables: one of type int, one of type double, and one of type String.
+##    - Read  lines of input from stdin (according to the sequence given in the Input Format section below) 
+## and initialize your  variables.
+##    - Use the  operator to perform the following operations:
+##    - Print the sum of  plus your int variable on a new line.
+##    - Print the sum of  plus your double variable to a scale of one decimal place on a new line.
+##    - Concatenate the string you read as input str and print the result on a new line.
+##################################
+
+i = 4
+d = 4.0
+s = 'HackerRank '
+
+i += int(input())
+d += float(input())
+s = 'HackerRank ' + str(input())
+
+print(i)
+print(d)
+print(s)
+
+##################################
+You are given a string and width
+Your task is to wrap the string into a paragraph of width .
+##################################
+
+string, max_width = input(), int(input())
+result = wrap(string, max_width)
+print(result, end='\n')
 
 ### Read a given string, change the character at a given index and then print the modified string.
 
@@ -168,6 +261,17 @@ print(Style.RESET_ALL)
 print(Style.NORMAL + Fore.LIGHTRED_EX + ' ' * 7, end='Merry Christmas!! 🎅\n')
 print(Style.NORMAL + Fore.LIGHTRED_EX + ' ' * 7, end=now.strftime("%d/%m/%Y %H:%M:%S"))
 print('')
+
+######## Verificador de Palíndromos 							       #################
+######## Crie um programa que verifique se uma palavra fornecida pelo usuário é um palíndromo. #################
+
+string = input("Diz-me qual é a palavra ou frase: ")
+texto_invertido = string[::-1]
+
+if string.lower() == texto_invertido.lower() and len(string.split()) == 1:
+    print("É uma palavra palíndromo!!")
+elif string.lower() != texto_invertido.lower() and len(string.split()) == 1:
+    print("Não é uma palavra palíndromo!!")
 
 #########################################
 # Making a "F" and "L" with a nested loop
@@ -354,6 +458,127 @@ john.is_eligible()
 ##################################
 ### 	NUMBER EXERCISES       ###
 ##################################
+
+######## TABUADA ATE AOS 10 ########
+
+tries = 10
+
+for x in range(1, tries+1):
+    for y in range(1, tries+1):
+        print(f'{x} * {y} = {x*y}')
+    print("\n")
+
+######## Jogo de Adivinhação	 							 #################
+######## Escolhe um número aleatório entre 1 e 100, e o usuário tenta adivinhar. 	 #################
+
+number_sorted = random.randint(1, 100)
+tries, x = 3, 0
+print(number_sorted)
+
+while x != tries:
+    value = int(input("Guess number between 1 and 100: "))
+    if value <= 100:
+        x += 1
+        if x <= tries:
+            if value == number_sorted:
+                print("Get it!! Congrats 🍀")
+                exit(1)
+            elif value != number_sorted and x < 3:
+                print(f"No, try again. You have more {tries - x} tries")
+            elif value != number_sorted and x == tries:
+                print("Game over 😔")
+    else:
+        print("The value isn't between the range")
+
+##################################
+## Given the participants' score sheet for your University Sports Day, you are required to find the runner-up score. 
+## You are given  scores. Store them in a list and find the score of the runner-up.
+##################################
+
+n = int(input())    
+arr = map(int, input().split())
+arr2 = list(set(arr))
+arr2.sort()
+print(arr2[-2])   
+
+##################################
+## Given an integer, , perform the following conditional actions:
+##  - If is odd, print Weird
+##  - If is even and in the inclusive range of  to , print Not Weird
+##  - If is even and in the inclusive range of  to , print Weird
+##  - If is even and greater than , print Not Weird
+## Complete the stub code provided in your editor to print whether or not  is weird.
+##################################
+
+if __name__ == '__main__':
+    N = int(input().strip())
+    
+    if N % 2 == 0 and N<=5:
+        print("Not Weird")
+    elif N % 2 != 0 and N >= 6 or N<=20:
+        print("Weird")
+    elif N % 2 == 0 and N > 20:
+        print("Not Weird")       
+
+##################################
+##   Given the meal price (base cost of a meal), tip percent (the percentage of the meal price being added as tip), 
+##   and tax percent (the percentage of the meal price being added as tax) for a meal, find and print the meal's total cost. 
+##   Round the result to the nearest integer.
+##################################
+
+meal_cost = float(input().strip())
+tip_percent = int(input().strip())
+tax_percent = int(input().strip())
+solve(meal_cost, tip_percent, tax_percent)
+
+
+##################################
+## Given an array, , of size  distinct elements, sort the array in ascending order 
+## using the Bubble Sort algorithm above. 
+## Once sorted, print the following lines: array sorted, first and last element
+##################################
+
+n = int(input())
+a = [int(x) for x in input().split(" ")]
+numberOfSwaps = 0
+for i in range(n):
+    for j in range(n - 1):
+        if a[j] > a[j + 1]:
+            tmp = arr[j]
+            a[j] = a[j + 1]
+            a[j + 1] = tmp
+            num_swaps += 1
+    if num_swaps == 0:
+        break
+   
+print(f'Array is sorted in {numberOfSwaps} swaps.')
+print(f'First Element: {min(a)}')
+print(f'Last Element: {max(a)}')
+
+##################################
+##  Read in two integers, A and B, and print three lines.
+##  The first line is the integer division
+##  The second line is the result of the modulo operator moddivisor (%)
+##  The third line prints the divmod of A and B.
+##################################
+
+a = int(input())
+b = int(input())
+div = a/b
+module = a%b
+result = (int(div), module)
+
+print(int(div))
+print(module)
+print(result)
+
+##################################
+##	Given an integer, n, print the following values for each integer i from 1 to n: Decimal, Octal, Hexa and Binary. 
+##	The four values must be printed on a single line in the order specified above for each i from 1 to n. 
+##	Each value should be space-padded to match the width of the binary value of n.
+##################################       
+n = int(input())
+print_formatted(n)
 
 ##################################
 ##  Rupal has a huge collection of country stamps. She decided to count the total number of distinct 
