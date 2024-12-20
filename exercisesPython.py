@@ -4,6 +4,7 @@ import time
 import string
 import statistics
 import locale
+import pytz
 import openpyxl
 import math
 import random
@@ -458,6 +459,14 @@ john.is_eligible()
 ##################################
 ### 	NUMBER EXERCISES       ###
 ##################################
+
+######## GIVE THE HOUR AT THE MOMENT FROM A TIMEZONE ########
+
+# Set the timezone
+timezone = pytz.timezone(input('Give the timezone: '))
+# Get the current time in Brazil
+brazil_time = datetime.datetime.now(timezone)
+print(f"Current hour in {timezone}:", brazil_time.strftime("%H:%M:%S"))
 
 ######## TABUADA ATE AOS 10 ########
 
