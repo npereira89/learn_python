@@ -3,6 +3,7 @@ import re
 import time
 import string
 import statistics
+import ipinfo
 import locale
 import pytz
 import openpyxl
@@ -273,6 +274,15 @@ if string.lower() == texto_invertido.lower() and len(string.split()) == 1:
     print("É uma palavra palíndromo!!")
 elif string.lower() != texto_invertido.lower() and len(string.split()) == 1:
     print("Não é uma palavra palíndromo!!")
+
+####### IP LOCATION GIVEN #########
+
+access_token = 'ACCESS_TOKEN_IPINFO'
+handler = ipinfo.getHandler(access_token)
+ip_address = 'IP_PC'
+details = handler.getDetails()
+print(details.country_name + " -> " + details.city)
+print("Hostname: " + details.hostname)
 
 #########################################
 # Making a "F" and "L" with a nested loop
