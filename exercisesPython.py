@@ -162,6 +162,38 @@ def swap_case(s):
 ##################################
 
 ##################################
+## Manipulate the string with some characters
+##################################
+
+string='The life is beautiful'
+print(string.replace(' ','-'))
+
+string1='The'
+string2='life'
+string3='is'
+string4='beautiful'
+print(string1+'-'+string2+'-'+string3+'-'+string4)
+
+##################################
+## Print the alphabetic with ASCII code with upper and lower case
+##################################
+
+for i in range(65,91):
+    print(chr(i),end=' ')
+print("\n")
+for x in range(65,91):
+    print(chr(x).lower(), end=' ')
+
+##################################
+## Put line under a string
+##################################
+
+print('\n')
+string='Python is an awesome programming language to learn for beginners'
+print(string.replace(' ','\n'))
+
+
+##################################
 ## You are given a string and your task is to swap cases. 
 ## In other words, convert all lowercase letters to uppercase letters and vice versa.
 ##################################
@@ -470,6 +502,48 @@ john.is_eligible()
 ### 	NUMBER EXERCISES       ###
 ##################################
 
+##################################
+### Write a program calculating the sum of all numbers raised to a specific power. 
+### Input format: First line contains two integers: n, e separated by a comma. Each of the next 
+### n lines contains an integer.
+##################################
+
+values = input("Sample Input: ")
+n, e = map(int, values.split(','))
+total = 0
+
+for numb in range (1, n+1):
+    total += numb**e
+    
+print(total)
+
+
+######## Sum two numbers ########
+
+print('\n')
+x = int(input("Enter the number 1: "))
+y = int(input("Enter the number 2: "))
+print(f"Sum of two number is {x+y}")
+
+##################################
+### Get three numbers in one line from STDIN, separated by a space
+### then print their product using python code
+##################################
+
+values = input(f"Enter three numbers:")
+listNumbr = list(map(int, values.split())) 
+total = 1
+
+for x in listNumbr:
+    total *= x
+
+print(total)
+
+######## Date format ########
+
+time = datetime.now()
+print(time.strftime("%Y-%m-%d"))
+
 ######## GIVE THE HOUR AT THE MOMENT FROM A TIMEZONE ########
 
 # Set the timezone
@@ -643,16 +717,16 @@ if __name__ == '__main__':
     print("%.2f" % total)
 
 ##################################
-## 	An extra day is added to the calendar almost every four years as February 29, and the day is called a leap day. 
-## 	It corrects the calendar for the fact that our planet takes approximately 365.25 days to orbit the sun. 
-## 	A leap year contains a leap day.
+## An extra day is added to the calendar almost every four years as February 29, and the day is called a leap day. 
+## It corrects the calendar for the fact that our planet takes approximately 365.25 days to orbit the sun. 
+## A leap year contains a leap day.
 ##
-##	In the Gregorian calendar, three conditions are used to identify leap years:
+## In the Gregorian calendar, three conditions are used to identify leap years:
 ##
-##	The year can be evenly divided by 4, is a leap year, unless:
-##	The year can be evenly divided by 100, it is NOT a leap year, unless:
-##	The year is also evenly divisible by 400. Then it is a leap year.
-##	This means that in the Gregorian calendar, the years 2000 and 2400 are leap years, while 1800, 1900, 2100, 2200, 2300 and 2500 are NOT leap years
+## The year can be evenly divided by 4, is a leap year, unless:
+## The year can be evenly divided by 100, it is NOT a leap year, unless:
+## The year is also evenly divisible by 400. Then it is a leap year.
+## This means that in the Gregorian calendar, the years 2000 and 2400 are leap years, while 1800, 1900, 2100, 2200, 2300 and 2500 are NOT leap years
 ###################################
     
 year = int(input())
