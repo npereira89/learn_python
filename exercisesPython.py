@@ -67,7 +67,6 @@ def greeting(name):
     return print(f'Seu primeiro nome é {first_name(name)} '
                  f'e o seu último nome é {last_name(name)}')
 
-
 def sum_values(a, b):
     multwo = lambda c, d: c + d
     return multwo(a, b)
@@ -109,17 +108,6 @@ def is_leap(year):
         leap = True 
             
     return leap
-
-def is_capt(s):
-    chars = str.split(s, ' ')
-    for i in chars:
-        result = print(''.join(i.capitalize()), end = ' ')
-        
-    return result
-
-def split_and_join(line):
-    text = line.split()
-    return "-".join(text)
     
 def mutate_string(string, position, character):
     text = string[:position] + character + string[position+1:]
@@ -162,6 +150,22 @@ def swap_case(s):
 ##################################
 
 ##################################
+## Showing Code ASCII between 33 and 126
+##################################
+for i in range(33,127):
+    print(f"{i} -> {chr(i)}")
+    
+##################################
+## Print the alphabetic with ASCII code with upper and lower case
+##################################
+
+for i in range(65,91):
+    print(chr(i),end=' ')
+print("\n")
+for x in range(65,91):
+    print(chr(x).lower(), end=' ')
+
+##################################
 ## Manipulate the string with some characters
 ##################################
 
@@ -175,23 +179,12 @@ string4='beautiful'
 print(string1+'-'+string2+'-'+string3+'-'+string4)
 
 ##################################
-## Print the alphabetic with ASCII code with upper and lower case
-##################################
-
-for i in range(65,91):
-    print(chr(i),end=' ')
-print("\n")
-for x in range(65,91):
-    print(chr(x).lower(), end=' ')
-
-##################################
-## Put line under a string
+## Break line each word in a string
 ##################################
 
 print('\n')
 string='Python is an awesome programming language to learn for beginners'
 print(string.replace(' ','\n'))
-
 
 ##################################
 ## You are given a string and your task is to swap cases. 
@@ -258,20 +251,6 @@ if __name__ == '__main__':
     s_new = mutate_string(s, int(i), c)
     print(s_new)
 
-### You are given a string. Split the string on a " " (space) delimiter and join using a - hyphen.
-    
-if __name__ == '__main__':
-    line = input()
-    result = split_and_join(line)
-    print(result)
-    
-#########################################
-# Captalize the firts letter of the name
-#########################################
-
-name = input()
-is_capt(name)
-
 #########################################
 # Making a Christmas Tree with date
 #########################################
@@ -335,9 +314,9 @@ for ls_count in range(0,size_ls,1):
         print("X",end="")
     print("", end="\n")
 
-################################################################
+##########################################
 # Program to open images files in Python
-################################################################
+##########################################
 import os.path
 from PIL import Image
 
@@ -361,15 +340,13 @@ print(string.digits)            # Output: 0123456789
 print(string.hexdigits)         # Output: 0123456789abcdefABCDEF
 print(string.punctuation)       # Output: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
 print(string.ascii_letters)     # Output: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
-
          
-            
 print(find_right_most_digit('The value is 42 dsds2323'))  # Output: 2
 print(find_right_most_digit('No digits heredssd34'))  # Output: -1
 
 #####################################
 # Write a program where you describe the number in text
-####################################
+#####################################
 phone_number = input("Phone: ")
 
 phone =  {
@@ -408,6 +385,7 @@ ascii_dict = {'A': 65, 'B': 66, 'C': 67, 'D': 68}
 
 reverse_dict = {value: key for key, value in ascii_dict.items()}
 print(reverse_dict)
+
 ### Working with dict using json string ###
 
 import json
@@ -451,11 +429,11 @@ print(phrase.replace("Java", "Python"))
 full_name = ' nuno pereira '
 print("Hello, " + full_name.strip() + "!")
 
-###############################################################
+##############################################################
 # Check the name has between 3 and 50 characters. If the name
 # is above 50 characters the name is wrong but it's minor
 # 3 chars must be at least 3 chars too
-###############################################################
+##############################################################
 name = input("What's your name? ")
 
 if len(name) < 3:
@@ -465,7 +443,7 @@ elif len(name) > 50:
 else:
     print("name looks good")
 
-###############################################################
+##############################################################
 
 name = input("What is your name? ")
 fav_color = input("What is your favourite color? ")
@@ -473,10 +451,10 @@ fav_color = input("What is your favourite color? ")
 print(f"{name} likes {fav_color}")
 print(name + " likes " + fav_color)
 
-###############################################################
+##############################################################
 # Program to read a keyboard value and show last input value,
 # through a array variable with 3 values.
-###############################################################
+##############################################################
 valor = ["text_write"]
 size_array = int(len(valor))
 
@@ -486,9 +464,9 @@ while size_array < 3:
     print(valor[size_array-1])
     size_array += 1
 
-######################################
+##################################
 # Using class and constructor
-#####################################
+##################################
 
 
 name_in = str(input("Name: "))
@@ -501,6 +479,15 @@ john.is_eligible()
 ##################################
 ### 	NUMBER EXERCISES       ###
 ##################################
+
+##################################
+### Power build-in maths library
+##################################
+
+for x in range(2, 11):
+    for y in range(1, 11):
+        print(f"{x} elevado a {y} = {float(math.pow(x,y)):.0f}")
+    print("\n")
 
 ##################################
 ### Write a program calculating the sum of all numbers raised to a specific power. 
@@ -516,7 +503,6 @@ for numb in range (1, n+1):
     total += numb**e
     
 print(total)
-
 
 ######## Sum two numbers ########
 
@@ -554,10 +540,8 @@ print(f"Current hour in {timezone}:", brazil_time.strftime("%H:%M:%S"))
 
 ######## TABUADA ATE AOS 10 ########
 
-tries = 10
-
-for x in range(1, tries+1):
-    for y in range(1, tries+1):
+for x in range(1, 11):
+    for y in range(1, 11):
         print(f'{x} * {y} = {x*y}')
     print("\n")
 
@@ -726,7 +710,8 @@ if __name__ == '__main__':
 ## The year can be evenly divided by 4, is a leap year, unless:
 ## The year can be evenly divided by 100, it is NOT a leap year, unless:
 ## The year is also evenly divisible by 400. Then it is a leap year.
-## This means that in the Gregorian calendar, the years 2000 and 2400 are leap years, while 1800, 1900, 2100, 2200, 2300 and 2500 are NOT leap years
+## This means that in the Gregorian calendar, the years 2000 and 2400 are leap years, 
+## while 1800, 1900, 2100, 2200, 2300 and 2500 are NOT leap years
 ###################################
     
 year = int(input())
@@ -836,7 +821,7 @@ print("5\t"+str(square_number(5))+"\t"+str(square_number(5)*5))
 
 
 
-###############################################################################
+###############################################################
 
 x = randint(0,99)
 print(x)
@@ -958,6 +943,7 @@ for number in number_list:
         size = number
 
 print(size)
+
 ########################################
 # Remove the duplicates
 ########################################
@@ -971,6 +957,7 @@ for number in number_list:
         number_list.remove(number)
 
 print(number_list)
+
 ######### other example ###############
 number_list = [10,10,20,20,2,7,7,5]
 numbers_list = []
