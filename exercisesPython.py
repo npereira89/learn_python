@@ -33,6 +33,72 @@ class Person:
         else:
             print(f"Go away {self.name} \nYou are not allow to see pornography, cuz you're {self.age} yo!")
 
+def round_number(value):
+    valor_approach = round(value, 0)
+    if valor_approach > value:
+        return print(f"The excess approach is {valor_approach:.0f}")
+    else:
+        return print(f"The default approach is {value:.0f}")
+
+def calc_area(side1, side2, side3):
+    if side1 >= 0 and side2 >= 0 and side3 >= 0:
+        a = side1 + side2 + side3 / 2
+        area = math.sqrt(a * (a - side1) * (a - side2) * (a - side3))
+        return print(f"The value of area is {area:.2f} m2")
+    else:
+        print("Not possible calculate area of triangle, because one of the values are not positive")
+
+def calc_price(qtd_hmb, qtd_ch, qtd_shp, qtd_itea, qtd_shk):
+    price = (qtd_hmb * 6.5) + (qtd_ch * 7.5) + (qtd_shp * 3.5) + (qtd_itea * 0.7) + (qtd_shk * 0.8)
+    return float(price)
+
+def round_number(value):
+    valor_approach = round(value, 0)
+    if valor_approach > value:
+        return print(f"The excess approach is {valor_approach:.0f}")
+    else:
+        return print(f"The default approach is {value:.0f}")
+	
+def consumer_price(farmer_cost):
+    if farmer_cost <= 10000:
+        rate_distribution = 0.08
+    elif farmer_cost > 10000:
+        rate_distribution = 0.06
+
+    if rate_distribution <= 0.06:
+        rate_taxes = 0.35
+    if rate_distribution > 0.06:
+        rate_taxes = 0.45
+
+    total = farmer_cost + (farmer_cost * rate_distribution) + (farmer_cost * rate_taxes)
+    return print(f"The consumer price is {total:2f} €")
+
+def formula_delta(value_a, value_b, value_c):
+    delta = value_b**2 - (4 * value_a * value_c)
+    if delta == 0:
+        return print(f"The delta value is {delta}.\nThe discriminante is null")
+    if delta > 0:
+        return print(f"The delta value is {delta}.\nThe discriminante is positive")
+    if delta < 0:
+        return print("Not possible calculate the quadratic equation")
+
+def thought_exame(exam1, exam2, work):
+    total = (exam1 * 0.3) + (exam2 * 0.3) + (work * 0.4)
+    if total < 50:
+        return print("Scale 5. You repproved this year 😔😢")
+    elif  59 <= float(total) >= 50:
+        return print("Scale 4. You need to improve 😐")
+    elif  60 <= total >= 69:
+        return print("Scale 3. It's enought but you can do better!! 😉")
+    elif  70 <= total >= 79:
+        return print("Scale 2. You make a good job this year!! 😍")
+    elif  80 <= total >= 100:
+        return print("Scale 2. Fantastic!! You're master this year! 💖")
+
+def calc_area(ba, alt):
+    area = (ba * alt) / 2
+    return print(f"The area of triangle is {area:.2f}")
+
 def emojis(message):
     words = message.split(" ")
     emojis = {
@@ -805,9 +871,6 @@ print(f"A nota mais baixa é {min(array_notas)}")
 print(f"A nota mais alta é {max(array_notas)}")
 print(f"A média de todas as notas é {(sum(array_notas) / len(array_notas))}")
 
-
-
-
 ### Table number, square and cube ###
 
 
@@ -818,8 +881,6 @@ print("2\t"+str(square_number(2))+"\t"+str(square_number(2)*2))
 print("3\t"+str(square_number(3))+"\t"+str(square_number(3)*3))
 print("4\t"+str(square_number(4))+"\t"+str(square_number(4)*4))
 print("5\t"+str(square_number(5))+"\t"+str(square_number(5)*5))
-
-
 
 ###############################################################
 
@@ -833,8 +894,6 @@ if y == x:
 else:
     print("Try more later...!!")
 
-
-
 ###############################################################
 # Convert pounds for Kg
 ###############################################################
@@ -842,7 +901,6 @@ else:
 weight = float(input("What is your weight (in pounds)? "))
 
 print(f"{weight*0.45} Kg")
-
 
 ###############################################################
 # THE PROGRAMMER IS BUILT FOR CAR RUN ON THE STREET
@@ -944,28 +1002,22 @@ for number in number_list:
 
 print(size)
 
-########################################
-# Remove the duplicates
-########################################
-number_list = [10,10,20,20,2,7,7,5]
+######### other example ###############
 
+number_list = [10,10,20,20,2,7,7,5]
 check = number_list[0]
 number = 0
-
-for number in number_list:
-    if number_list.count(number) > 1:
-        number_list.remove(number)
-
-print(number_list)
-
-######### other example ###############
-number_list = [10,10,20,20,2,7,7,5]
 numbers_list = []
 
 for number in number_list:
     if number not in numbers_list:
         numbers_list.append(number)
 
+for number in number_list:
+    if number_list.count(number) > 1:
+        number_list.remove(number)
+
+print(number_list)
 print(numbers_list)
 
 #####################################
@@ -1027,28 +1079,18 @@ print(f"The result of the sixth operation is {K}")
 
 a, b, c, d, e, f = 1, 5, 3, 6, 5, 4
 
-align_a = a/b + 1
-print(f"The result of the first operation is {align_a}")
-align_b = (a + b) / (c-d)
-print(f"The result of the second operation is {align_b}")
-align_c = a + (b/c) / d + (e/f)
-print(f"The result of the third operation is {align_c}")
-align_d = a + (b / (c - d))
-print(f"The result of the fourth operation is {align_d}")
-align_e = (a+b) * b/d
-print(f"The result of the fifth operation is {align_e}")
-align_f = ((a+b) ** c)**d
-print(f"The result of the sixth operation is {align_f}")
-align_g = math.sin(a) + math.cos(a)/math.tan(a)
-print(f"The result of the seventh operation is {align_g:2f}")
-align_h = -b + math.sqrt(b**2 - 4*a*c)/2*a
-print(f"The result of the eight operation is {float(align_h):2f}")
+print(f"The result of the first operation is {a/b + 1}") 
+print(f"The result of the second operation is {(a + b) / (c-d)}")
+print(f"The result of the third operation is {a + (b/c) / d + (e/f)}")
+print(f"The result of the fourth operation is {a + (b / (c - d))}")
+print(f"The result of the fifth operation is {(a+b) * b/d}")
+print(f"The result of the sixth operation is {((a+b) ** c)**d}")
+print(f"The result of the seventh operation is {math.sin(a) + math.cos(a)/math.tan(a):2f}")
+print(f"The result of the eight operation is {float(-b + math.sqrt(b**2 - 4*a*c)/2*a):2f}")
 
 #### E.2.1.4 Exercise 4, Page 257 ####
 
-def calc_price(qtd_hmb, qtd_ch, qtd_shp, qtd_itea, qtd_shk):
-    price = (qtd_hmb * 6.5) + (qtd_ch * 7.5) + (qtd_shp * 3.5) + (qtd_itea * 0.7) + (qtd_shk * 0.8)
-    return float(price)
+
 
 
 print("""##### MENU #####\n(1) Hamburger -> 6,50€\n(2) Cheeseburger -> 7,50€\n(3) Sheep -> 3, 50€\n(4) Ice Tea -> 0,70€
@@ -1067,17 +1109,6 @@ print(f"The total of the shop is {total:.2f} €.\nThanks for your visit!! See y
 
 #### E.2.2.1 Exercise 5, Page 257 ####
 
-
-def formula_delta(value_a, value_b, value_c):
-    delta = value_b**2 - (4 * value_a * value_c)
-    if delta == 0:
-        return print(f"The delta value is {delta}.\nThe discriminante is null")
-    if delta > 0:
-        return print(f"The delta value is {delta}.\nThe discriminante is positive")
-    if delta < 0:
-        return print("Not possible calculate the quadratic equation")
-
-
 print("Let's calculate the quadratic equation:")
 A = int(input("Define the value of coefficient a: "))
 B = int(input("Define the value of coefficient b: "))
@@ -1086,19 +1117,7 @@ formula_delta(A, B, C)
 
 #### E.2.2.2 Exercise 6, Page 257 ####
 
-def consumer_price(farmer_cost):
-    if farmer_cost <= 10000:
-        rate_distribution = 0.08
-    elif farmer_cost > 10000:
-        rate_distribution = 0.06
 
-    if rate_distribution <= 0.06:
-        rate_taxes = 0.35
-    if rate_distribution > 0.06:
-        rate_taxes = 0.45
-
-    total = farmer_cost + (farmer_cost * rate_distribution) + (farmer_cost * rate_taxes)
-    return print(f"The consumer price is {total:2f} €")
 
 
 cost_factory = int(input("What's factory cost for a new car??\n"))
@@ -1107,13 +1126,7 @@ consumer_price(cost_factory)
 
 #### E.2.2.3 Exercise 7, Page 258 ####
 
-def calc_area(side1, side2, side3):
-    if side1 >= 0 and side2 >= 0 and side3 >= 0:
-        a = side1 + side2 + side3 / 2
-        area = math.sqrt(a * (a - side1) * (a - side2) * (a - side3))
-        return print(f"The value of area is {area:.2f} m2")
-    else:
-        print("Not possible calculate area of triangle, because one of the values are not positive")
+
 
 
 s1 = int(input("Measure 1: "))
@@ -1125,12 +1138,6 @@ calc_area(s1, s2, s3)
 
 #### E.2.2.4 Exercise 8, Page 258 ####
 
-def round_number(value):
-    valor_approach = round(value, 0)
-    if valor_approach > value:
-        return print(f"The excess approach is {valor_approach:.0f}")
-    else:
-        return print(f"The default approach is {value:.0f}")
 
 
 number = float(input("Input the number float: "))
@@ -1139,30 +1146,13 @@ round_number(number)
 
 #### E.2.2.4 Exercise 8, Page 258 ####
 
-def round_number(value):
-    valor_approach = round(value, 0)
-    if valor_approach > value:
-        return print(f"The excess approach is {valor_approach:.0f}")
-    else:
-        return print(f"The default approach is {value:.0f}")
+
 
 
 round_number(float(input("Input the number float: ")))
 
 #### E.2.2.5 Exercise 9, Page 258 ####
 
-def thought_exame(exam1, exam2, work):
-    total = (exam1 * 0.3) + (exam2 * 0.3) + (work * 0.4)
-    if total < 50:
-        return print("Scale 5. You repproved this year 😔😢")
-    elif  59 <= float(total) >= 50:
-        return print("Scale 4. You need to improve 😐")
-    elif  60 <= total >= 69:
-        return print("Scale 3. It's enought but you can do better!! 😉")
-    elif  70 <= total >= 79:
-        return print("Scale 2. You make a good job this year!! 😍")
-    elif  80 <= total >= 100:
-        return print("Scale 2. Fantastic!! You're master this year! 💖")
 
 name = input("What's your name? ")
 first_exam = int(input("What's first exame note? (%) "))
@@ -1173,9 +1163,7 @@ thought_exame(first_exam, second_exam, work_exam)
 
 #### E.2.2.6 Exercise 10, Page 258 ####
 
-def calc_area(ba, alt):
-    area = (ba * alt) / 2
-    return print(f"The area of triangle is {area:.2f}")
+
 
 base = float(input("What's the measure of base of triangle? "))
 hight = float(input("What's the measure of hight of triangle? "))
