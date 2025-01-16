@@ -22,6 +22,102 @@ from openpyxl.workbook import Workbook
 ### ALL FUNCTIONS AND CLASS ###
 ###############################
 
+def combo_string(a, b):
+  
+  check_size_a = len(a)
+  check_size_b = len(b)
+  
+  if check_size_a > check_size_b:
+      longer = a
+      short = b
+  else:
+      longer = b
+      short = a
+  
+  return short+longer+short
+
+def join_middle(bound_by, tag_name):
+  if len(bound_by) % 2 == 0:
+    # Even length: Insert between the two middle characters
+    mid = len(bound_by) // 2
+    return bound_by[:mid] + tag_name + bound_by[mid:]
+  else:
+    # Odd length: Insert after the middle character
+    mid = len(bound_by) // 2
+    return bound_by[:mid] + tag_name + string[mid:]
+
+def reverseWords(s):
+    words = s.split() 
+    reversed_words = words[::-1]
+    return " ".join(reversed_words)
+
+def gfg(S):
+    b = S.lower()
+    if(b.startswith("gfg") or b.endswith('gfg')):  
+        print ("Yes")
+    else:
+        print ("No")
+
+def trim(str):
+    str_final = str.strip()
+    return str_final
+    
+def exists(str, x):
+    str_final = str.strip()
+    return str_final.find(x)
+    
+def titleIt(str):
+    str_final = str.strip()
+    return str_final.title()
+    
+def casesSwap(str):
+    str_final = str.strip()
+    return str_final.upper()
+
+def intersection(arr1, arr2):
+    new_arr = arr1 + arr2
+    result = list()
+
+    for value in new_arr:
+        if new_arr.count(value) > 1:
+            result.append(value)
+            new_arr.remove(value)
+
+    return print(result)
+
+def stringJumper(str):
+    for i in range(0, len(str), 2): ## from 0 to length of str and skip 2
+        print(str[i], end="") ##printing character and separating characters by nothing
+
+def printIncreasingPower(x):
+    for num in range(1, x+1):
+        result = num ** 2
+        if result<=x:
+            print(result, end= ' ')
+	    
+def pos(n):
+    for n in range(n-1, -1, -1):
+        print(n, end= ' ')
+    
+def neg(n):
+    for n in range(n, 1, 1):
+        print(n, end= ' ')
+
+class Solution:
+    def checkNumber(a, b):
+        if int(a) == int(b):
+            flag="True"
+        else:
+            flag="False"
+        return flag
+	
+    def get_min_max(self, arr):
+        return min(arr), max(arr)
+    
+    def findUnion(self, a, b):
+        total_union = a + b
+        return len(list(set(total_union)))
+
 class Person:
     def __init__(self, name, age): # constructor
         self.name = name
@@ -214,6 +310,53 @@ def swap_case(s):
 ##################################
 ### STRINGS AND CHAR EXERCISES ###
 ##################################
+
+##################################
+## Given two strings a and b. The task is to make a new string where the string with longer length should 
+## be in between and the one with shorter length should be outside on front and end. New string should be like 
+## shorter+longer+shorter.
+##################################
+
+a = Hi
+b = There
+combo_string(a, b)
+
+##################################
+## Given a string of braces named bound_by, and a string named tag_name. 
+## The task is to print a new string such that tag_name is in the middle of bound_by.
+##################################
+
+bound = "[[[]]]"
+tag = "nuno"
+print(join_middle(bound, tag))
+
+##################################
+## Given a string s, reverse the string without reversing its individual words. 
+## Words are separated by spaces.
+##################################
+
+string='O meu nome é Nuno'
+print(reverseWords(string))
+
+##################################
+## You are given a string, 'S'. You need to write a function called 'gfg' that takes 'S' as input and 
+## checks if the string starts and ends with the substring 'gfg'
+##################################
+
+gfg("DXvBFJkfndGfg")
+
+##################################
+## Using the built-in commands title, trim, uppercase and title string to show in output
+##################################
+
+text = "nuno"
+chars = "no"
+
+print(trim(text))
+print(exists(text, chars))
+print(titleIt(text))
+print(casesSwap(text))
+
 
 ##################################
 ## Showing Code ASCII between 33 and 126
@@ -545,6 +688,101 @@ john.is_eligible()
 ##################################
 ### 	NUMBER EXERCISES       ###
 ##################################
+
+##################################
+### Intersection two list variables and check which values is repeated in that intersection
+##################################
+
+arr_a = [1, 2, 3, 4]
+arr_b = [2, 4, 6, 7, 8]
+intersection(arr_a, arr_b)
+
+##################################
+### You are given two array with various numbers and union them
+### Task: Get the lenght of the new array (union of array A with B)
+##################################
+
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range(t):
+
+        a = [int(x) for x in input().strip().split()]
+        b = [int(x) for x in input().strip().split()]
+        ob = Solution()
+
+        print(ob.findUnion(a, b))
+        print("~")
+
+##################################
+### You are given a array with various numbers and get the min and max value
+##################################
+
+if __name__ == "__main__":
+    t = int(input())
+    while t > 0:
+        arr = list(map(int, input().split()))
+        ob = Solution()
+        mn, mx = ob.get_min_max(arr)
+        print(mn, mx)
+        t -= 1
+        print("~")
+
+##################################
+### You are given a string str, you need to print its 
+### characters at even indices(index starts at 0).
+##################################
+
+stringJumper("DoctorPhenomenal")
+
+##################################
+### Given a positive integer x, the task is to print the numbers from 1 to x in the order 
+### as 12, 22, 32, 42, 52, ... (in increasing order).
+##################################
+
+def main():
+    
+    # Testcase input
+    testcases = int(input())
+    
+    # Looping through testcases
+    while(testcases > 0):
+        x = int(input())
+        
+        printIncreasingPower(x);
+        print ()
+        
+        
+        testcases -= 1
+        print("~")
+ 
+if __name__ == '__main__':
+    main()
+
+
+def main():
+    testcases=int(input()) #testcases
+    while(testcases>0):
+        n = int(input())
+        if(n > 0):
+            pos(n)
+        elif(n < 0):
+            neg(n)
+        else:
+            print("already Zero",end="")
+        print()
+        testcases-=1
+        
+
+
+        print("~")
+if __name__=='__main__':
+    main()
+
+##################################
+### Check if the value is equal or not for other 
+##################################
+
+print(Solution.checkNumber("18","155"))
 
 ##################################
 ### Power build-in maths library
