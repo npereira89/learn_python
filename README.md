@@ -4,8 +4,6 @@
 
 **I will explain all script I did with a little explain**:
 
-* **convert_celsisus_fahren.py**: this script convert celsius temperature for fahrenheit and vice versa;
-
 * **exercisesPython.py**: In this script, I did some training exercises which I founded in this [repo](https://github.com/rmveiga/exercicios_python?tab=readme-ov-file#%C3%ADndice). In my repository, you can find a solutin, but there are others;
 
 * **get_a_number_game.py**: In this script, I did a game to figure out a number between 1 a 100. Just have 3 attemps. I give some clues. In the end of the 3 attemps, I told you the number sorted. Is it fun? Let's play!; 
@@ -13,10 +11,6 @@
 * **getting_photos_directory.py**: In this script, we can open all photos there are in specify directory
 
 * **prime_number.py**: I did this script to figure out if number is prime or not.
-
-* **reverse_sentence.py**: I did this script to reverse the sentence you wrote with a specific function, without using a module Python.
-
-* **test_insta_login.py**: In this script, I'll test a login in instagram. It's can help you to test before the next script;
 
 * **udemy_exercise.py**: In this script, there are some solutions about udemy labs exercises founded in udemy. The exercises are write in the following [udemy trainner](https://devoteamlearning.udemy.com/course/python-programming-for-beginners-with-exercises/)
 
