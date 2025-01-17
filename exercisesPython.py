@@ -22,8 +22,6 @@ from openpyxl.workbook import Workbook
 ### ALL FUNCTIONS AND CLASS ###
 ###############################
 
-import os, time
-
 def convert_cels_fahre(valor_to_convert):
   fahrenheit = round((valor_to_convert*(9/5)) +32,3)
   print(f"{valor_to_convert} ºC --> {fahrenheit} ºF")
@@ -318,6 +316,18 @@ def swap_case(s):
         else:
             num+=(let.upper())
     return num
+
+######################################
+### CREATING NEW FILE AND ADD INFO ###
+######################################
+
+data = ('matters', 34728374, '2024-08-09')
+
+try:
+    with open('my_file.txt', 'a') as file:
+        file.write(', '.join(map(str, data)) + '\n')  # Join tuple elements with commas
+except OSError:
+    print("There is an error!! 😞")
 
 ##################################
 ### STRINGS AND CHAR EXERCISES ###
