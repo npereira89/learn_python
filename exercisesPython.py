@@ -712,6 +712,17 @@ john.is_eligible()
 ##################################
 
 ##################################
+### List numbers Fibonacci
+##################################
+
+n = 0
+lista_fibo = []
+lista_fibo.extend([0, 1])
+value = lista_fibo[n - 1] + lista_fibo[(n - 2)]
+lista_fibo.extend([value])
+print(lista_fibo)
+
+##################################
 ### Convert celsius to fahrent and vice versa
 ##################################
 
