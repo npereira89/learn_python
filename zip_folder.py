@@ -17,7 +17,7 @@ if len(os.listdir(dst)) > 0:
 if len(os.listdir(dst)) == 0:
     try:
         # List of file used to import for the replica folder
-        valid_files = [".jpg", ".jpeg", ".gif", ".png", ".rar", ".mp4", ".jfif", ".webp", ".webm"]
+        valid_files = [".jpg", ".jpeg", ".gif", ".png", ".rar", ".mp4", ".jfif", ".webp", ".webm", ".mov"]
         for files in os.listdir(path_folder):
             ext = os.path.splitext(files)[1]
             if ext.lower() in valid_files:
