@@ -334,6 +334,65 @@ except OSError:
 ##################################
 
 ##################################
+### Please fix the code so that the printout looks right. Notice especially how the comma notation in the print 
+### command automatically inserts a space around the different comma-separated parts.
+### The easiest way to transform the code so that it meets requirements is to use f-strings.
+###
+### Hint: you can print an empty line by adding an empty print command, or by adding the newline 
+### 	  character \n into your string.
+###
+### Do remember to be extra careful when formatting printouts also in the future on this course. 
+### Some of the exercises have tests that require your output to be exactly as specified in the examples given. 
+### For example, please use actual whitespace characters in your code, instead of ASCII character codes for whitespace, 
+### or some such.
+##################################
+
+name = "Nuno Tester"
+age = 36
+skill1 = "python"
+level1 = "beginner"
+skill2 = "java"
+level2 = "veteran"
+skill3 = "programming"
+level3 = "semiprofessional"
+lower = 2000
+upper = 3000
+
+print(f"my name is {name}, I am {age} years old\n\nmy skills are")
+print (" -" + " " + "".join(skill1) + " (" + (level1) + ")")
+print (" -" + " " + "".join(skill2) + " (" + (level2) + ")")
+print (" -" + " " + "".join(skill3) + " (" + (level3) + ")\n")
+print(f"I am looking for a job with a salary of {lower}-{upper} euros per month")
+
+##################################
+## Please write a program which asks for tomorrow's weather forecast and then suggests weather-appropriate clothing.
+## The suggestion should change if the temperature (measured in degrees Celsius) is over 20, 10 or 5 degrees, and 
+## also if there is rain on the radar.
+##################################
+
+print("What is the weather forecast for tomorrow?")
+tmp = int(input("Temperature: "))
+is_run = input("Will it rain (yes/no): ")
+
+if tmp <= 3 and is_run == 'yes':
+    print("Wear jeans and a T-shirt\nI recommend a jumper as well\nTake a jacket with you\nMake it a warm coat, actually\nI think gloves are in order\nDon't forget your umbrella!")
+elif tmp <= 3 and is_run == 'no':
+    print("Wear jeans and a T-shirt\nI recommend a jumper as well\nTake a jacket with you\nMake it a warm coat, actually\nI think gloves are in order\n")
+
+elif tmp <= 10 and tmp > 3 and is_run == 'no':
+    print("Wear jeans and a T-shirt\nI recommend a jumper as well\nTake a jacket with you")
+elif tmp <= 10 and tmp > 3 and is_run == 'yes':
+    print("Wear jeans and a T-shirt\nI recommend a jumper as well\nTake a jacket with you\nMake it a warm coat, actually\nI think gloves are in order\nDon't forget your umbrella!")
+elif tmp >= 11 and tmp < 19 and is_run == 'no':
+    print("Wear jeans and a T-shirt\nI recommend a jumper as well")
+elif tmp == 20 and is_run == 'yes':
+    print("Wear jeans and a T-shirt\nI recommend a jumper as well\nDon't forget your umbrella!")
+elif tmp >= 21 and is_run == 'yes':
+    print("Wear jeans and a T-shirt\nDon't forget your umbrella!")
+elif tmp >= 21 and is_run == 'no':
+    print("Wear jeans and a T-shirt\n")
+
+##################################
 ## Given two strings a and b. The task is to make a new string where the string with longer length should 
 ## be in between and the one with shorter length should be outside on front and end. New string should be like 
 ## shorter+longer+shorter.
@@ -710,6 +769,44 @@ john.is_eligible()
 ##################################
 ### 	NUMBER EXERCISES       ###
 ##################################
+
+##################################
+## Please write a program which asks the user for a number of days. 
+## The program then prints out the number of seconds in the amount of days given.
+##################################
+
+days = int(input("How many days? "))
+seconds = int(24 * days * 60 * 60)
+print(f"Seconds in that many days: {seconds} ")
+
+##################################
+## Please write a program which asks for the user's name. If the name is anything but "Jerry", 
+## the program then asks for the number of portions and prints out the total cost. The price of a single portion is 5.90.
+##################################
+
+name = input("Please tell me your name: ")
+if name == "Jerry":
+    print("Next please!")
+    
+else:
+    count = int(input("How many portions of soup? "))
+    print(f"The total cost is {float(count*5.90)}")
+    print("Next please!")
+
+###################################
+## Please write a program which asks for the hourly wage, hours worked, and the day of the week.
+## The program should then print out the daily wages, which equal hourly wage multiplied by hours worked, except on Sundays 
+## when the hourly wage is doubled.      
+###################################
+
+wage = float(input("Hourly wage: "))
+time_work = int(input("Hours worked: "))
+day = input("Day of the week: ")
+
+if day == 'Sunday':
+    print(f"Daily wages: {(wage*2)*time_work}")
+else:
+    print(f"Daily wages: {wage*time_work}")
 
 ##################################
 ### List numbers Fibonacci
@@ -1396,6 +1493,17 @@ A = int(input("Define the value of coefficient a: "))
 B = int(input("Define the value of coefficient b: "))
 C = int(input("Define the value of coefficient c: "))
 formula_delta(A, B, C)
+
+#### Other way to solve it:
+
+a = int(input("Value of a: "))
+b = int(input("Value of b: "))
+c = int(input("Value of c: "))
+
+x = (-b + sqrt((b**2)-4*a*c))/(2*a)
+y = (-b - sqrt((b**2)-4*a*c))/(2*a)
+
+print(f"The roots are {x} and {y}")
 
 #### E.2.2.2 Exercise 6, Page 257 ####
 
