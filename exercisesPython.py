@@ -334,6 +334,22 @@ except OSError:
 ##################################
 
 ##################################
+## Write a program which asks the user for two words. 
+## The program should then print out whichever of the two comes alphabetically last.
+## You can assume all words will be typed in lowercase entirely.
+##################################
+
+first_word = input("Please type in the 1st word: ")
+second_word = input("Please type in the 2nd word: ")
+
+if first_word.lower() == second_word.lower() or first_word.upper() == second_word.upper():
+    print("You gave the same word twice.")
+elif first_word.lower() > second_word.lower():
+    print(f"{first_word} comes alphabetically last.")
+elif first_word.lower() < second_word.lower():
+    print(f"{second_word} comes alphabetically last.")
+
+##################################
 ### Please fix the code so that the printout looks right. Notice especially how the comma notation in the print 
 ### command automatically inserts a space around the different comma-separated parts.
 ### The easiest way to transform the code so that it meets requirements is to use f-strings.
@@ -769,6 +785,18 @@ john.is_eligible()
 ##################################
 ### 	NUMBER EXERCISES       ###
 ##################################
+
+##################################
+## Write a program which asks the user for a floating point number and then prints 
+## out the integer part and the decimal part separately. Use the Python int function.
+## You can assume the number given by the user is always greater than zero.
+##################################
+
+nmbr = float(input("Please type in a number: "))
+
+if nmbr > 0.00:
+    print(f"Integer part: {int(nmbr)}")
+    print(f"Decimal part: 0." + str(nmbr).split(".")[1])
 
 ##################################
 ## Please write a program which asks the user for a number of days. 
