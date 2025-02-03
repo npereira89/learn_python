@@ -334,6 +334,29 @@ except OSError:
 ##################################
 
 ##################################
+## Write a program which asks the user for three letters. The program should then print out whichever of the three letters 
+## would be in the middle if the letters were in alphabetical order.
+## You may assume the letters will be either all uppercase, or all lowercase.
+##################################
+
+chars1 = input("1st letter: ")
+chars2 = input("2nd letter: ")
+chars3 = input("3rd letter: ")
+
+if chars1.lower() > chars3.lower() and chars2.lower() < chars3.lower():
+    print(f"The letter in the middle is {chars3}")
+elif chars3.lower() < chars2.lower() and chars2.lower() < chars1.lower(): 
+    print(f"The letter in the middle is {chars2}") 
+elif chars1.lower() < chars2.lower() and chars2.lower() < chars3.lower():
+    print(f"The letter in the middle is {chars2}")
+elif chars2.lower() > chars1.lower() and chars3.lower() > chars1.lower():
+    print(f"The letter in the middle is {chars3}")
+elif chars3.lower() > chars2.lower() and chars1.lower() < chars3.lower():
+    print(f"The letter in the middle is {chars1}")
+elif chars2.lower() > chars1.lower() and chars3.lower() < chars2.lower():
+    print(f"The letter in the middle is {chars1}")
+
+##################################
 ## Write a program which asks the user for two words. 
 ## The program should then print out whichever of the two comes alphabetically last.
 ## You can assume all words will be typed in lowercase entirely.
@@ -785,6 +808,34 @@ john.is_eligible()
 ##################################
 ### 	NUMBER EXERCISES       ###
 ##################################
+
+##################################
+## Generally, any year that is divisible by four is a leap year. 
+## However, if the year is additionally divisible by 100, it is a leap year only if it also divisible by 400.
+## Write a program which asks the user for a year, and then prints out whether that year is a leap year or not.
+##################################
+
+year = int(input("Please type in a year: "))
+
+if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+    print("That year is a leap year.")
+else:
+    print("That year is not a leap year.")
+
+##################################
+## Write a program which asks the user for an integer number. 
+## If the number is divisible by three, the program should print out Fizz.  If the number is divisible by five, 
+## the program should print out Buzz. If the number is divisible by both three and five, the program should print out FizzBuzz.
+##################################
+
+number = int(input("Number: "))
+
+if number % 3 == 0 and number % 5 == 0:
+    print("FizzBuzz")
+elif number % 3 == 0:
+    print("Fizz")
+elif number % 5 == 0:
+    print("Buzz")
 
 ##################################
 ## Write a program which asks the user for a floating point number and then prints 
