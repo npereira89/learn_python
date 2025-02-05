@@ -17,6 +17,7 @@ from random import randint
 from datetime import datetime, timedelta
 from array import array
 from openpyxl.workbook import Workbook
+from math import sqrt
 
 ###############################
 ### ALL FUNCTIONS AND CLASS ###
@@ -332,6 +333,53 @@ except OSError:
 ##################################
 ### STRINGS AND CHAR EXERCISES ###
 ##################################
+
+##################################
+## Please write a program which keeps asking the user for words. 
+## If the user types in end, the program should print out the story the words formed, and finish.
+## NOTE: NOT WORKING WITH ARTICLE (ISSUE)... BEWARE!!!
+##################################
+
+phrase = ""
+words = ""
+
+while words != 'end':
+    words = input("Please type in a word: ")
+    if words != 'end' and words not in phrase.split():
+        phrase += words + " "
+    else:
+        break  
+
+print(phrase)
+
+
+##################################
+## Check if new password defined correctly
+##################################
+
+phrase = ""
+words = ""
+
+while words != 'end':
+    words = input("Please type in a word: ")
+    if words != 'end':
+        phrase += words + " "
+    else:
+        break
+print(phrase)
+
+##################################
+## Check if new password defined correctly
+##################################
+
+pwd = input("Password: ")
+confirmed_pwd = ""
+while pwd != confirmed_pwd:
+    confirmed_pwd = input("Repeat password: ")
+    if pwd == confirmed_pwd:
+        print("User account created!")
+    else:
+        print("They do not match!")
 
 ##################################
 ## Write a program which asks the user for three letters. The program should then print out whichever of the three letters 
@@ -808,6 +856,117 @@ john.is_eligible()
 ##################################
 ### 	NUMBER EXERCISES       ###
 ##################################
+
+##################################
+## Write a program which asks the user to type in an upper limit. 
+## The program then prints out numbers so that each subsequent number is the previous one doubled, 
+## starting from the number 1. That is, the program prints out powers of two in order.
+## The execution of the program finishes when the next number to be printed would be greater than the limit set by the user. 
+## No numbers greater than the limit should be printed.
+##################################
+
+
+limit_numb = int(input("Upper limit: "))
+
+x_total = 1
+print(x_total)
+
+while x_total <= limit_numb:
+    for x in range(1,100):
+        x_total *= 2
+        if x_total <= limit_numb:
+            print(x_total)
+
+###### SAME EXERCISE USING A BASE ###### 
+
+limit_numb = int(input("Upper limit: "))
+base = int(input("Base: "))
+
+x_total = 1
+print(x_total)
+
+while x_total <= limit_numb:
+    for x in range(1,100):
+        x_total *= base
+        if x_total <= limit_numb:
+            print(x_total)
+
+
+##################################
+## Write a program which asks the user for integer numbers. 
+## The program should keep asking for numbers until the user types in zero.
+## Get quantity of numbers typed, sum, mean and positive and negative numbers
+##################################
+
+print("Please type in integer numbers. Type in 0 to finish.")
+
+number, count, total, pos_number, neg_number = 1,0,0,0,0
+
+while number != 0:
+    number = int(input("Number: "))
+    if number !=0:
+        count += 1
+        total += number
+        if number == abs(number):
+            pos_number += 1
+        else:
+            neg_number += 1
+
+print(f"Numbers typed in {count}")
+print(f"The sum of the numbers is {total}")
+print(f"The mean of the numbers is {total/count}")
+print(f"Positive numbers {pos_number}")
+print(f"Negative numbers {neg_number}")
+
+##################################
+## Please write a program which asks the user for a year, and prints out the next leap year.
+##################################
+
+year = int(input("Year: "))
+next_year = year  
+
+while True:
+    next_year += 1
+    if (next_year % 4 == 0 and next_year % 100 != 0) or (next_year % 400 == 0):
+        print(f"The next leap year after {year} is {next_year}")
+        break
+
+##################################
+## Write a program to get code of the bank chest 
+## The code of bank chest is 4321 and you should get how many attemps the user tries while he/she was wrong, when got it.
+## If the number of code will be get on first attemp, you should say he/she tooks you one single attempt.
+###################################
+
+code, attmp = 1, 0
+while code != 4321:
+    code = int(input("PIN: "))
+    attmp += 1
+    if code != 4321:
+        print("Wrong")
+    elif code == 4321 and attmp == 1:
+        print("Correct! It only took you one single attempt!")
+    else:
+        print(f"Correct! It took you {attmp} attempts")
+
+
+##################################
+## Write a program which asks the user for integer numbers.
+## If the number is below zero, the program should print out the message "Invalid number".
+## If the number is above zero, the program should print out the square root of the number using the Python sqrt function.
+## In either case, the program should then ask for another number.
+## If the user inputs the number zero, the program should stop asking for numbers and exit the loop.
+## Below you'll find a reminder of how the sqrt function is used. Remember to import it in the beginning of the program.
+###################################
+
+number = 1
+while number != 0:
+    number = int(input("Please type in a number: "))
+    if number < 0:
+        print("Invalid number")
+    elif number >= 1:
+        print(f"{sqrt(number)}")    
+    elif number == 0:
+        print("Exiting...")
 
 ##################################
 ## Generally, any year that is divisible by four is a leap year. 
