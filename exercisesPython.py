@@ -335,6 +335,135 @@ except OSError:
 ##################################
 
 ##################################
+## write a program which asks the user to type in a string. 
+## The program then prints out all the substrings which begin with the first character, from the shortest to the longest.
+###################################
+
+string = input("Please type in a string: ")
+
+for y in range(1, len(string)+1, 1):
+    print(string[0:y], end='\n')
+    
+##################################
+## write a program which asks the user to type in a string. 
+## The program then prints out all the substrings which begin with the last character, from the shortest to the longest.
+###################################    
+    
+string = input("Please type in a string: ")
+
+for x in range(len(string)-1, -1, -1):
+    print(string[x:], end='\n')
+
+##################################
+## Write a program which asks the user for a string and then prints out a frame of * characters with the word in the centre. 
+## The width of the frame should be 30 characters. You may assume the input string will always fit inside the frame.
+## If the length of the input string is an odd number, you may print out the word in either of the two possible centre locations.
+##################################
+
+width = 30
+stars = ''
+word = input("Word: ")
+
+for x in range(1,width+1):
+    stars = stars + "*"
+print(stars)
+
+padding_length = width - len(word)
+left_padding = (padding_length // 2) - 1
+right_padding = (padding_length - left_padding) - 2
+print("*" + " " * left_padding + word + " " * right_padding + "*")
+
+print(stars)
+
+##################################
+## Write a program which asks the user for a string and then prints it out so that exactly 20 characters are displayed. 
+## If the input is shorter than 20 characters, the beginning of the line is filled in with * characters.
+## You may assume the input string is at most 20 characters long.
+##################################
+
+string = input("Please type in a string: ")
+f_str = ''
+count_stars = 20-len(string)
+
+if len(string) <= 19:
+    for x in range(0,count_stars):
+        f_str = f_str + "*"
+    f_str = f_str + string
+    print(f_str)
+else:
+    print(string)
+    
+##################################
+## Write a program which asks the user for strings using a loop. The program prints out each string underlined 
+## as shown in the examples below. The execution ends when the user inputs an empty string - that is, just presses Enter at the prompt.
+##################################
+
+string = "str"
+while string != " ":
+    string = input("Please type in a string: ")
+    if string == '':
+        exit(0)
+    else:
+        print(string)
+        underline = ""
+        for x in range(1, len(string) + 1):
+            underline = underline + "-"
+        print(underline)
+
+##################################
+## write a program which asks the user for a string. The program then prints out a message based on whether 
+## the second character and the second to last character are the same or not. See the examples below.
+##################################
+
+word = input("Please type in a string: ")
+
+if word[1] == word[-2]:
+    print(f"The second and the second to last characters are {word[1]}")
+else:
+    print("The second and the second to last characters are different")
+
+##################################
+## Write a program which asks the user for a string. The program then prints out the input string in reversed order, 
+## from end to beginning. Each character should be on a separate line.
+##################################
+
+string = input("Please type in a string: ")
+string = string[::-1]
+for ch in string:
+    print(ch)
+
+##################################
+## Write a program which asks the user for two strings and then prints out whichever 
+## is the longer of the two - that is, whichever has the more characters. 
+## If the strings are of equal length, the program should print out "The strings are equally long".
+##################################
+
+string1 = input("Please type in string 1: ")
+string2 = input("Please type in string 2: ")
+
+if len(string1) > len(string2):
+    print(f"{string1} is longer")
+elif len(string1) < len(string2):
+    print(f"{string2} is longer")
+elif len(string1) == len(string2):
+    print("The strings are equally long")
+
+
+##################################
+## Write a program which asks the user for a string and an amount. 
+## The program then prints out the string as many times as specified by the amount. 
+## The printout should all be on one line, with no extra spaces or symbols added.
+##################################
+
+string = input("Please type in a string: ")
+amount = int(input("Please type in an amount: "))
+string_final = ''
+
+for x in range(1, amount+1):
+    string_final += string
+print(string_final)
+
+##################################
 ## Please write a program which keeps asking the user for words. 
 ## If the user types in end, the program should print out the story the words formed, and finish.
 ## NOTE: NOT WORKING WITH ARTICLE (ISSUE)... BEWARE!!!
@@ -869,6 +998,25 @@ while total < limit_value:
     x += 1
     total += x
 print(total)
+
+##################################
+## Write a program which asks the user to type in a limit. The program then calculates 
+## the sum of consecutive numbers (1 + 2 + 3 + ...) until the sum is at least equal to the limit set by the user. 
+## print out sequence of sum with total value, after complete the sequence.
+###################################
+
+limit_value = int(input("Limit: "))
+total, x = 0, 0
+output = 'The consecutive sum: '
+
+while total < limit_value:
+    x += 1
+    total += x
+    output =  output + f"{x}"
+    if total < limit_value:
+        output = output + ' + '
+output =  output + f" = {total}"
+print(output)
 
 ##################################
 ## Write a program which asks the user to type in an upper limit. 
