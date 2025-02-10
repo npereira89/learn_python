@@ -335,6 +335,16 @@ except OSError:
 ##################################
 
 ##################################
+## Write a program which asks the user to type in a sentence. 
+## The program then prints out the first letter of each word in the sentence, each letter on a separate line.
+##################################
+
+sentence = input("Please type in a sentence: ")
+
+for x in sentence.split():
+    print(x[0], end='\n')
+
+##################################
 ## write a program which asks the user to type in a string. 
 ## The program then prints out all the substrings which begin with the first character, from the shortest to the longest.
 ###################################
@@ -448,7 +458,6 @@ elif len(string1) < len(string2):
 elif len(string1) == len(string2):
     print("The strings are equally long")
 
-
 ##################################
 ## Write a program which asks the user for a string and an amount. 
 ## The program then prints out the string as many times as specified by the amount. 
@@ -480,7 +489,6 @@ while words != 'end':
         break  
 
 print(phrase)
-
 
 ##################################
 ## Check if new password defined correctly
@@ -985,6 +993,29 @@ john.is_eligible()
 ##################################
 ### 	NUMBER EXERCISES       ###
 ##################################
+
+##################################
+## Write a program which asks the user to type in a number. The program then prints out all the positive integer values 
+## from 1 up to the number. However, the order of the numbers is changed so that each pair or numbers is flipped. 
+## That is, 2 comes before 1, 4 before 3 and so forth. See the examples below for details.
+##################################
+
+nmbr = int(input("Please type in a number: "))
+x = 1
+
+if nmbr == 1:
+    print(nmbr)
+elif nmbr > 1:
+    for x in range(2, nmbr + 1, 2):
+        print(x, end='\n')
+        while x <= nmbr:
+            x_val = x - 1
+            for y in range(x_val, x):
+                print(y, end='\n')
+            break
+x+=1
+if x <= nmbr:
+    print(x, end='\n')
 
 ##################################
 ## Write a program which asks the user to type in a limit. The program then calculates 
