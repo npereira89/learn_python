@@ -23,6 +23,26 @@ from math import sqrt
 ### ALL FUNCTIONS AND CLASS ###
 ###############################
 
+def chessboard(length):
+    for x in range(length):
+        for y in range(length):
+            if (x + y) % 2 == 0:
+                print(1, end="") 
+            else:
+                print(0, end="") 
+        print() 
+
+def print_many_times(text, times):
+    for _ in range(times):
+        print(text)
+
+def seven_brothers():
+    names = ('Tuomas', 'Aapo', 'Timo', 'Eero', 'Simeoni', 'Juhani', 'Lauri')
+    list_final = sorted(names, reverse=False)
+    separator = "\n"  # You can change this to any separator you want
+    my_string = separator.join(list_final)
+    return print(my_string)
+
 def convert_cels_fahre(valor_to_convert):
   fahrenheit = round((valor_to_convert*(9/5)) +32,3)
   print(f"{valor_to_convert} ºC --> {fahrenheit} ºF")
@@ -333,6 +353,21 @@ except OSError:
 ##################################
 ### STRINGS AND CHAR EXERCISES ###
 ##################################
+
+##################################
+## Write a function named print_many_times(text, times), which takes a string and an integer as arguments. 
+## The integer argument specifies how many times the string argument should be printed out
+##################################
+
+print_many_times("python", 5)
+
+##################################
+## Write a function named seven_brothers. When the function is called, it should print out the names of the seven 
+## brothers in alphabetical order, as in the example below. See the similarly named exercise in part 1 for more details 
+## about the brothers.
+##################################
+
+seven_brothers()
 
 ##################################
 ## Write a program which asks the user to type in a sentence. 
@@ -994,6 +1029,15 @@ john.is_eligible()
 ### 	NUMBER EXERCISES       ###
 ##################################
 
+##################################
+## Write a function named chessboard, which prints out a chessboard made out of ones and zeroes. 
+## The function takes an integer argument, which specifies the length of the side of the board.
+##################################
+
+chessboard(3)
+print()
+chessboard(6)
+    
 ##################################
 ## Write a program which asks the user to type in a number. The program then prints out all the positive integer values 
 ## from 1 up to the number. However, the order of the numbers is changed so that each pair or numbers is flipped. 
