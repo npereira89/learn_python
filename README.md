@@ -4,9 +4,9 @@
 
 **I will explain all script I did with a little explain**:
 
-* **exercisesPython.py**: In this script, I did some training exercises which I founded in this [repo](https://github.com/rmveiga/exercicios_python?tab=readme-ov-file#%C3%ADndice). In my repository, you can find a solutin, but there are others;
+* **exercisesPython.py**: In this script, I did some training exercises which I founded in this [repo](https://github.com/rmveiga/exercicios_python?tab=readme-ov-file#%C3%ADndice). In my repository, you can find a solution, but there are others. There are some exercises from [programming 24 from MOOC](https://programming-24.mooc.fi/) ***(introduction part)***;
 
-* **get_a_number_game.py**: In this script, I did a game to figure out a number between 1 a 100. Just have 3 attemps. I give some clues. In the end of the 3 attemps, I told you the number sorted. Is it fun? Let's play!; 
+* **get_a_number_game.py**: In this script, I did a game to figure out a number between 1 a 100. Just have 3 attempts. I give some clues. In the end of the 3 attempts, I told you the number sorted. Is it fun? Let's play!; 
 
 * **getting_photos_directory.py**: In this script, we can open all photos there are in specify directory
 
@@ -16,7 +16,7 @@
 
 * **zip_folder.py**: Zipping all the image with a range of image's extension.
 
-* **sync_folders.py**: Syncronize the folders between source and destiny where the path is defined. 
+* **sync_folders.py**: Synchronize the folders between source and destiny where the path is defined. 
 
 * **search_lyrics.py**: Get the lyrics about the song. Only input the name of the song and the band.
 

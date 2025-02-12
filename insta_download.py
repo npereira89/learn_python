@@ -1,5 +1,5 @@
 # It does download profile photos user's instagram, all saved photos instagram with 
-# a determinated date break and feed photos through a menu
+# a range date break and feed photos through a menu
 import os
 import time
 from datetime import datetime
@@ -8,29 +8,15 @@ import instaloader
 
 def get_is_private(profile_name, link_insta):  # Get if a profile is private or public.
 
-    profile = instaloader.Profile.from_username(link_insta.context, profile_name)
+    instance = instaloader.Profile.from_username(link_insta.context, profile_name)
 
-    result = profile.is_private
+    result = instance.is_private
 
-    if result:  # if it's private should login required.
-
+    if result:
         print("You need to login for the profile name " + profile_name)
         link_insta.interactive_login(profile_name)
 
     return result
-
-
-def main_menu():
-    print("************ACTION**************")
-    print(" 1 - Download Profile picture")
-    print(" 2 - Download Profile Feed")
-    print(" 3 - Download Saved Photos")
-    print(" 4 - Download Videos Stories")
-    print(" 5 - Exit")
-    print("********************************")
-
-    operation = int(input("Select action: "))
-    return operation
 
 
 user = instaloader.Instaloader(max_connection_attempts=3,
@@ -45,41 +31,52 @@ user = instaloader.Instaloader(max_connection_attempts=3,
                                )
 
 while True:
-    operation = main_menu()
 
-    if operation >= 6:
+    print("************ACTION**************")
+    print(" 1 - Download Profile picture")
+    print(" 2 - Download Profile Feed")
+    print(" 3 - Download Saved Photos")
+    print(" 4 - Download Videos Stories")
+    print(" 5 - Exit")
+    print("********************************")
+
+    op = int(input("Select action: "))
+
+    prof_name = input("Insert instagram profile: ")
+
+    if op >= 6:
         print("Invalid operation")
         os.system('cls')
 
-    if operation <= 4:
-        profile_name = input("Insert instagram profile: ")
+    # if operation <= 4:
 
-    if operation == 1:
+    if op == 1:
         print("Downloading profile picture....")
-        user.download_profile(profile_name, profile_pic_only=True)  # download profile pic from profile
+        user.download_profile(prof_name, profile_pic_only=True)  # download profile pic from profile
         print("Download completed!!")
+
         time.sleep(5)
         os.system('cls')
 
-    elif operation == 2:
+    elif op == 2:
 
-        get_is_private(profile_name, user)
+        get_is_private(prof_name, user)
 
         print("Downloading media feed....")
 
-        user.download_profile(profile_name, profile_pic_only=False)  # download photos from feed
+        user.download_profile(prof_name, profile_pic_only=False)  # download photos from feed
         print("Download completed!!")
 
         time.sleep(5)
         os.system('cls')
 
-    elif operation == 3:
+    elif op == 3:
 
-        user.interactive_login(profile_name)
+        user.interactive_login(prof_name)
 
         print("Checking media saved....")
 
-        profile = instaloader.Profile.from_username(user.context, profile_name)
+        profile = instaloader.Profile.from_username(user.context, prof_name)
         posts_saved = profile.get_saved_posts()
 
         date_string = input("Since date you want: ")
@@ -89,7 +86,7 @@ while True:
         # This date is of the date that user posted in Instagram.
         UNTIL = datetime.now()  # closer to today, not inclusive.
 
-        path = os.path.join('.\\', f"{profile_name}")
+        path = os.path.join('.\\', f"{prof_name}")
 
         try:
             os.makedirs(path)
@@ -112,14 +109,14 @@ while True:
         time.sleep(5)
         os.system('cls')
 
-    elif operation == 4:
+    elif op == 4:
 
-        user.interactive_login(profile_name)
+        user.interactive_login(prof_name)
 
         print("Downloading story instagram....")
-        profile = instaloader.Profile.from_username(user.context, profile_name)
+        profile = instaloader.Profile.from_username(user.context, prof_name)
 
-        path = os.path.join('.\\', f"{profile_name}")
+        path = os.path.join('.\\', f"{prof_name}")
 
         try:
             os.makedirs(path)
@@ -131,7 +128,7 @@ while True:
         user.download_stories(userids=[profile.userid], filename_target='stories')
         os.system('cls')
 
-    elif operation == 5:
+    elif op == 5:
 
         print("Exiting the program...")
-        os.sys.exit(0)
+        exit(0)
