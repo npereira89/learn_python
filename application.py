@@ -1,11 +1,44 @@
 import tkinter as tk
-from tkinter import ttk, filedialog, messagebox
+from tkinter import ttk, filedialog, messagebox, font
 from openpyxl import load_workbook
 from openpyxl.styles import Border, Side
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
+def form_insert_data():
+
+    for widget in windows.winfo_children():
+        if widget not in (menubar, menu, menu_2):
+            widget.destroy()
+
+    label_value = tk.Label(windows, text="Value (€):", fg="black", font=font.Font(weight="bold"))
+    label_value.grid(row=55)
+
+    # Create the entry widget
+    value_invest = tk.Entry(windows)
+    value_invest.grid(row=55, column=19)
+
+    # Button to get value investments
+    button_submit = tk.Button(windows, text="OK", width=4, height=2, command=lambda: save_excel_info(int(value_invest.get())), fg="blue", font=font.Font(weight="bold"))
+    button_submit.grid(row=55, column=20)
+
+def on_right_click(event):
+    popup_menu = tk.Menu(windows, tearoff=0)
+    popup_menu.add_command(label="Do Something", command=do_something)
+    popup_menu.add_command(label="Do Something Else", command=do_something_else)
+
+def do_something():
+    print("Do Something")
+
+def do_something_else():
+    print("Do Something Else")
+
 def load_excel_data():
+
+    for widget in windows.winfo_children():
+        if widget not in (menubar, menu, menu_2):
+            widget.destroy()
+
     try:
         file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
         if file_xlsx:
@@ -34,35 +67,13 @@ def load_excel_data():
             for row in list(sheet.iter_rows(values_only=True))[2:]:
                 tree.insert("", sheet.max_row, values=row)
 
-            messagebox.showinfo("", "All information was loaded.")
+            messagebox.showinfo("SUCCESS", "All information was loaded.")
+            tree.bind("<Button-3>", on_right_click)
+
     except Exception as e:
-        messagebox.showerror("Error!!", f"Error loading Excel file: {e}")
+        messagebox.showerror("ERROR", f"Error loading Excel file: {e}")
 
-def refresh_tree_data(file):
-
-    workbook = load_workbook(file)
-    sheet = workbook.active
-
-    # Create a Treeview widget
-    tree = ttk.Treeview()
-    tree.pack(expand=True, fill="both")
-
-    # # Get column names from the first row
-    columns = list(sheet.iter_rows(values_only=True))[1]
-
-    # Configure columns
-    tree["columns"] = columns
-    tree["show"] = "headings"
-
-    # Set column headings
-    for col in columns:
-        tree.heading(col, text=col)
-
-    # Insert data into the Treeview
-    for row in list(sheet.iter_rows(values_only=True))[2:]:
-        tree.insert("", sheet.max_row, values=row)
-
-def save_excel_info():
+def save_excel_info(value_invest):
     try:
         file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
         if file_xlsx:
@@ -71,7 +82,6 @@ def save_excel_info():
 
             now = datetime.now()
             new_date = now + relativedelta(months=3)
-            value_invest = value.get()
 
             data = [
                 [now.strftime("%d/%m/%Y"), int(value_invest), new_date.strftime("%d/%m/%Y"), 0.0275, "FALSE"]
@@ -94,13 +104,11 @@ def save_excel_info():
                         cell.value = round(cell.value * 100, 2)
 
             wb.save(file_xlsx)
-            messagebox.showinfo("Success!", "The invest was added with success!")
+            messagebox.showinfo("SUCCESS", "The invest was added with success!")
             wb.close()
 
-            refresh_tree_data(file_xlsx)
-
     except Exception as e:
-        messagebox.showerror("Error!!", f"Error loading Excel file: {e}")
+        messagebox.showerror("ERROR", f"Error loading Excel file: {e}")
 
 # Create the main window
 windows = tk.Tk()
@@ -119,18 +127,10 @@ menu_2 = tk.Menu(menubar, tearoff=0)
 # Menu open and load data Excel file and insert new data
 menubar.add_cascade(label="File", menu=menu)
 menu.add_command(label="Open", command=load_excel_data)
+menu.add_command(label="Insert data", command=form_insert_data)
 
 # Menu close menu window
 menubar.add_cascade(label="Windows", menu=menu_2)
 menu_2.add_command(label="Exit", command=windows.quit)
-
-label_value_invest = tk.Label(text="Value (€):")
-label_value_invest.pack()
-
-value = tk.Entry(windows)  # Create the entry widget
-value.pack()
-
-get_button = tk.Button(windows, text="OK", command=save_excel_info)  # Button to get value investments
-get_button.pack()
 
 windows.mainloop()
