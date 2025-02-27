@@ -1,11 +1,32 @@
 import tkinter as tk
-from tkinter import ttk, filedialog, messagebox
+from tkinter import ttk, filedialog, messagebox, font
 from openpyxl import load_workbook
 from openpyxl.styles import Border, Side
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
+def destroy_widgets():
+    for widget in windows.winfo_children():
+        if widget not in (menubar, menu, menu_2):
+            widget.destroy()
+
+def form_insert_data():
+
+    destroy_widgets()
+
+    label_value = tk.Label(windows, text="Value (€):", fg="black", font=font.Font(weight="bold"))
+    label_value.grid(row=55)
+
+    # Create the entry widget
+    value_invest = tk.Entry(windows)
+    value_invest.grid(row=55, column=19)
+
+    # Button to get value investments
+    button_submit = tk.Button(windows, text="OK", width=4, height=2, command=lambda: save_excel_info(int(value_invest.get())), fg="blue", font=font.Font(weight="bold"))
+    button_submit.grid(row=55, column=20)
+
 def load_excel_data():
+    destroy_widgets()
     try:
         file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
         if file_xlsx:
@@ -31,38 +52,48 @@ def load_excel_data():
                 tree.heading(col, text=col)
 
             # Insert data into the Treeview
-            for row in list(sheet.iter_rows(values_only=True))[2:]:
-                tree.insert("", sheet.max_row, values=row)
+            #for row in list(sheet.iter_rows(values_only=True))[2:]:
+            #    tree.insert("", sheet.max_row, values=row)
 
-            messagebox.showinfo("", "All information was loaded.")
+            for row_num, row in enumerate(sheet.iter_rows(min_row=3, values_only=True), start=3):
+                tree.insert("", "end",  iid=row_num, values=row)
+
+            messagebox.showinfo("SUCCESS", "All information was loaded.")
+
+            def on_data_click(event):
+                selected_item = tree.selection()
+                if selected_item:
+                    item_id = selected_item[0]
+                    value_cell = sheet.cell(row=int(item_id), column=2).value
+
+                    label_value_upgrade = tk.Label(windows, text="Value (€):", fg="black",
+                                                   font=font.Font(weight="bold"))
+                    label_value_upgrade.pack()
+
+                    # Create the entry widget
+                    update_value = tk.Entry(windows)
+                    button_submit_update = tk.Button(windows, text="OK", width=4, height=2,
+                                              command=lambda: update_data_excel(value_cell, int(update_value.get()), item_id), fg="blue",font=font.Font(weight="bold"))
+                    update_value.pack()
+                    button_submit_update.pack()
+
+                    def update_data_excel(cell_value, value_upd, id_row):
+                        tree.set(id_row, column=1, value=cell_value - value_upd)
+                        sheet.cell(row=int(id_row), column=2).value = int(cell_value) - value_upd
+
+                        if sheet.cell(row=int(id_row), column=2).value == 0:
+                            tree.delete(id_row)
+                            sheet.delete_rows(int(id_row), amount=1)
+
+                        workbook.save(file_xlsx)
+                        workbook.close()
+
+            tree.bind("<Button-3>", on_data_click)
+
     except Exception as e:
-        messagebox.showerror("Error!!", f"Error loading Excel file: {e}")
+        messagebox.showerror("ERROR", f"Error loading Excel file: {e}")
 
-def refresh_tree_data(file):
-
-    workbook = load_workbook(file)
-    sheet = workbook.active
-
-    # Create a Treeview widget
-    tree = ttk.Treeview()
-    tree.pack(expand=True, fill="both")
-
-    # # Get column names from the first row
-    columns = list(sheet.iter_rows(values_only=True))[1]
-
-    # Configure columns
-    tree["columns"] = columns
-    tree["show"] = "headings"
-
-    # Set column headings
-    for col in columns:
-        tree.heading(col, text=col)
-
-    # Insert data into the Treeview
-    for row in list(sheet.iter_rows(values_only=True))[2:]:
-        tree.insert("", sheet.max_row, values=row)
-
-def save_excel_info():
+def save_excel_info(value_invest):
     try:
         file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
         if file_xlsx:
@@ -71,7 +102,6 @@ def save_excel_info():
 
             now = datetime.now()
             new_date = now + relativedelta(months=3)
-            value_invest = value.get()
 
             data = [
                 [now.strftime("%d/%m/%Y"), int(value_invest), new_date.strftime("%d/%m/%Y"), 0.0275, "FALSE"]
@@ -94,13 +124,11 @@ def save_excel_info():
                         cell.value = round(cell.value * 100, 2)
 
             wb.save(file_xlsx)
-            messagebox.showinfo("Success!", "The invest was added with success!")
+            messagebox.showinfo("SUCCESS", "The invest was added with success!")
             wb.close()
 
-            refresh_tree_data(file_xlsx)
-
     except Exception as e:
-        messagebox.showerror("Error!!", f"Error loading Excel file: {e}")
+        messagebox.showerror("ERROR", f"Error loading Excel file: {e}")
 
 # Create the main window
 windows = tk.Tk()
@@ -119,18 +147,10 @@ menu_2 = tk.Menu(menubar, tearoff=0)
 # Menu open and load data Excel file and insert new data
 menubar.add_cascade(label="File", menu=menu)
 menu.add_command(label="Open", command=load_excel_data)
+menu.add_command(label="Insert data", command=form_insert_data)
 
 # Menu close menu window
 menubar.add_cascade(label="Windows", menu=menu_2)
 menu_2.add_command(label="Exit", command=windows.quit)
-
-label_value_invest = tk.Label(text="Value (€):")
-label_value_invest.pack()
-
-value = tk.Entry(windows)  # Create the entry widget
-value.pack()
-
-get_button = tk.Button(windows, text="OK", command=save_excel_info)  # Button to get value investments
-get_button.pack()
 
 windows.mainloop()
