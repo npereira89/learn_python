@@ -22,7 +22,7 @@ def form_insert_data():
     value_invest.grid(row=55, column=19)
 
     # Button to get value investments
-    button_submit = tk.Button(windows, text="OK", width=4, height=2, command=lambda: save_excel_info(int(value_invest.get())), fg="blue", font=font.Font(weight="bold"))
+    button_submit = tk.Button(windows, text="OK", width=4, height=2, command=lambda: save_excel_info(value_invest.get()), fg="blue", font=font.Font(weight="bold"))
     button_submit.grid(row=55, column=20)
 
 def load_excel_data():
@@ -88,21 +88,30 @@ def load_excel_data():
                         workbook.save(file_xlsx)
                         workbook.close()
 
+                        for widget in windows.winfo_children():
+                            if widget in (label_value_upgrade, button_submit_update, label_value_upgrade, update_value):
+                                widget.destroy()
+
             tree.bind("<Button-3>", on_data_click)
 
     except Exception as e:
         messagebox.showerror("ERROR", f"Error loading Excel file: {e}")
 
 def save_excel_info(value_invest):
-    try:
-        file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
-        if file_xlsx:
-            wb = load_workbook(file_xlsx)
-            sheet_ranges = wb.active
 
-            now = datetime.now()
-            new_date = now + relativedelta(months=3)
+    file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
+    if file_xlsx:
+        wb = load_workbook(file_xlsx)
+        sheet_ranges = wb.active
 
+        now = datetime.now()
+        new_date = now + relativedelta(months=3)
+
+        if value_invest.isalpha() or value_invest == '':
+            messagebox.showwarning("WARNING", "The invest must be above 0 and doesn't a string value")
+        elif int(value_invest) == 0:
+            messagebox.showwarning("WARNING", "The invest must be above 0 and doesn't a string value")
+        else:
             data = [
                 [now.strftime("%d/%m/%Y"), int(value_invest), new_date.strftime("%d/%m/%Y"), 0.0275, "FALSE"]
             ]
@@ -125,10 +134,7 @@ def save_excel_info(value_invest):
 
             wb.save(file_xlsx)
             messagebox.showinfo("SUCCESS", "The invest was added with success!")
-            wb.close()
-
-    except Exception as e:
-        messagebox.showerror("ERROR", f"Error loading Excel file: {e}")
+        wb.close()
 
 # Create the main window
 windows = tk.Tk()
