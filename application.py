@@ -5,28 +5,26 @@ from openpyxl.styles import Border, Side
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-def destroy_widgets():
+def clear_window():
     for widget in windows.winfo_children():
         if widget not in (menubar, menu, menu_2):
             widget.destroy()
 
 def form_insert_data():
+    clear_window()
 
-    destroy_widgets()
+    frm_insert = tk.Frame(windows, padx=50, pady=25)
+    frm_insert.pack(expand=True, fill="both")
 
-    label_value = tk.Label(windows, text="Value (€):", fg="black", font=font.Font(weight="bold"))
-    label_value.grid(row=55)
-
-    # Create the entry widget
-    value_invest = tk.Entry(windows)
-    value_invest.grid(row=55, column=19)
-
-    # Button to get value investments
-    button_submit = tk.Button(windows, text="OK", width=4, height=2, command=lambda: save_excel_info(value_invest.get()), fg="blue", font=font.Font(weight="bold"))
-    button_submit.grid(row=55, column=20)
+    tk.Label(frm_insert, text="Value (€):", fg="black", font=font.Font(weight="bold")).grid(row=0, column=0, padx=5,
+                                                                                            pady=5)
+    value_entry = tk.Entry(frm_insert)
+    value_entry.grid(row=0, column=1, padx=5, pady=5)
+    tk.Button(frm_insert , text="OK", width=4, height=2, command=lambda: save_excel_info(value_entry.get()), fg="blue",
+              font=font.Font(weight="bold")).grid(row=0, column=2, padx=5, pady=5)
 
 def load_excel_data():
-    destroy_widgets()
+    clear_window()
     try:
         file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
         if file_xlsx:
@@ -39,63 +37,62 @@ def load_excel_data():
             # Create a Treeview widget
             tree = ttk.Treeview()
             tree.pack(expand=True, fill="both")
-
             # # Get column names from the first row
             columns = list(sheet.iter_rows(values_only=True))[1]
 
             # Configure columns
             tree["columns"] = columns
             tree["show"] = "headings"
-
             # Set column headings
             for col in columns:
                 tree.heading(col, text=col)
 
             # Insert data into the Treeview
-            #for row in list(sheet.iter_rows(values_only=True))[2:]:
-            #    tree.insert("", sheet.max_row, values=row)
-
             for row_num, row in enumerate(sheet.iter_rows(min_row=3, values_only=True), start=3):
                 tree.insert("", "end",  iid=row_num, values=row)
 
             messagebox.showinfo("SUCCESS", "All information was loaded.")
 
-            def on_data_click(event):
-                selected_item = tree.selection()
-                if selected_item:
-                    item_id = selected_item[0]
-                    value_cell = sheet.cell(row=int(item_id), column=2).value
-
-                    label_value_upgrade = tk.Label(windows, text="Value (€):", fg="black",
-                                                   font=font.Font(weight="bold"))
-                    label_value_upgrade.pack()
-
-                    # Create the entry widget
-                    update_value = tk.Entry(windows)
-                    button_submit_update = tk.Button(windows, text="OK", width=4, height=2,
-                                              command=lambda: update_data_excel(value_cell, int(update_value.get()), item_id), fg="blue",font=font.Font(weight="bold"))
-                    update_value.pack()
-                    button_submit_update.pack()
-
-                    def update_data_excel(cell_value, value_upd, id_row):
-                        tree.set(id_row, column=1, value=cell_value - value_upd)
-                        sheet.cell(row=int(id_row), column=2).value = int(cell_value) - value_upd
-
-                        if sheet.cell(row=int(id_row), column=2).value == 0:
-                            tree.delete(id_row)
-                            sheet.delete_rows(int(id_row), amount=1)
-
-                        workbook.save(file_xlsx)
-                        workbook.close()
-
-                        for widget in windows.winfo_children():
-                            if widget in (label_value_upgrade, button_submit_update, label_value_upgrade, update_value):
-                                widget.destroy()
-
-            tree.bind("<Button-3>", on_data_click)
+            tree.bind("<Button-3>", lambda event: on_data_click(tree, file_xlsx, sheet))
 
     except Exception as e:
         messagebox.showerror("ERROR", f"Error loading Excel file: {e}")
+
+def on_data_click(tree_upd, file, sheet):
+
+    frm_update = tk.Frame(windows)
+    frm_update.pack(expand=False)
+
+    if file:
+        selected_item = tree_upd.selection()
+        if selected_item:
+            item_id = selected_item[0]
+            value_cell = sheet.cell(row=int(item_id), column=2).value
+
+            label_value_upgrade = tk.Label(frm_update, text="Value (€):", fg="black", font=font.Font(weight="bold"))
+            label_value_upgrade.pack()
+
+            # Create the entry widget
+            update_value = tk.Entry(frm_update)
+            update_button = tk.Button(frm_update, text="OK", width=4, height=2,
+                                      command=lambda: update_data_excel(tree_upd, value_cell, int(update_value.get()), item_id, file, frm_update),
+                                      fg="blue", font=font.Font(weight="bold"))
+            update_value.pack()
+            update_button.pack()
+
+def update_data_excel(tree_updt, cell_value, value_upd, id_row, file_xlsx, frm_update):
+    workbook = load_workbook(file_xlsx)
+    sheet = workbook.active
+    tree_updt.set(id_row, column=1, value=cell_value - value_upd)
+    sheet.cell(row=int(id_row), column=2).value = int(cell_value) - value_upd
+
+    if sheet.cell(row=int(id_row), column=2).value == 0:
+        tree_updt.delete(id_row)
+        sheet.delete_rows(int(id_row), amount=1)
+
+    workbook.save(file_xlsx)
+    workbook.close()
+    frm_update.destroy()
 
 def save_excel_info(value_invest):
 
@@ -107,7 +104,7 @@ def save_excel_info(value_invest):
         now = datetime.now()
         new_date = now + relativedelta(months=3)
 
-        if value_invest.isalpha() or value_invest == '':
+        if value_invest.isalpha() or value_invest == '' or value_invest == ' ':
             messagebox.showwarning("WARNING", "The invest must be above 0 and doesn't a string value")
         elif int(value_invest) == 0:
             messagebox.showwarning("WARNING", "The invest must be above 0 and doesn't a string value")
