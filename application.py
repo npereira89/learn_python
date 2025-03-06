@@ -11,17 +11,28 @@ def clear_window():
             widget.destroy()
 
 def form_insert_data():
-    clear_window()
+    frm_insert.pack(fill="both", expand=True)
 
-    frm_insert = tk.Frame(windows, padx=50, pady=25)
-    frm_insert.pack(expand=True, fill="both")
+def on_data_click(tree_upd, file, sheet):
+    if file:
+        selected_item = tree_upd.selection()
+        if selected_item:
+            item_id = selected_item[0]
+            value_cell = sheet.cell(row=int(item_id), column=2).value
 
-    tk.Label(frm_insert, text="Value (€):", fg="black", font=font.Font(weight="bold")).grid(row=0, column=0, padx=5,
-                                                                                            pady=5)
-    value_entry = tk.Entry(frm_insert)
-    value_entry.grid(row=0, column=1, padx=5, pady=5)
-    tk.Button(frm_insert , text="OK", width=4, height=2, command=lambda: save_excel_info(value_entry.get()), fg="blue",
-              font=font.Font(weight="bold")).grid(row=0, column=2, padx=5, pady=5)
+            frm_update = tk.Frame(windows, padx=50, pady=25)
+            frm_update.pack(expand=True, fill="both")
+
+            label_value_upgrade = tk.Label(frm_update, text="Value (€):", fg="black", font=font.Font(weight="bold"))
+            label_value_upgrade.pack()
+            # Create the entry widget
+            update_value = tk.Entry(frm_update)
+            update_button = tk.Button(frm_update, text="OK", width=4, height=2,
+                                      command=lambda: update_data_excel(tree_upd, value_cell, int(update_value.get()),
+                                                                        item_id, file, frm_update),
+                                      fg="blue", font=font.Font(weight="bold"))
+            update_value.pack()
+            update_button.pack()
 
 def load_excel_data():
     clear_window()
@@ -57,28 +68,6 @@ def load_excel_data():
 
     except Exception as e:
         messagebox.showerror("ERROR", f"Error loading Excel file: {e}")
-
-def on_data_click(tree_upd, file, sheet):
-
-    frm_update = tk.Frame(windows)
-    frm_update.pack(expand=False)
-
-    if file:
-        selected_item = tree_upd.selection()
-        if selected_item:
-            item_id = selected_item[0]
-            value_cell = sheet.cell(row=int(item_id), column=2).value
-
-            label_value_upgrade = tk.Label(frm_update, text="Value (€):", fg="black", font=font.Font(weight="bold"))
-            label_value_upgrade.pack()
-
-            # Create the entry widget
-            update_value = tk.Entry(frm_update)
-            update_button = tk.Button(frm_update, text="OK", width=4, height=2,
-                                      command=lambda: update_data_excel(tree_upd, value_cell, int(update_value.get()), item_id, file, frm_update),
-                                      fg="blue", font=font.Font(weight="bold"))
-            update_value.pack()
-            update_button.pack()
 
 def update_data_excel(tree_updt, cell_value, value_upd, id_row, file_xlsx, frm_update):
     workbook = load_workbook(file_xlsx)
@@ -155,5 +144,17 @@ menu.add_command(label="Insert data", command=form_insert_data)
 # Menu close menu window
 menubar.add_cascade(label="Windows", menu=menu_2)
 menu_2.add_command(label="Exit", command=windows.quit)
+
+frm_insert = tk.Frame(windows, padx=50, pady=25)
+frm_insert.pack(expand=True, fill="both")
+
+tk.Label(frm_insert, text="Value (€):", fg="black", font=font.Font(weight="bold")).grid(row=0, column=0, padx=5,
+                                                                                        pady=5)
+value_entry = tk.Entry(frm_insert)
+value_entry.grid(row=0, column=1, padx=5, pady=5)
+tk.Button(frm_insert, text="OK", width=4, height=2, command=lambda: save_excel_info(value_entry.get()), fg="blue",
+          font=font.Font(weight="bold")).grid(row=0, column=2, padx=5, pady=5)
+
+frm_insert.forget()
 
 windows.mainloop()
