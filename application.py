@@ -5,11 +5,6 @@ from openpyxl.styles import Border, Side
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-def clear_window():
-    for widget in windows.winfo_children():
-        if widget not in (menubar, menu, menu_2):
-            widget.destroy()
-
 def form_insert_data():
     frm_insert.pack(fill="both", expand=True)
 
@@ -49,7 +44,7 @@ def update_data_excel(tree_updt, cell_value, value_upd, id_row, file_xlsx, frm_u
     frm_update.destroy()
             
 def load_excel_data():
-    clear_window()
+    frm_insert.forget()
     try:
         file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
         if file_xlsx:
