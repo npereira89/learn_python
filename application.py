@@ -32,7 +32,7 @@ def on_click_data(tree, file, sheet):
             update_value = tk.Entry(frm_update)
 
             if update_value == '' or update_value == ' ' or update_value == 0:
-                messagebox.showwarning("WARNING", "The invest must be above 0 and doesn't a string value")
+                messagebox.showwarning("WARNING", "The value updated be above 0")
 
             update_button = tk.Button(frm_update, text="OK", width=4, height=2,
                                       command=lambda: update_data_excel(tree, value_cell, int(update_value.get()),
@@ -102,9 +102,7 @@ def save_excel_info(value_invest):
         now = datetime.now()
         new_date = now + relativedelta(months=3)
 
-        if value_invest.isalpha() or value_invest == '' or value_invest == ' ':
-            messagebox.showwarning("WARNING", "The invest must be above 0 and doesn't a string value")
-        if int(value_invest) == 0:
+        if value_invest.isalpha() or value_invest == '' or value_invest == ' ' or int(value_invest) == 0:
             messagebox.showwarning("WARNING", "The invest must be above 0 and doesn't a string value")
 
         data = [
