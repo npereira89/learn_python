@@ -5,17 +5,20 @@ from openpyxl.styles import Border, Side
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
+
 def clear_window():
     for widget in windows.winfo_children():
         if widget not in (menubar, menu, menu_2):
             widget.destroy()
 
+
 def form_insert_data():
     frm_insert.pack(fill="both", expand=True)
 
-def on_data_click(tree_upd, file, sheet):
+
+def on_click_data(tree, file, sheet):
     if file:
-        selected_item = tree_upd.selection()
+        selected_item = tree.selection()
         if selected_item:
             item_id = selected_item[0]
             value_cell = sheet.cell(row=int(item_id), column=2).value
@@ -27,15 +30,35 @@ def on_data_click(tree_upd, file, sheet):
             label_value_upgrade.pack()
             # Create the entry widget
             update_value = tk.Entry(frm_update)
+
+            if update_value == '' or update_value == ' ' or update_value == 0:
+                messagebox.showwarning("WARNING", "The invest must be above 0 and doesn't a string value")
+
             update_button = tk.Button(frm_update, text="OK", width=4, height=2,
-                                      command=lambda: update_data_excel(tree_upd, value_cell, int(update_value.get()),
+                                      command=lambda: update_data_excel(tree, value_cell, int(update_value.get()),
                                                                         item_id, file, frm_update),
                                       fg="blue", font=font.Font(weight="bold"))
             update_value.pack()
             update_button.pack()
 
+
+def update_data_excel(tree_updt, cell_value, value_upd, id_row, file_xlsx, frm_update):
+    workbook = load_workbook(file_xlsx)
+    sheet = workbook.active
+    tree_updt.set(id_row, column=1, value=cell_value - value_upd)
+    sheet.cell(row=int(id_row), column=2).value = int(cell_value) - value_upd
+
+    if sheet.cell(row=int(id_row), column=2).value == 0:
+        tree_updt.delete(id_row)
+        sheet.delete_rows(int(id_row), amount=1)
+
+    workbook.save(file_xlsx)
+    workbook.close()
+    frm_update.destroy()
+
+
 def load_excel_data():
-    clear_window()
+    frm_insert.forget()
     try:
         file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
         if file_xlsx:
@@ -60,31 +83,16 @@ def load_excel_data():
 
             # Insert data into the Treeview
             for row_num, row in enumerate(sheet.iter_rows(min_row=3, values_only=True), start=3):
-                tree.insert("", "end",  iid=row_num, values=row)
+                tree.insert("", "end", iid=row_num, values=row)
 
             messagebox.showinfo("SUCCESS", "All information was loaded.")
 
-            tree.bind("<Button-3>", lambda event: on_data_click(tree, file_xlsx, sheet))
-
+            tree.bind("<<TreeviewSelect>>", lambda event: on_click_data(tree, file_xlsx, sheet))
     except Exception as e:
         messagebox.showerror("ERROR", f"Error loading Excel file: {e}")
 
-def update_data_excel(tree_updt, cell_value, value_upd, id_row, file_xlsx, frm_update):
-    workbook = load_workbook(file_xlsx)
-    sheet = workbook.active
-    tree_updt.set(id_row, column=1, value=cell_value - value_upd)
-    sheet.cell(row=int(id_row), column=2).value = int(cell_value) - value_upd
-
-    if sheet.cell(row=int(id_row), column=2).value == 0:
-        tree_updt.delete(id_row)
-        sheet.delete_rows(int(id_row), amount=1)
-
-    workbook.save(file_xlsx)
-    workbook.close()
-    frm_update.destroy()
 
 def save_excel_info(value_invest):
-
     file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
     if file_xlsx:
         wb = load_workbook(file_xlsx)
@@ -95,32 +103,33 @@ def save_excel_info(value_invest):
 
         if value_invest.isalpha() or value_invest == '' or value_invest == ' ':
             messagebox.showwarning("WARNING", "The invest must be above 0 and doesn't a string value")
-        elif int(value_invest) == 0:
+        if int(value_invest) == 0:
             messagebox.showwarning("WARNING", "The invest must be above 0 and doesn't a string value")
-        else:
-            data = [
-                [now.strftime("%d/%m/%Y"), int(value_invest), new_date.strftime("%d/%m/%Y"), 0.0275, "FALSE"]
-            ]
 
-            for row in range(2, len(data) + 2):
-                max_row = sheet_ranges.max_row + 1
-                for col in range(1, len(data[0]) + 1):
-                    sheet_ranges.cell(row=max_row, column=col).value = data[row - 2][col - 1]
-                    cell = sheet_ranges.cell(row=max_row, column=col)
+        data = [
+            [now.strftime("%d/%m/%Y"), int(value_invest), new_date.strftime("%d/%m/%Y"), 0.0275, "FALSE"]
+        ]
 
-                    # Formatting borders data
-                    cell.border = Border(top=Side(style='thin'), bottom=Side(style='thin'), left=Side(style='thin'),
-                                         right=Side(style='thin'))
+        for row in range(2, len(data) + 2):
+            max_row = sheet_ranges.max_row + 1
+            for col in range(1, len(data[0]) + 1):
+                sheet_ranges.cell(row=max_row, column=col).value = data[row - 2][col - 1]
+                cell = sheet_ranges.cell(row=max_row, column=col)
 
-                    # Formatting cells
-                    if col == 2 and cell.row == max_row:
-                        cell.number_format = '#,##0€'
-                    elif col == 4 and cell.row == max_row:  # Format tax applied
-                        cell.value = round(cell.value * 100, 2)
+                # Formatting borders data
+                cell.border = Border(top=Side(style='thin'), bottom=Side(style='thin'), left=Side(style='thin'),
+                                     right=Side(style='thin'))
 
-            wb.save(file_xlsx)
-            messagebox.showinfo("SUCCESS", "The invest was added with success!")
+                # Formatting cells
+                if col == 2 and cell.row == max_row:
+                    cell.number_format = '#,##0€'
+                elif col == 4 and cell.row == max_row:  # Format tax applied
+                    cell.value = round(cell.value * 100, 2)
+
+        wb.save(file_xlsx)
+        messagebox.showinfo("SUCCESS", "The invest was added with success!")
         wb.close()
+
 
 # Create the main window
 windows = tk.Tk()
@@ -145,6 +154,7 @@ menu.add_command(label="Insert data", command=form_insert_data)
 menubar.add_cascade(label="Windows", menu=menu_2)
 menu_2.add_command(label="Exit", command=windows.quit)
 
+# Frame to insert investment value
 frm_insert = tk.Frame(windows, padx=50, pady=25)
 frm_insert.pack(expand=True, fill="both")
 
