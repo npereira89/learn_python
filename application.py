@@ -102,7 +102,7 @@ def save_excel_info(value_invest):
         now = datetime.now()
         new_date = now + relativedelta(months=3)
 
-        if value_invest.isalpha() or value_invest == '' or value_invest == ' ' or int(value_invest) == 0:
+        if value_invest.isalpha() or value_invest == '' or value_invest == ' ' or value_invest == 0:
             messagebox.showwarning("WARNING", "The invest must be above 0 and doesn't a string value")
 
         data = [
