@@ -5,6 +5,10 @@ from openpyxl.styles import Border, Side
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
+def load_file():
+    file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
+    if file_xlsx:
+        return file_xlsx
 
 def clear_window():
     for widget in windows.winfo_children():
@@ -93,16 +97,15 @@ def load_excel_data():
 
 
 def save_excel_info(value_invest):
-
-    file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
-    if file_xlsx:
-        wb = load_workbook(file_xlsx)
+    file = load_file()
+    if file:
+        wb = load_workbook(file)
         sheet_ranges = wb.active
 
         now = datetime.now()
         new_date = now + relativedelta(months=3)
 
-        if value_invest.isalpha() or value_invest == '' or value_invest == ' ' or value_invest == 0:
+        if value_invest.isalpha() or value_invest == '' or value_invest == ' ':
             messagebox.showwarning("WARNING", "The invest must be above 0 and doesn't a string value")
 
         data = [
@@ -125,7 +128,7 @@ def save_excel_info(value_invest):
                 elif col == 4 and cell.row == max_row:  # Format tax applied
                     cell.value = round(cell.value * 100, 2)
 
-        wb.save(file_xlsx)
+        wb.save(file)
         messagebox.showinfo("SUCCESS", "The invest was added with success!")
         wb.close()
 
