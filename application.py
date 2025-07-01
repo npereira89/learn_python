@@ -93,6 +93,7 @@ def load_excel_data():
 
 
 def save_excel_info(value_invest):
+
     file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
     if file_xlsx:
         wb = load_workbook(file_xlsx)
@@ -129,7 +130,6 @@ def save_excel_info(value_invest):
         wb.save(file_xlsx)
         messagebox.showinfo("SUCCESS", "The invest was added with success!")
         wb.close()
-
 
 # Create the main window
 windows = tk.Tk()
