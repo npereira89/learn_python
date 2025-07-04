@@ -6,9 +6,12 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 def load_file():
-    file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
-    if file_xlsx:
-        return file_xlsx
+    try:
+        file = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
+        return file
+    except Exception as e:
+        messagebox.showerror("ERROR", f"Error loading Excel file: {e}")
+
 
 def clear_window():
     for widget in windows.winfo_children():
@@ -19,9 +22,11 @@ def clear_window():
 def form_insert_data():
     frm_insert.pack(fill="both", expand=True)
 
-
 def on_click_data(tree, file, sheet):
     if file:
+        for widget in windows.winfo_children():
+            if widget not in (menubar, menu, menu_2, tree, frm_insert):
+                widget.destroy()
         selected_item = tree.selection()
         if selected_item:
             item_id = selected_item[0]
@@ -34,7 +39,6 @@ def on_click_data(tree, file, sheet):
             label_value_upgrade.pack()
             # Create the entry widget
             update_value = tk.Entry(frm_update)
-
             if update_value == '' or update_value == ' ' or update_value == 0:
                 messagebox.showwarning("WARNING", "The value updated be above 0")
 
@@ -63,37 +67,33 @@ def update_data_excel(tree_updt, cell_value, value_upd, id_row, file_xlsx, frm_u
 
 def load_excel_data():
     frm_insert.forget()
-    try:
-        file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
-        if file_xlsx:
-            workbook = load_workbook(file_xlsx)
-            sheet = workbook.active
+    file_xlsx = load_file()
+    if file_xlsx:
+        workbook = load_workbook(file_xlsx)
+        sheet = workbook.active
 
-            label = tk.Label(text="Tabela Certificados Aforro\n", font=("Courier New", 13, "bold underline"))
-            label.pack()
+        label = tk.Label(text="Tabela Certificados Aforro\n", font=("Courier New", 13, "bold underline"))
+        label.pack()
 
-            # Create a Treeview widget
-            tree = ttk.Treeview()
-            tree.pack(expand=True, fill="both")
-            # # Get column names from the first row
-            columns = list(sheet.iter_rows(values_only=True))[1]
+        # Create a Treeview widget
+        tree = ttk.Treeview(selectmode='browse')
+        tree.pack(expand=True, fill="both")
+        # # Get column names from the first row
+        columns = list(sheet.iter_rows(values_only=True))[1]
 
-            # Configure columns
-            tree["columns"] = columns
-            tree["show"] = "headings"
-            # Set column headings
-            for col in columns:
-                tree.heading(col, text=col)
+        # Configure columns
+        tree["columns"] = columns
+        tree["show"] = "headings"
+        # Set column headings
+        for col in columns:
+            tree.heading(col, text=col)
 
-            # Insert data into the Treeview
-            for row_num, row in enumerate(sheet.iter_rows(min_row=3, values_only=True), start=3):
-                tree.insert("", "end", iid=row_num, values=row)
+        # Insert data into the Treeview
+        for row_num, row in enumerate(sheet.iter_rows(min_row=3, values_only=True), start=3):
+            tree.insert("", "end", iid=row_num, values=row)
 
-            messagebox.showinfo("SUCCESS", "All information was loaded.")
-
-            tree.bind("<<TreeviewSelect>>", lambda event: on_click_data(tree, file_xlsx, sheet))
-    except Exception as e:
-        messagebox.showerror("ERROR", f"Error loading Excel file: {e}")
+        messagebox.showinfo("SUCCESS", "All information was loaded.")
+        tree.bind("<<TreeviewSelect>>", lambda event: on_click_data(tree, file_xlsx, sheet))
 
 
 def save_excel_info(value_invest):
