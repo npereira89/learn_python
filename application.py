@@ -5,130 +5,132 @@ from openpyxl.styles import Border, Side
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-def destroy_widgets():
+def load_file():
+    try:
+        file = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
+        return file
+    except Exception as e:
+        messagebox.showerror("ERROR", f"Error loading Excel file: {e}")
+
+
+def clear_window():
     for widget in windows.winfo_children():
         if widget not in (menubar, menu, menu_2):
             widget.destroy()
 
+
 def form_insert_data():
+    frm_insert.pack(fill="both", expand=True)
 
-    destroy_widgets()
+def on_click_data(tree, file, sheet):
+    if file:
+        for widget in windows.winfo_children():
+            if widget not in (menubar, menu, menu_2, tree, frm_insert):
+                widget.destroy()
+        selected_item = tree.selection()
+        if selected_item:
+            item_id = selected_item[0]
+            value_cell = sheet.cell(row=int(item_id), column=2).value
 
-    label_value = tk.Label(windows, text="Value (€):", fg="black", font=font.Font(weight="bold"))
-    label_value.grid(row=55)
+            frm_update = tk.Frame(windows, padx=50, pady=25)
+            frm_update.pack(expand=True, fill="both")
 
-    # Create the entry widget
-    value_invest = tk.Entry(windows)
-    value_invest.grid(row=55, column=19)
+            label_value_upgrade = tk.Label(frm_update, text="Value (€):", fg="black", font=font.Font(weight="bold"))
+            label_value_upgrade.pack()
+            # Create the entry widget
+            update_value = tk.Entry(frm_update)
+            if update_value == '' or update_value == ' ' or update_value == 0:
+                messagebox.showwarning("WARNING", "The value updated be above 0")
 
-    # Button to get value investments
-    button_submit = tk.Button(windows, text="OK", width=4, height=2, command=lambda: save_excel_info(int(value_invest.get())), fg="blue", font=font.Font(weight="bold"))
-    button_submit.grid(row=55, column=20)
+            update_button = tk.Button(frm_update, text="OK", width=4, height=2,
+                                      command=lambda: update_data_excel(tree, value_cell, int(update_value.get()),
+                                                                        item_id, file, frm_update),
+                                      fg="blue", font=font.Font(weight="bold"))
+            update_value.pack()
+            update_button.pack()
+
+
+def update_data_excel(tree_updt, cell_value, value_upd, id_row, file_xlsx, frm_update):
+    workbook = load_workbook(file_xlsx)
+    sheet = workbook.active
+    tree_updt.set(id_row, column=1, value=cell_value - value_upd)
+    sheet.cell(row=int(id_row), column=2).value = int(cell_value) - value_upd
+
+    if sheet.cell(row=int(id_row), column=2).value == 0:
+        tree_updt.delete(id_row)
+        sheet.delete_rows(int(id_row), amount=1)
+
+    workbook.save(file_xlsx)
+    workbook.close()
+    frm_update.destroy()
+
 
 def load_excel_data():
-    destroy_widgets()
-    try:
-        file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
-        if file_xlsx:
-            workbook = load_workbook(file_xlsx)
-            sheet = workbook.active
+    frm_insert.forget()
+    file_xlsx = load_file()
+    if file_xlsx:
+        workbook = load_workbook(file_xlsx)
+        sheet = workbook.active
 
-            label = tk.Label(text="Tabela Certificados Aforro\n", font=("Courier New", 13, "bold underline"))
-            label.pack()
+        label = tk.Label(text="Tabela Certificados Aforro\n", font=("Courier New", 13, "bold underline"))
+        label.pack()
 
-            # Create a Treeview widget
-            tree = ttk.Treeview()
-            tree.pack(expand=True, fill="both")
+        # Create a Treeview widget
+        tree = ttk.Treeview(selectmode='browse')
+        tree.pack(expand=True, fill="both")
+        # # Get column names from the first row
+        columns = list(sheet.iter_rows(values_only=True))[1]
 
-            # # Get column names from the first row
-            columns = list(sheet.iter_rows(values_only=True))[1]
+        # Configure columns
+        tree["columns"] = columns
+        tree["show"] = "headings"
+        # Set column headings
+        for col in columns:
+            tree.heading(col, text=col)
 
-            # Configure columns
-            tree["columns"] = columns
-            tree["show"] = "headings"
+        # Insert data into the Treeview
+        for row_num, row in enumerate(sheet.iter_rows(min_row=3, values_only=True), start=3):
+            tree.insert("", "end", iid=row_num, values=row)
 
-            # Set column headings
-            for col in columns:
-                tree.heading(col, text=col)
+        messagebox.showinfo("SUCCESS", "All information was loaded.")
+        tree.bind("<<TreeviewSelect>>", lambda event: on_click_data(tree, file_xlsx, sheet))
 
-            # Insert data into the Treeview
-            #for row in list(sheet.iter_rows(values_only=True))[2:]:
-            #    tree.insert("", sheet.max_row, values=row)
-
-            for row_num, row in enumerate(sheet.iter_rows(min_row=3, values_only=True), start=3):
-                tree.insert("", "end",  iid=row_num, values=row)
-
-            messagebox.showinfo("SUCCESS", "All information was loaded.")
-
-            def on_data_click(event):
-                selected_item = tree.selection()
-                if selected_item:
-                    item_id = selected_item[0]
-                    value_cell = sheet.cell(row=int(item_id), column=2).value
-
-                    label_value_upgrade = tk.Label(windows, text="Value (€):", fg="black",
-                                                   font=font.Font(weight="bold"))
-                    label_value_upgrade.pack()
-
-                    # Create the entry widget
-                    update_value = tk.Entry(windows)
-                    button_submit_update = tk.Button(windows, text="OK", width=4, height=2,
-                                              command=lambda: update_data_excel(value_cell, int(update_value.get()), item_id), fg="blue",font=font.Font(weight="bold"))
-                    update_value.pack()
-                    button_submit_update.pack()
-
-                    def update_data_excel(cell_value, value_upd, id_row):
-                        tree.set(id_row, column=1, value=cell_value - value_upd)
-                        sheet.cell(row=int(id_row), column=2).value = int(cell_value) - value_upd
-
-                        if sheet.cell(row=int(id_row), column=2).value == 0:
-                            tree.delete(id_row)
-                            sheet.delete_rows(int(id_row), amount=1)
-
-                        workbook.save(file_xlsx)
-                        workbook.close()
-
-            tree.bind("<Button-3>", on_data_click)
-
-    except Exception as e:
-        messagebox.showerror("ERROR", f"Error loading Excel file: {e}")
 
 def save_excel_info(value_invest):
-    try:
-        file_xlsx = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
-        if file_xlsx:
-            wb = load_workbook(file_xlsx)
-            sheet_ranges = wb.active
+    file = load_file()
+    if file:
+        wb = load_workbook(file)
+        sheet_ranges = wb.active
 
-            now = datetime.now()
-            new_date = now + relativedelta(months=3)
+        now = datetime.now()
+        new_date = now + relativedelta(months=3)
 
-            data = [
-                [now.strftime("%d/%m/%Y"), int(value_invest), new_date.strftime("%d/%m/%Y"), 0.0275, "FALSE"]
-            ]
+        if value_invest.isalpha() or value_invest == '':
+            messagebox.showwarning("WARNING", "The invest must be above 0 and doesn't a string value")
 
-            for row in range(2, len(data) + 2):
-                max_row = sheet_ranges.max_row + 1
-                for col in range(1, len(data[0]) + 1):
-                    sheet_ranges.cell(row=max_row, column=col).value = data[row - 2][col - 1]
-                    cell = sheet_ranges.cell(row=max_row, column=col)
+        data = [
+            [now.strftime("%d/%m/%Y"), int(value_invest), new_date.strftime("%d/%m/%Y"), 0.0275, "FALSE"]
+        ]
 
-                    # Formatting borders data
-                    cell.border = Border(top=Side(style='thin'), bottom=Side(style='thin'), left=Side(style='thin'),
-                                         right=Side(style='thin'))
+        for row in range(2, len(data) + 2):
+            max_row = sheet_ranges.max_row + 1
+            for col in range(1, len(data[0]) + 1):
+                sheet_ranges.cell(row=max_row, column=col).value = data[row - 2][col - 1]
+                cell = sheet_ranges.cell(row=max_row, column=col)
 
-                    # Formatting cells
-                    if col == 2 and cell.row == max_row:
-                        cell.number_format = '#,##0€'
-                    elif col == 4 and cell.row == max_row:  # Format tax applied
-                        cell.value = round(cell.value * 100, 2)
+                # Formatting borders data
+                cell.border = Border(top=Side(style='thin'), bottom=Side(style='thin'), left=Side(style='thin'),
+                                     right=Side(style='thin'))
 
-            wb.save(file_xlsx)
-            messagebox.showinfo("SUCCESS", "The invest was added with success!")
-            wb.close()
+                # Formatting cells
+                if col == 2 and cell.row == max_row:
+                    cell.number_format = '#,##0€'
+                elif col == 4:  # Format tax applied
+                    cell.value = round(cell.value * 100, 2)
 
-    except Exception as e:
-        messagebox.showerror("ERROR", f"Error loading Excel file: {e}")
+        wb.save(file)
+        messagebox.showinfo("SUCCESS", "The invest was added with success!")
+        wb.close()
 
 # Create the main window
 windows = tk.Tk()
@@ -152,5 +154,18 @@ menu.add_command(label="Insert data", command=form_insert_data)
 # Menu close menu window
 menubar.add_cascade(label="Windows", menu=menu_2)
 menu_2.add_command(label="Exit", command=windows.quit)
+
+# Frame to insert investment value
+frm_insert = tk.Frame(windows, padx=50, pady=25)
+frm_insert.pack(expand=True, fill="both")
+
+tk.Label(frm_insert, text="Value (€):", fg="black", font=font.Font(weight="bold")).grid(row=0, column=0, padx=5,
+                                                                                        pady=5)
+value_entry = tk.Entry(frm_insert)
+value_entry.grid(row=0, column=1, padx=5, pady=5)
+tk.Button(frm_insert, text="OK", width=4, height=2, command=lambda: save_excel_info(value_entry.get()), fg="blue",
+          font=font.Font(weight="bold")).grid(row=0, column=2, padx=5, pady=5)
+
+frm_insert.forget()
 
 windows.mainloop()
