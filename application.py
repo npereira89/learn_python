@@ -39,31 +39,34 @@ def on_click_data(tree, file, sheet):
             label_value_upgrade.pack()
             # Create the entry widget
             update_value = tk.Entry(frm_update)
-            if update_value == '' or update_value == ' ' or update_value == 0:
-                messagebox.showwarning("WARNING", "The value updated be above 0")
+            update_value.pack()
 
             update_button = tk.Button(frm_update, text="OK", width=4, height=2,
                                       command=lambda: update_data_excel(tree, value_cell, int(update_value.get()),
                                                                         item_id, file, frm_update),
                                       fg="blue", font=font.Font(weight="bold"))
-            update_value.pack()
+
             update_button.pack()
 
 
 def update_data_excel(tree_updt, cell_value, value_upd, id_row, file_xlsx, frm_update):
     workbook = load_workbook(file_xlsx)
     sheet = workbook.active
-    tree_updt.set(id_row, column=1, value=cell_value - value_upd)
-    sheet.cell(row=int(id_row), column=2).value = int(cell_value) - value_upd
 
-    if sheet.cell(row=int(id_row), column=2).value == 0:
-        tree_updt.delete(id_row)
-        sheet.delete_rows(int(id_row), amount=1)
+    if value_upd == '' or value_upd == ' ' or value_upd == 0:
+        messagebox.showwarning("WARNING", "The value updated be above 0")
+    else:
+        tree_updt.set(id_row, column=1, value=cell_value - value_upd)
+        sheet.cell(row=int(id_row), column=2).value = int(cell_value - value_upd)
 
-    workbook.save(file_xlsx)
-    workbook.close()
+        if sheet.cell(row=int(id_row), column=2).value == 0:
+            tree_updt.delete(id_row)
+            sheet.delete_rows(int(id_row), amount=1)
+
+        workbook.save(file_xlsx)
+        workbook.close()
     frm_update.destroy()
-
+    on_click_data(tree_updt, file_xlsx, sheet)
 
 def load_excel_data():
     frm_insert.forget()
@@ -150,6 +153,7 @@ menu_2 = tk.Menu(menubar, tearoff=0)
 menubar.add_cascade(label="File", menu=menu)
 menu.add_command(label="Open", command=load_excel_data)
 menu.add_command(label="Insert data", command=form_insert_data)
+menu.add_command(label="Close Frames", command=clear_window)
 
 # Menu close menu window
 menubar.add_cascade(label="Windows", menu=menu_2)
