@@ -53,7 +53,7 @@ def update_data_excel(tree_updt, cell_value, value_upd, id_row, file_xlsx, frm_u
     workbook = load_workbook(file_xlsx)
     sheet = workbook.active
 
-    if value_upd == '' or value_upd == ' ' or value_upd == 0:
+    if value_upd == '' or value_upd == ' ' or value_upd == 0 or value_upd is NULL:
         messagebox.showwarning("WARNING", "The value updated be above 0")
     else:
         tree_updt.set(id_row, column=1, value=cell_value - value_upd)
