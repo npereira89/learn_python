@@ -35,7 +35,7 @@ try:
     shutil.make_archive(f"zip_file_{now.strftime('%m%d%Y_%H%M%S')}", 'zip', dst)
     zip_files_str = ", ".join(glob.glob("*.zip"))
     file_to_copy = os.path.join(os.getcwd(), f"{zip_files_str}")
-    shutil.move(f"{file_to_copy}", 'C:\\Users\\Nuno\\Documents\\')
+    shutil.move(f"{file_to_copy}", 'C:\\Users\\Nuno\\Documents\\X\\')
     print("Zip file done and moved with success!!")
 except FileNotFoundError:
     print("Error: Zip file not found")

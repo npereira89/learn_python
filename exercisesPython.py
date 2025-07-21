@@ -338,6 +338,9 @@ def swap_case(s):
             num+=(let.upper())
     return num
 
+def calc_area_rect(base, height):
+    return print(f"the area of rectangule is {base * height} ")
+
 ######################################
 ### CREATING NEW FILE AND ADD INFO ###
 ######################################
@@ -1905,6 +1908,29 @@ for r in data:
     ws.append(r)
 
 wb.save(filename='teste_file.xlsx')
+wb.close()
+
+################################################################
+## Escreva um programa para ler um valor do teclado e apresentar o seu antecessor.
+################################################################
+
+list_values = []
+while True:
+    value = input("Input the value: \n")
+    if not value.isalnum():
+        exit(0)
+    else:
+        list_values.append(value)
+        for i in range(len(list_values)):
+            i -= 1
+        print(list_values[i])
+#################################################################
+## Escreva um programa para ler as dimensões de um retângulo (base e altura), calcule e apresente a área.
+#################################################################
+
+b = int(input("Input the base of rectangule: "))
+h = int(input("Input the height of rectangule: "))
+calc_area_rect(b, h)
 
 ################################################################							
 ## Livro de Introduçcao a Algoritmia e Programação com Python ##
