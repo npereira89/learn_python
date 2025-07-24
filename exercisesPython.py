@@ -1932,6 +1932,111 @@ b = int(input("Input the base of rectangule: "))
 h = int(input("Input the height of rectangule: "))
 calc_area_rect(b, h)
 
+#################################################################	
+################## PDF Exercicios em Python #####################
+
+#################################################################	
+## Escreva um programa para ler uma determinada data de aniversário e calcular os anos, meses e dias que tem.
+#################################################################
+
+from datetime import datetime
+
+# Get the current datetime object
+now = datetime.now()
+
+# Format the current datetime into a specific string
+formatted_string = now.strftime("%d/%m/%Y")
+birthday_date = input("What's your birthday?")
+
+year_now = int(now.strftime("%Y"))
+month_now = int(now.strftime("%m"))
+day_now = int(now.strftime("%d"))
+year_birth = birthday_date.split("/")
+
+print(f"Your age is {year_now - int(year_birth[2])} years, {12-month_now} months and {day_now} days")
+
+#################################################################
+## Escreva um programa que a partir da idade de uma pessoa expressa em anos,
+## meses e dias, apresente a idade apenas em dias (considerar o ano com 365 e cada
+## mês com 30 dias).
+#################################################################
+
+print("How many do you live?")
+y = int(input("year: "))
+m = int(input("months: "))
+d = int(input("days: "))
+
+total_days_lived = (y * 365) + (m * 30) + d
+print(f"You already live {total_days_lived} days!!")
+
+#################################################################
+## Escreva um programa que receba a idade de um atleta e determine a sua categoria com base
+## numa tabel que anexa-se ao exercicio.
+#################################################################
+
+age = 0
+
+while age >= 0:
+    age = int(input("How old are you?"))
+    if 5 <= age <= 7:
+        print("Infantil Category!!")
+    elif 8 <= age <= 10:
+        print("Iniciado Category!!")
+    elif 11 <= age <= 13:
+        print("Juvenil Category!!")
+    elif 14 <= age <= 17:
+        print("Junior Category!!")
+    elif age >= 18:
+        print("Over 18!!")
+    elif age < 0:
+        print("Invalid age!! Please try again! 👀")
+    else:
+        print("Oops!! Sorry but you are a baby 👶\nYou can't be a athlete!!")
+
+#################################################################
+## Escreva um programa que ajude um comerciante a calcular o valor de venda 
+## a partir de um valor de compra de um dado produto
+#################################################################
+
+get_info = True
+total_buy = 0
+
+print("If you want skip it, just enter a 0")
+
+while get_info is True:
+    buy_value = float(input("Value of receive? "))
+    if buy_value >= 0.01:
+        total_buy += buy_value
+    elif buy_value <= 0.00:
+        get_info = False
+
+if total_buy < 10.00:
+    print(f"The profits value of {total_buy} is {total_buy * 0.7:.2f} €")
+if 10.00 <= total_buy < 30.00:
+    print(f"The profits value of {total_buy} is {total_buy * 0.5:.2f} €")
+if 30.00 <= total_buy < 50.00:
+    print(f"The profits value of {total_buy} is {total_buy * 0.4:.2f} €")
+if total_buy >= 50.00:
+    print(f"The profits value of {total_buy} is {total_buy * 0.3:.2f} €")
+
+#################################################################
+## Escreva um programa para determinar a situação de uma aluno
+## (Aprovado/Exame/Reprovado) dada a sua assiduidade em percentagem e a nota
+## do teste (0 a 20),
+#################################################################
+
+assid = int(input("What's the rate of assiduity?"))
+test = int(input("What's evaluation test?"))
+
+if assid < 75:
+    print("Reproved!!")
+elif assid >= 75 and test < 5:
+    print("Reproved!!")
+elif assid >= 75 and 5 <= test <= 9.5:
+    print("Exam!!")
+elif assid >= 75 and 10 <= test <= 20:
+    print("Approved!!")
+
 ################################################################							
 ## Livro de Introduçcao a Algoritmia e Programação com Python ##
 ################################################################
