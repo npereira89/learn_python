@@ -19,6 +19,7 @@ from array import array
 from openpyxl.workbook import Workbook
 from math import sqrt
 
+
 ###############################
 ### ALL FUNCTIONS AND CLASS ###
 ###############################
@@ -27,14 +28,16 @@ def chessboard(length):
     for x in range(length):
         for y in range(length):
             if (x + y) % 2 == 0:
-                print(1, end="") 
+                print(1, end="")
             else:
-                print(0, end="") 
-        print() 
+                print(0, end="")
+        print()
+
 
 def print_many_times(text, times):
     for _ in range(times):
         print(text)
+
 
 def seven_brothers():
     names = ('Tuomas', 'Aapo', 'Timo', 'Eero', 'Simeoni', 'Juhani', 'Lauri')
@@ -43,67 +46,77 @@ def seven_brothers():
     my_string = separator.join(list_final)
     return print(my_string)
 
+
 def convert_cels_fahre(valor_to_convert):
-  fahrenheit = round((valor_to_convert*(9/5)) +32,3)
-  print(f"{valor_to_convert} ºC --> {fahrenheit} ºF")
-  return fahrenheit
+    fahrenheit = round((valor_to_convert * (9 / 5)) + 32, 3)
+    print(f"{valor_to_convert} ºC --> {fahrenheit} ºF")
+    return fahrenheit
+
 
 def convert_fahre_cels(valor_to_convert):
-  celsius = round((valor_to_convert-32) / 1.79999999,3)
-  print(f"{valor_to_convert} ºF --> {celsius} ºC")
-  return celsius
+    celsius = round((valor_to_convert - 32) / 1.79999999, 3)
+    print(f"{valor_to_convert} ºF --> {celsius} ºC")
+    return celsius
+
 
 def combo_string(a, b):
-  
-  check_size_a = len(a)
-  check_size_b = len(b)
-  
-  if check_size_a > check_size_b:
-      longer = a
-      short = b
-  else:
-      longer = b
-      short = a
-  
-  return short+longer+short
+    check_size_a = len(a)
+    check_size_b = len(b)
+
+    if check_size_a > check_size_b:
+        longer = a
+        short = b
+    else:
+        longer = b
+        short = a
+
+    return short + longer + short
+
 
 def join_middle(bound_by, tag_name):
-  if len(bound_by) % 2 == 0:
-    # Even length: Insert between the two middle characters
-    mid = len(bound_by) // 2
-    return bound_by[:mid] + tag_name + bound_by[mid:]
-  else:
-    # Odd length: Insert after the middle character
-    mid = len(bound_by) // 2
-    return bound_by[:mid] + tag_name + string[mid:]
+    if len(bound_by) % 2 == 0:
+        # Even length: Insert between the two middle characters
+        mid = len(bound_by) // 2
+        return bound_by[:mid] + tag_name + bound_by[mid:]
+    else:
+        # Odd length: Insert after the middle character
+        mid = len(bound_by) // 2
+        return bound_by[:mid] + tag_name + string[mid:]
+
 
 def reverseWords(s):
-    words = s.split() 
+    words = s.split()
     reversed_words = words[::-1]
     return " ".join(reversed_words)
 
+
 def gfg(S):
     b = S.lower()
-    if(b.startswith("gfg") or b.endswith('gfg')):  
-        print ("Yes")
+    if (b.startswith("gfg") or b.endswith('gfg')):
+        print("Yes")
     else:
-        print ("No")
+        print("No")
+
 
 def trim(str):
     str_final = str.strip()
     return str_final
-    
+
+
 def exists(str, x):
     str_final = str.strip()
     return str_final.find(x)
-    
+
+
 def titleIt(str):
     str_final = str.strip()
     return str_final.title()
-    
+
+
 def casesSwap(str):
     str_final = str.strip()
     return str_final.upper()
+
 
 def intersection(arr1, arr2):
     new_arr = arr1 + arr2
@@ -116,41 +129,47 @@ def intersection(arr1, arr2):
 
     return print(result)
 
+
 def stringJumper(str):
-    for i in range(0, len(str), 2): ## from 0 to length of str and skip 2
-        print(str[i], end="") ##printing character and separating characters by nothing
+    for i in range(0, len(str), 2):  ## from 0 to length of str and skip 2
+        print(str[i], end="")  ##printing character and separating characters by nothing
+
 
 def printIncreasingPower(x):
-    for num in range(1, x+1):
+    for num in range(1, x + 1):
         result = num ** 2
-        if result<=x:
-            print(result, end= ' ')
-	    
+        if result <= x:
+            print(result, end=' ')
+
+
 def pos(n):
-    for n in range(n-1, -1, -1):
-        print(n, end= ' ')
-    
+    for n in range(n - 1, -1, -1):
+        print(n, end=' ')
+
+
 def neg(n):
     for n in range(n, 1, 1):
-        print(n, end= ' ')
+        print(n, end=' ')
+
 
 class Solution:
     def checkNumber(a, b):
         if int(a) == int(b):
-            flag="True"
+            flag = "True"
         else:
-            flag="False"
+            flag = "False"
         return flag
-	
+
     def get_min_max(self, arr):
         return min(arr), max(arr)
-    
+
     def findUnion(self, a, b):
         total_union = a + b
         return len(list(set(total_union)))
 
+
 class Person:
-    def __init__(self, name, age): # constructor
+    def __init__(self, name, age):  # constructor
         self.name = name
         self.age = age
 
@@ -160,12 +179,14 @@ class Person:
         else:
             print(f"Go away {self.name} \nYou are not allow to see pornography, cuz you're {self.age} yo!")
 
+
 def round_number(value):
     valor_approach = round(value, 0)
     if valor_approach > value:
         return print(f"The excess approach is {valor_approach:.0f}")
     else:
         return print(f"The default approach is {value:.0f}")
+
 
 def calc_area(side1, side2, side3):
     if side1 >= 0 and side2 >= 0 and side3 >= 0:
@@ -175,9 +196,11 @@ def calc_area(side1, side2, side3):
     else:
         print("Not possible calculate area of triangle, because one of the values are not positive")
 
+
 def calc_price(qtd_hmb, qtd_ch, qtd_shp, qtd_itea, qtd_shk):
     price = (qtd_hmb * 6.5) + (qtd_ch * 7.5) + (qtd_shp * 3.5) + (qtd_itea * 0.7) + (qtd_shk * 0.8)
     return float(price)
+
 
 def round_number(value):
     valor_approach = round(value, 0)
@@ -185,7 +208,8 @@ def round_number(value):
         return print(f"The excess approach is {valor_approach:.0f}")
     else:
         return print(f"The default approach is {value:.0f}")
-	
+
+
 def consumer_price(farmer_cost):
     if farmer_cost <= 10000:
         rate_distribution = 0.08
@@ -200,8 +224,9 @@ def consumer_price(farmer_cost):
     total = farmer_cost + (farmer_cost * rate_distribution) + (farmer_cost * rate_taxes)
     return print(f"The consumer price is {total:2f} €")
 
+
 def formula_delta(value_a, value_b, value_c):
-    delta = value_b**2 - (4 * value_a * value_c)
+    delta = value_b ** 2 - (4 * value_a * value_c)
     if delta == 0:
         return print(f"The delta value is {delta}.\nThe discriminante is null")
     if delta > 0:
@@ -209,22 +234,25 @@ def formula_delta(value_a, value_b, value_c):
     if delta < 0:
         return print("Not possible calculate the quadratic equation")
 
+
 def thought_exame(exam1, exam2, work):
     total = (exam1 * 0.3) + (exam2 * 0.3) + (work * 0.4)
     if total < 50:
         return print("Scale 5. You repproved this year 😔😢")
-    elif  59 <= float(total) >= 50:
+    elif 59 <= float(total) >= 50:
         return print("Scale 4. You need to improve 😐")
-    elif  60 <= total >= 69:
+    elif 60 <= total >= 69:
         return print("Scale 3. It's enought but you can do better!! 😉")
-    elif  70 <= total >= 79:
+    elif 70 <= total >= 79:
         return print("Scale 2. You make a good job this year!! 😍")
-    elif  80 <= total >= 100:
+    elif 80 <= total >= 100:
         return print("Scale 2. Fantastic!! You're master this year! 💖")
+
 
 def calc_area(ba, alt):
     area = (ba * alt) / 2
     return print(f"The area of triangle is {area:.2f}")
+
 
 def emojis(message):
     words = message.split(" ")
@@ -240,25 +268,29 @@ def emojis(message):
 
     return output
 
+
 def find_right_most_digit(text):
-    count=0
-    
+    count = 0
+
     for ch in text:
         if ch.isdigit() == True:
             count += 1
 
     return count
 
+
 def square_number(number):
     number *= number
     return number
-    
+
+
 def greeting(name):
     first_name = lambda nome: nome.split()[0]
     last_name = lambda nome: nome.split()[-1]
 
     return print(f'Seu primeiro nome é {first_name(name)} '
                  f'e o seu último nome é {last_name(name)}')
+
 
 def sum_values(a, b):
     multwo = lambda c, d: c + d
@@ -277,69 +309,91 @@ def get_latest_behind(num):
     last = num + 1
     return print(f"The number is {num}. The next one is {last} and the ancestor is {ant}")
 
+
 def remove_data(list_num):
     i = 0
-    while i< len(list_num):
-       if list_num[i] > 50:
-           list_num.remove(list_num[i])
-           i -= 1
-       else:
-           i += 1
+    while i < len(list_num):
+        if list_num[i] > 50:
+            list_num.remove(list_num[i])
+            i -= 1
+        else:
+            i += 1
     return print(list_num)
-    
+
+
 def greeting_out_func(x, y):
-    def inner_greeting(x,y):
+    def inner_greeting(x, y):
         return x + y
 
-    greet = inner_greeting(x,y)
+    greet = inner_greeting(x, y)
     return greet + 'Developers'
+
 
 def is_leap(year):
     leap = False
-    
-    if (year%4==0 and year%100!=0) or year%400==0:
-        leap = True 
-            
+
+    if (year % 4 == 0 and year % 100 != 0) or year % 400 == 0:
+        leap = True
+
     return leap
-    
+
+
 def mutate_string(string, position, character):
-    text = string[:position] + character + string[position+1:]
+    text = string[:position] + character + string[position + 1:]
     return text
+
 
 def print_formatted(number):
     width = len(bin(number)[2:])
-    for i in range(1, number+1):
+    for i in range(1, number + 1):
         deci = str(i)
         octa = oct(i)[2:]
         hexa = hex(i)[2:].upper()
         bina = bin(i)[2:]
-        print(deci.rjust(width),octa.rjust(width),hexa.rjust(width),bina.rjust(width))
+        print(deci.rjust(width), octa.rjust(width), hexa.rjust(width), bina.rjust(width))
+
 
 def solve(meal_cost, tip_percent, tax_percent):
-    tip = float((meal_cost * tip_percent)/100)
-    tax = float((meal_cost * tax_percent)/100)
+    tip = float((meal_cost * tip_percent) / 100)
+    tax = float((meal_cost * tax_percent) / 100)
     total_cost = meal_cost + tip + tax
     return print(round(total_cost))
 
+
 def wrap(string, max_width):
-    for i in range(0,len(string)+1,max_width):
-        result = string[i:max_width+i]
+    for i in range(0, len(string) + 1, max_width):
+        result = string[i:max_width + i]
         if len(result) == max_width:
             print(result)
         else:
-            return(result)
+            return (result)
+
 
 def swap_case(s):
     num = ""
     for let in s:
         if let.isupper() == True:
-            num+=(let.lower())
+            num += (let.lower())
         else:
-            num+=(let.upper())
+            num += (let.upper())
     return num
+
 
 def calc_area_rect(base, height):
     return print(f"the area of rectangule is {base * height} ")
+
+
+def save_age(get_age):
+    if get_age != 0:
+        list_age_ppl.append(get_age)
+    elif get_age == 0:
+        total = 0
+        for x in list_age_ppl:
+            total += x
+        final_total = total / len(list_age_ppl)
+        print(f"The average age from the list is {final_total:.2f}")
+        return exit(0)
+
 
 ######################################
 ### CREATING NEW FILE AND ADD INFO ###
@@ -358,22 +412,22 @@ except OSError:
 ##################################
 
 ##################################
-## Write a function named print_many_times(text, times), which takes a string and an integer as arguments. 
+## Write a function named print_many_times(text, times), which takes a string and an integer as arguments.
 ## The integer argument specifies how many times the string argument should be printed out
 ##################################
 
 print_many_times("python", 5)
 
 ##################################
-## Write a function named seven_brothers. When the function is called, it should print out the names of the seven 
-## brothers in alphabetical order, as in the example below. See the similarly named exercise in part 1 for more details 
+## Write a function named seven_brothers. When the function is called, it should print out the names of the seven
+## brothers in alphabetical order, as in the example below. See the similarly named exercise in part 1 for more details
 ## about the brothers.
 ##################################
 
 seven_brothers()
 
 ##################################
-## Write a program which asks the user to type in a sentence. 
+## Write a program which asks the user to type in a sentence.
 ## The program then prints out the first letter of each word in the sentence, each letter on a separate line.
 ##################################
 
@@ -383,27 +437,27 @@ for x in sentence.split():
     print(x[0], end='\n')
 
 ##################################
-## write a program which asks the user to type in a string. 
+## write a program which asks the user to type in a string.
 ## The program then prints out all the substrings which begin with the first character, from the shortest to the longest.
 ###################################
 
 string = input("Please type in a string: ")
 
-for y in range(1, len(string)+1, 1):
+for y in range(1, len(string) + 1, 1):
     print(string[0:y], end='\n')
-    
+
 ##################################
-## write a program which asks the user to type in a string. 
+## write a program which asks the user to type in a string.
 ## The program then prints out all the substrings which begin with the last character, from the shortest to the longest.
-###################################    
-    
+###################################
+
 string = input("Please type in a string: ")
 
-for x in range(len(string)-1, -1, -1):
+for x in range(len(string) - 1, -1, -1):
     print(string[x:], end='\n')
 
 ##################################
-## Write a program which asks the user for a string and then prints out a frame of * characters with the word in the centre. 
+## Write a program which asks the user for a string and then prints out a frame of * characters with the word in the centre.
 ## The width of the frame should be 30 characters. You may assume the input string will always fit inside the frame.
 ## If the length of the input string is an odd number, you may print out the word in either of the two possible centre locations.
 ##################################
@@ -412,7 +466,7 @@ width = 30
 stars = ''
 word = input("Word: ")
 
-for x in range(1,width+1):
+for x in range(1, width + 1):
     stars = stars + "*"
 print(stars)
 
@@ -424,25 +478,25 @@ print("*" + " " * left_padding + word + " " * right_padding + "*")
 print(stars)
 
 ##################################
-## Write a program which asks the user for a string and then prints it out so that exactly 20 characters are displayed. 
+## Write a program which asks the user for a string and then prints it out so that exactly 20 characters are displayed.
 ## If the input is shorter than 20 characters, the beginning of the line is filled in with * characters.
 ## You may assume the input string is at most 20 characters long.
 ##################################
 
 string = input("Please type in a string: ")
 f_str = ''
-count_stars = 20-len(string)
+count_stars = 20 - len(string)
 
 if len(string) <= 19:
-    for x in range(0,count_stars):
+    for x in range(0, count_stars):
         f_str = f_str + "*"
     f_str = f_str + string
     print(f_str)
 else:
     print(string)
-    
+
 ##################################
-## Write a program which asks the user for strings using a loop. The program prints out each string underlined 
+## Write a program which asks the user for strings using a loop. The program prints out each string underlined
 ## as shown in the examples below. The execution ends when the user inputs an empty string - that is, just presses Enter at the prompt.
 ##################################
 
@@ -459,7 +513,7 @@ while string != " ":
         print(underline)
 
 ##################################
-## write a program which asks the user for a string. The program then prints out a message based on whether 
+## write a program which asks the user for a string. The program then prints out a message based on whether
 ## the second character and the second to last character are the same or not. See the examples below.
 ##################################
 
@@ -471,7 +525,7 @@ else:
     print("The second and the second to last characters are different")
 
 ##################################
-## Write a program which asks the user for a string. The program then prints out the input string in reversed order, 
+## Write a program which asks the user for a string. The program then prints out the input string in reversed order,
 ## from end to beginning. Each character should be on a separate line.
 ##################################
 
@@ -481,8 +535,8 @@ for ch in string:
     print(ch)
 
 ##################################
-## Write a program which asks the user for two strings and then prints out whichever 
-## is the longer of the two - that is, whichever has the more characters. 
+## Write a program which asks the user for two strings and then prints out whichever
+## is the longer of the two - that is, whichever has the more characters.
 ## If the strings are of equal length, the program should print out "The strings are equally long".
 ##################################
 
@@ -497,8 +551,8 @@ elif len(string1) == len(string2):
     print("The strings are equally long")
 
 ##################################
-## Write a program which asks the user for a string and an amount. 
-## The program then prints out the string as many times as specified by the amount. 
+## Write a program which asks the user for a string and an amount.
+## The program then prints out the string as many times as specified by the amount.
 ## The printout should all be on one line, with no extra spaces or symbols added.
 ##################################
 
@@ -506,12 +560,12 @@ string = input("Please type in a string: ")
 amount = int(input("Please type in an amount: "))
 string_final = ''
 
-for x in range(1, amount+1):
+for x in range(1, amount + 1):
     string_final += string
 print(string_final)
 
 ##################################
-## Please write a program which keeps asking the user for words. 
+## Please write a program which keeps asking the user for words.
 ## If the user types in end, the program should print out the story the words formed, and finish.
 ## NOTE: NOT WORKING WITH ARTICLE (ISSUE)... BEWARE!!!
 ##################################
@@ -524,7 +578,7 @@ while words != 'end':
     if words != 'end' and words not in phrase.split():
         phrase += words + " "
     else:
-        break  
+        break
 
 print(phrase)
 
@@ -557,7 +611,7 @@ while pwd != confirmed_pwd:
         print("They do not match!")
 
 ##################################
-## Write a program which asks the user for three letters. The program should then print out whichever of the three letters 
+## Write a program which asks the user for three letters. The program should then print out whichever of the three letters
 ## would be in the middle if the letters were in alphabetical order.
 ## You may assume the letters will be either all uppercase, or all lowercase.
 ##################################
@@ -568,8 +622,8 @@ chars3 = input("3rd letter: ")
 
 if chars1.lower() > chars3.lower() and chars2.lower() < chars3.lower():
     print(f"The letter in the middle is {chars3}")
-elif chars3.lower() < chars2.lower() and chars2.lower() < chars1.lower(): 
-    print(f"The letter in the middle is {chars2}") 
+elif chars3.lower() < chars2.lower() and chars2.lower() < chars1.lower():
+    print(f"The letter in the middle is {chars2}")
 elif chars1.lower() < chars2.lower() and chars2.lower() < chars3.lower():
     print(f"The letter in the middle is {chars2}")
 elif chars2.lower() > chars1.lower() and chars3.lower() > chars1.lower():
@@ -580,7 +634,7 @@ elif chars2.lower() > chars1.lower() and chars3.lower() < chars2.lower():
     print(f"The letter in the middle is {chars1}")
 
 ##################################
-## Write a program which asks the user for two words. 
+## Write a program which asks the user for two words.
 ## The program should then print out whichever of the two comes alphabetically last.
 ## You can assume all words will be typed in lowercase entirely.
 ##################################
@@ -596,16 +650,16 @@ elif first_word.lower() < second_word.lower():
     print(f"{second_word} comes alphabetically last.")
 
 ##################################
-### Please fix the code so that the printout looks right. Notice especially how the comma notation in the print 
+### Please fix the code so that the printout looks right. Notice especially how the comma notation in the print
 ### command automatically inserts a space around the different comma-separated parts.
 ### The easiest way to transform the code so that it meets requirements is to use f-strings.
 ###
-### Hint: you can print an empty line by adding an empty print command, or by adding the newline 
+### Hint: you can print an empty line by adding an empty print command, or by adding the newline
 ### 	  character \n into your string.
 ###
-### Do remember to be extra careful when formatting printouts also in the future on this course. 
-### Some of the exercises have tests that require your output to be exactly as specified in the examples given. 
-### For example, please use actual whitespace characters in your code, instead of ASCII character codes for whitespace, 
+### Do remember to be extra careful when formatting printouts also in the future on this course.
+### Some of the exercises have tests that require your output to be exactly as specified in the examples given.
+### For example, please use actual whitespace characters in your code, instead of ASCII character codes for whitespace,
 ### or some such.
 ##################################
 
@@ -621,14 +675,14 @@ lower = 2000
 upper = 3000
 
 print(f"my name is {name}, I am {age} years old\n\nmy skills are")
-print (" -" + " " + "".join(skill1) + " (" + (level1) + ")")
-print (" -" + " " + "".join(skill2) + " (" + (level2) + ")")
-print (" -" + " " + "".join(skill3) + " (" + (level3) + ")\n")
+print(" -" + " " + "".join(skill1) + " (" + (level1) + ")")
+print(" -" + " " + "".join(skill2) + " (" + (level2) + ")")
+print(" -" + " " + "".join(skill3) + " (" + (level3) + ")\n")
 print(f"I am looking for a job with a salary of {lower}-{upper} euros per month")
 
 ##################################
 ## Please write a program which asks for tomorrow's weather forecast and then suggests weather-appropriate clothing.
-## The suggestion should change if the temperature (measured in degrees Celsius) is over 20, 10 or 5 degrees, and 
+## The suggestion should change if the temperature (measured in degrees Celsius) is over 20, 10 or 5 degrees, and
 ## also if there is rain on the radar.
 ##################################
 
@@ -637,14 +691,17 @@ tmp = int(input("Temperature: "))
 is_run = input("Will it rain (yes/no): ")
 
 if tmp <= 3 and is_run == 'yes':
-    print("Wear jeans and a T-shirt\nI recommend a jumper as well\nTake a jacket with you\nMake it a warm coat, actually\nI think gloves are in order\nDon't forget your umbrella!")
+    print(
+        "Wear jeans and a T-shirt\nI recommend a jumper as well\nTake a jacket with you\nMake it a warm coat, actually\nI think gloves are in order\nDon't forget your umbrella!")
 elif tmp <= 3 and is_run == 'no':
-    print("Wear jeans and a T-shirt\nI recommend a jumper as well\nTake a jacket with you\nMake it a warm coat, actually\nI think gloves are in order\n")
+    print(
+        "Wear jeans and a T-shirt\nI recommend a jumper as well\nTake a jacket with you\nMake it a warm coat, actually\nI think gloves are in order\n")
 
 elif tmp <= 10 and tmp > 3 and is_run == 'no':
     print("Wear jeans and a T-shirt\nI recommend a jumper as well\nTake a jacket with you")
 elif tmp <= 10 and tmp > 3 and is_run == 'yes':
-    print("Wear jeans and a T-shirt\nI recommend a jumper as well\nTake a jacket with you\nMake it a warm coat, actually\nI think gloves are in order\nDon't forget your umbrella!")
+    print(
+        "Wear jeans and a T-shirt\nI recommend a jumper as well\nTake a jacket with you\nMake it a warm coat, actually\nI think gloves are in order\nDon't forget your umbrella!")
 elif tmp >= 11 and tmp < 19 and is_run == 'no':
     print("Wear jeans and a T-shirt\nI recommend a jumper as well")
 elif tmp == 20 and is_run == 'yes':
@@ -655,8 +712,8 @@ elif tmp >= 21 and is_run == 'no':
     print("Wear jeans and a T-shirt\n")
 
 ##################################
-## Given two strings a and b. The task is to make a new string where the string with longer length should 
-## be in between and the one with shorter length should be outside on front and end. New string should be like 
+## Given two strings a and b. The task is to make a new string where the string with longer length should
+## be in between and the one with shorter length should be outside on front and end. New string should be like
 ## shorter+longer+shorter.
 ##################################
 
@@ -665,7 +722,7 @@ b = There
 combo_string(a, b)
 
 ##################################
-## Given a string of braces named bound_by, and a string named tag_name. 
+## Given a string of braces named bound_by, and a string named tag_name.
 ## The task is to print a new string such that tag_name is in the middle of bound_by.
 ##################################
 
@@ -674,15 +731,15 @@ tag = "nuno"
 print(join_middle(bound, tag))
 
 ##################################
-## Given a string s, reverse the string without reversing its individual words. 
+## Given a string s, reverse the string without reversing its individual words.
 ## Words are separated by spaces.
 ##################################
 
-string='O meu nome é Nuno'
+string = 'O meu nome é Nuno'
 print(reverseWords(string))
 
 ##################################
-## You are given a string, 'S'. You need to write a function called 'gfg' that takes 'S' as input and 
+## You are given a string, 'S'. You need to write a function called 'gfg' that takes 'S' as input and
 ## checks if the string starts and ends with the substring 'gfg'
 ##################################
 
@@ -700,46 +757,45 @@ print(exists(text, chars))
 print(titleIt(text))
 print(casesSwap(text))
 
-
 ##################################
 ## Showing Code ASCII between 33 and 126
 ##################################
-for i in range(33,127):
+for i in range(33, 127):
     print(f"{i} -> {chr(i)}")
-    
+
 ##################################
 ## Print the alphabetic with ASCII code with upper and lower case
 ##################################
 
-for i in range(65,91):
-    print(chr(i),end=' ')
+for i in range(65, 91):
+    print(chr(i), end=' ')
 print("\n")
-for x in range(65,91):
+for x in range(65, 91):
     print(chr(x).lower(), end=' ')
 
 ##################################
 ## Manipulate the string with some characters
 ##################################
 
-string='The life is beautiful'
-print(string.replace(' ','-'))
+string = 'The life is beautiful'
+print(string.replace(' ', '-'))
 
-string1='The'
-string2='life'
-string3='is'
-string4='beautiful'
-print(string1+'-'+string2+'-'+string3+'-'+string4)
+string1 = 'The'
+string2 = 'life'
+string3 = 'is'
+string4 = 'beautiful'
+print(string1 + '-' + string2 + '-' + string3 + '-' + string4)
 
 ##################################
 ## Break line each word in a string
 ##################################
 
 print('\n')
-string='Python is an awesome programming language to learn for beginners'
-print(string.replace(' ','\n'))
+string = 'Python is an awesome programming language to learn for beginners'
+print(string.replace(' ', '\n'))
 
 ##################################
-## You are given a string and your task is to swap cases. 
+## You are given a string and your task is to swap cases.
 ## In other words, convert all lowercase letters to uppercase letters and vice versa.
 ##################################
 s = input()
@@ -747,8 +803,8 @@ result = swap_case(s)
 print(result)
 
 ##################################
-## Your task is to find the first occurrence of an alphanumeric character in  
-## (read from left to right) that has consecutive repetitions. 
+## Your task is to find the first occurrence of an alphanumeric character in
+## (read from left to right) that has consecutive repetitions.
 ##################################
 
 string = input()
@@ -756,17 +812,17 @@ ans = re.search(r'([^\W_])\1+', string)
 print(ans.group(1) if ans else -1)
 
 ##################################
-### Your task is to complete the regex_pattern defined below, 
+### Your task is to complete the regex_pattern defined below,
 ##  which will be used to re.split() all of the , and . symbols
 ##################################
 
-regex_pattern = r"[.,]" # Do not delete 'r'.
+regex_pattern = r"[.,]"  # Do not delete 'r'.
 print("\n".join(re.split(regex_pattern, input())))
 
 ##################################
 ##   Complete the code in the editor below. The variables are already declared and initialized for you. You must:
 ##    - Declare  variables: one of type int, one of type double, and one of type String.
-##    - Read  lines of input from stdin (according to the sequence given in the Input Format section below) 
+##    - Read  lines of input from stdin (according to the sequence given in the Input Format section below)
 ## and initialize your  variables.
 ##    - Use the  operator to perform the following operations:
 ##    - Print the sum of  plus your int variable on a new line.
@@ -787,8 +843,21 @@ print(d)
 print(s)
 
 ##################################
-You are given a string and width
-Your task is to wrap the string into a paragraph of width .
+You
+are
+given
+a
+string and width
+Your
+task is to
+wrap
+the
+string
+into
+a
+paragraph
+of
+width.
 ##################################
 
 string, max_width = input(), int(input())
@@ -850,20 +919,20 @@ print("Hostname: " + details.hostname)
 #########################################
 # Making a "F" and "L" with a nested loop
 #########################################
-number_xs = [5,2,5,2,2]
-number_ls = [2,2,2,2,5,5]
+number_xs = [5, 2, 5, 2, 2]
+number_ls = [2, 2, 2, 2, 5, 5]
 
 size_xs = len(number_xs)
 size_ls = len(number_ls)
 
-for i in range(0,size_xs,1):
+for i in range(0, size_xs, 1):
     for xs in range(number_xs[i]):
-        print("X",end="")
-    print("",end="\n")
+        print("X", end="")
+    print("", end="\n")
 print("\n")
-for ls_count in range(0,size_ls,1):
+for ls_count in range(0, size_ls, 1):
     for ls in range(number_ls[ls_count]):
-        print("X",end="")
+        print("X", end="")
     print("", end="\n")
 
 ##########################################
@@ -884,15 +953,15 @@ for f in os.listdir(path):
         img.show()
 
 ### String module ###
- 
+
 print(string.ascii_letters)  # Output: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
-print(string.ascii_lowercase)   # Output: abcdefghijklmnopqrstuvwxyz
-print(string.ascii_uppercase)   # Output: ABCDEFGHIJKLMNOPQRSTUVWXYZ
-print(string.digits)            # Output: 0123456789
-print(string.hexdigits)         # Output: 0123456789abcdefABCDEF
-print(string.punctuation)       # Output: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
-print(string.ascii_letters)     # Output: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
-         
+print(string.ascii_lowercase)  # Output: abcdefghijklmnopqrstuvwxyz
+print(string.ascii_uppercase)  # Output: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+print(string.digits)  # Output: 0123456789
+print(string.hexdigits)  # Output: 0123456789abcdefABCDEF
+print(string.punctuation)  # Output: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+print(string.ascii_letters)  # Output: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+
 print(find_right_most_digit('The value is 42 dsds2323'))  # Output: 2
 print(find_right_most_digit('No digits heredssd34'))  # Output: -1
 
@@ -901,7 +970,7 @@ print(find_right_most_digit('No digits heredssd34'))  # Output: -1
 #####################################
 phone_number = input("Phone: ")
 
-phone =  {
+phone = {
     "1": "One",
     "2": "Two",
     "3": "Three",
@@ -924,7 +993,6 @@ print(f"Date with date format: {time.strftime("%Y-%m-%d")}")
 ### Create an inner function to concat two string. ###
 
 print(greeting_out_func('Nuno', 'Pereira'))
-
 
 ### working with dictionary ###
 valor = {'m1': {'m2': 'Hi World', 'm3': 'Hello Mickey', "m4": "Hii Mr. Dolittle"}}
@@ -958,13 +1026,14 @@ emp_dict = {
     }
 }
 
-formatted_json_data = json.dumps(emp_dict['company']['employee']['professional'], indent=2, separators=(",", ": ")).encode("ascii")
+formatted_json_data = json.dumps(emp_dict['company']['employee']['professional'], indent=2,
+                                 separators=(",", ": ")).encode("ascii")
 
 # Output the JSON string
 print(formatted_json_data)
 
 ### Message of gretting someone ###
-      
+
 name = input("What is your name? ")
 print(f"Hello World {name}")
 
@@ -972,12 +1041,12 @@ print(f"Hello World {name}")
 
 greeting("Patricia Silva Santos Pereira")
 
-### Develop a program that change in real time a word Java for Python in sentence 
+### Develop a program that change in real time a word Java for Python in sentence
 
 phrase = 'Exercises for Java'
 print(phrase.replace("Java", "Python"))
 
-### Title a string or full name using a strip command ### 
+### Title a string or full name using a strip command ###
 full_name = ' nuno pereira '
 print("Hello, " + full_name.strip() + "!")
 
@@ -1013,7 +1082,7 @@ size_array = int(len(valor))
 while size_array < 3:
     text = input("Put a value: ")
     valor.append(text)
-    print(valor[size_array-1])
+    print(valor[size_array - 1])
     size_array += 1
 
 ##################################
@@ -1024,26 +1093,25 @@ while size_array < 3:
 name_in = str(input("Name: "))
 age_in = int(input("Age: "))
 
-john = Person( str(name_in), int(age_in))
+john = Person(str(name_in), int(age_in))
 john.is_eligible()
-
 
 ##################################
 ### 	NUMBER EXERCISES       ###
 ##################################
 
 ##################################
-## Write a function named chessboard, which prints out a chessboard made out of ones and zeroes. 
+## Write a function named chessboard, which prints out a chessboard made out of ones and zeroes.
 ## The function takes an integer argument, which specifies the length of the side of the board.
 ##################################
 
 chessboard(3)
 print()
 chessboard(6)
-    
+
 ##################################
-## Write a program which asks the user to type in a number. The program then prints out all the positive integer values 
-## from 1 up to the number. However, the order of the numbers is changed so that each pair or numbers is flipped. 
+## Write a program which asks the user to type in a number. The program then prints out all the positive integer values
+## from 1 up to the number. However, the order of the numbers is changed so that each pair or numbers is flipped.
 ## That is, 2 comes before 1, 4 before 3 and so forth. See the examples below for details.
 ##################################
 
@@ -1060,13 +1128,13 @@ elif nmbr > 1:
             for y in range(x_val, x):
                 print(y, end='\n')
             break
-x+=1
+x += 1
 if x <= nmbr:
     print(x, end='\n')
 
 ##################################
-## Write a program which asks the user to type in a limit. The program then calculates 
-## the sum of consecutive numbers (1 + 2 + 3 + ...) until the sum is at least equal to the limit set by the user. 
+## Write a program which asks the user to type in a limit. The program then calculates
+## the sum of consecutive numbers (1 + 2 + 3 + ...) until the sum is at least equal to the limit set by the user.
 ###################################
 
 limit_value = int(input("Limit: "))
@@ -1078,8 +1146,8 @@ while total < limit_value:
 print(total)
 
 ##################################
-## Write a program which asks the user to type in a limit. The program then calculates 
-## the sum of consecutive numbers (1 + 2 + 3 + ...) until the sum is at least equal to the limit set by the user. 
+## Write a program which asks the user to type in a limit. The program then calculates
+## the sum of consecutive numbers (1 + 2 + 3 + ...) until the sum is at least equal to the limit set by the user.
 ## print out sequence of sum with total value, after complete the sequence.
 ###################################
 
@@ -1090,17 +1158,17 @@ output = 'The consecutive sum: '
 while total < limit_value:
     x += 1
     total += x
-    output =  output + f"{x}"
+    output = output + f"{x}"
     if total < limit_value:
         output = output + ' + '
-output =  output + f" = {total}"
+output = output + f" = {total}"
 print(output)
 
 ##################################
-## Write a program which asks the user to type in an upper limit. 
-## The program then prints out numbers so that each subsequent number is the previous one doubled, 
+## Write a program which asks the user to type in an upper limit.
+## The program then prints out numbers so that each subsequent number is the previous one doubled,
 ## starting from the number 1. That is, the program prints out powers of two in order.
-## The execution of the program finishes when the next number to be printed would be greater than the limit set by the user. 
+## The execution of the program finishes when the next number to be printed would be greater than the limit set by the user.
 ## No numbers greater than the limit should be printed.
 ##################################
 
@@ -1111,12 +1179,12 @@ x_total = 1
 print(x_total)
 
 while x_total <= limit_numb:
-    for x in range(1,100):
+    for x in range(1, 100):
         x_total *= 2
         if x_total <= limit_numb:
             print(x_total)
 
-###### SAME EXERCISE USING A BASE ###### 
+###### SAME EXERCISE USING A BASE ######
 
 limit_numb = int(input("Upper limit: "))
 base = int(input("Base: "))
@@ -1125,25 +1193,24 @@ x_total = 1
 print(x_total)
 
 while x_total <= limit_numb:
-    for x in range(1,100):
+    for x in range(1, 100):
         x_total *= base
         if x_total <= limit_numb:
             print(x_total)
 
-
 ##################################
-## Write a program which asks the user for integer numbers. 
+## Write a program which asks the user for integer numbers.
 ## The program should keep asking for numbers until the user types in zero.
 ## Get quantity of numbers typed, sum, mean and positive and negative numbers
 ##################################
 
 print("Please type in integer numbers. Type in 0 to finish.")
 
-number, count, total, pos_number, neg_number = 1,0,0,0,0
+number, count, total, pos_number, neg_number = 1, 0, 0, 0, 0
 
 while number != 0:
     number = int(input("Number: "))
-    if number !=0:
+    if number != 0:
         count += 1
         total += number
         if number == abs(number):
@@ -1153,7 +1220,7 @@ while number != 0:
 
 print(f"Numbers typed in {count}")
 print(f"The sum of the numbers is {total}")
-print(f"The mean of the numbers is {total/count}")
+print(f"The mean of the numbers is {total / count}")
 print(f"Positive numbers {pos_number}")
 print(f"Negative numbers {neg_number}")
 
@@ -1162,7 +1229,7 @@ print(f"Negative numbers {neg_number}")
 ##################################
 
 year = int(input("Year: "))
-next_year = year  
+next_year = year
 
 while True:
     next_year += 1
@@ -1171,7 +1238,7 @@ while True:
         break
 
 ##################################
-## Write a program to get code of the bank chest 
+## Write a program to get code of the bank chest
 ## The code of bank chest is 4321 and you should get how many attemps the user tries while he/she was wrong, when got it.
 ## If the number of code will be get on first attemp, you should say he/she tooks you one single attempt.
 ###################################
@@ -1186,7 +1253,6 @@ while code != 4321:
         print("Correct! It only took you one single attempt!")
     else:
         print(f"Correct! It took you {attmp} attempts")
-
 
 ##################################
 ## Write a program which asks the user for integer numbers.
@@ -1203,12 +1269,12 @@ while number != 0:
     if number < 0:
         print("Invalid number")
     elif number >= 1:
-        print(f"{sqrt(number)}")    
+        print(f"{sqrt(number)}")
     elif number == 0:
         print("Exiting...")
 
 ##################################
-## Generally, any year that is divisible by four is a leap year. 
+## Generally, any year that is divisible by four is a leap year.
 ## However, if the year is additionally divisible by 100, it is a leap year only if it also divisible by 400.
 ## Write a program which asks the user for a year, and then prints out whether that year is a leap year or not.
 ##################################
@@ -1221,8 +1287,8 @@ else:
     print("That year is not a leap year.")
 
 ##################################
-## Write a program which asks the user for an integer number. 
-## If the number is divisible by three, the program should print out Fizz.  If the number is divisible by five, 
+## Write a program which asks the user for an integer number.
+## If the number is divisible by three, the program should print out Fizz.  If the number is divisible by five,
 ## the program should print out Buzz. If the number is divisible by both three and five, the program should print out FizzBuzz.
 ##################################
 
@@ -1236,7 +1302,7 @@ elif number % 5 == 0:
     print("Buzz")
 
 ##################################
-## Write a program which asks the user for a floating point number and then prints 
+## Write a program which asks the user for a floating point number and then prints
 ## out the integer part and the decimal part separately. Use the Python int function.
 ## You can assume the number given by the user is always greater than zero.
 ##################################
@@ -1248,7 +1314,7 @@ if nmbr > 0.00:
     print(f"Decimal part: 0." + str(nmbr).split(".")[1])
 
 ##################################
-## Please write a program which asks the user for a number of days. 
+## Please write a program which asks the user for a number of days.
 ## The program then prints out the number of seconds in the amount of days given.
 ##################################
 
@@ -1257,23 +1323,23 @@ seconds = int(24 * days * 60 * 60)
 print(f"Seconds in that many days: {seconds} ")
 
 ##################################
-## Please write a program which asks for the user's name. If the name is anything but "Jerry", 
+## Please write a program which asks for the user's name. If the name is anything but "Jerry",
 ## the program then asks for the number of portions and prints out the total cost. The price of a single portion is 5.90.
 ##################################
 
 name = input("Please tell me your name: ")
 if name == "Jerry":
     print("Next please!")
-    
+
 else:
     count = int(input("How many portions of soup? "))
-    print(f"The total cost is {float(count*5.90)}")
+    print(f"The total cost is {float(count * 5.90)}")
     print("Next please!")
 
 ###################################
 ## Please write a program which asks for the hourly wage, hours worked, and the day of the week.
-## The program should then print out the daily wages, which equal hourly wage multiplied by hours worked, except on Sundays 
-## when the hourly wage is doubled.      
+## The program should then print out the daily wages, which equal hourly wage multiplied by hours worked, except on Sundays
+## when the hourly wage is doubled.
 ###################################
 
 wage = float(input("Hourly wage: "))
@@ -1281,9 +1347,9 @@ time_work = int(input("Hours worked: "))
 day = input("Day of the week: ")
 
 if day == 'Sunday':
-    print(f"Daily wages: {(wage*2)*time_work}")
+    print(f"Daily wages: {(wage * 2) * time_work}")
 else:
-    print(f"Daily wages: {wage*time_work}")
+    print(f"Daily wages: {wage * time_work}")
 
 ##################################
 ### List numbers Fibonacci
@@ -1323,7 +1389,6 @@ intersection(arr_a, arr_b)
 if __name__ == '__main__':
     t = int(input())
     for _ in range(t):
-
         a = [int(x) for x in input().strip().split()]
         b = [int(x) for x in input().strip().split()]
         ob = Solution()
@@ -1346,61 +1411,61 @@ if __name__ == "__main__":
         print("~")
 
 ##################################
-### You are given a string str, you need to print its 
+### You are given a string str, you need to print its
 ### characters at even indices(index starts at 0).
 ##################################
 
 stringJumper("DoctorPhenomenal")
 
+
 ##################################
-### Given a positive integer x, the task is to print the numbers from 1 to x in the order 
+### Given a positive integer x, the task is to print the numbers from 1 to x in the order
 ### as 12, 22, 32, 42, 52, ... (in increasing order).
 ##################################
 
 def main():
-    
     # Testcase input
     testcases = int(input())
-    
+
     # Looping through testcases
-    while(testcases > 0):
+    while (testcases > 0):
         x = int(input())
-        
+
         printIncreasingPower(x);
-        print ()
-        
-        
+        print()
+
         testcases -= 1
         print("~")
- 
+
+
 if __name__ == '__main__':
     main()
 
 
 def main():
-    testcases=int(input()) #testcases
-    while(testcases>0):
+    testcases = int(input())  # testcases
+    while (testcases > 0):
         n = int(input())
-        if(n > 0):
+        if (n > 0):
             pos(n)
-        elif(n < 0):
+        elif (n < 0):
             neg(n)
         else:
-            print("already Zero",end="")
+            print("already Zero", end="")
         print()
-        testcases-=1
-        
-
+        testcases -= 1
 
         print("~")
-if __name__=='__main__':
+
+
+if __name__ == '__main__':
     main()
 
 ##################################
-### Check if the value is equal or not for other 
+### Check if the value is equal or not for other
 ##################################
 
-print(Solution.checkNumber("18","155"))
+print(Solution.checkNumber("18", "155"))
 
 ##################################
 ### Power build-in maths library
@@ -1408,12 +1473,12 @@ print(Solution.checkNumber("18","155"))
 
 for x in range(2, 11):
     for y in range(1, 11):
-        print(f"{x} elevado a {y} = {float(math.pow(x,y)):.0f}")
+        print(f"{x} elevado a {y} = {float(math.pow(x, y)):.0f}")
     print("\n")
 
 ##################################
-### Write a program calculating the sum of all numbers raised to a specific power. 
-### Input format: First line contains two integers: n, e separated by a comma. Each of the next 
+### Write a program calculating the sum of all numbers raised to a specific power.
+### Input format: First line contains two integers: n, e separated by a comma. Each of the next
 ### n lines contains an integer.
 ##################################
 
@@ -1421,9 +1486,9 @@ values = input("Sample Input: ")
 n, e = map(int, values.split(','))
 total = 0
 
-for numb in range (1, n+1):
-    total += numb**e
-    
+for numb in range(1, n + 1):
+    total += numb ** e
+
 print(total)
 
 ######## Sum two numbers ########
@@ -1431,7 +1496,7 @@ print(total)
 print('\n')
 x = int(input("Enter the number 1: "))
 y = int(input("Enter the number 2: "))
-print(f"Sum of two number is {x+y}")
+print(f"Sum of two number is {x + y}")
 
 ##################################
 ### Get three numbers in one line from STDIN, separated by a space
@@ -1439,7 +1504,7 @@ print(f"Sum of two number is {x+y}")
 ##################################
 
 values = input(f"Enter three numbers:")
-listNumbr = list(map(int, values.split())) 
+listNumbr = list(map(int, values.split()))
 total = 1
 
 for x in listNumbr:
@@ -1464,7 +1529,7 @@ print(f"Current hour in {timezone}:", brazil_time.strftime("%H:%M:%S"))
 
 for x in range(1, 11):
     for y in range(1, 11):
-        print(f'{x} * {y} = {x*y}')
+        print(f'{x} * {y} = {x * y}')
     print("\n")
 
 ######## Jogo de Adivinhação	 							 #################
@@ -1490,15 +1555,15 @@ while x != tries:
         print("The value isn't between the range")
 
 ##################################
-## Given the participants' score sheet for your University Sports Day, you are required to find the runner-up score. 
+## Given the participants' score sheet for your University Sports Day, you are required to find the runner-up score.
 ## You are given  scores. Store them in a list and find the score of the runner-up.
 ##################################
 
-n = int(input())    
+n = int(input())
 arr = map(int, input().split())
 arr2 = list(set(arr))
 arr2.sort()
-print(arr2[-2])   
+print(arr2[-2])
 
 ##################################
 ## Given an integer, , perform the following conditional actions:
@@ -1511,17 +1576,17 @@ print(arr2[-2])
 
 if __name__ == '__main__':
     N = int(input().strip())
-    
-    if N % 2 == 0 and N<=5:
+
+    if N % 2 == 0 and N <= 5:
         print("Not Weird")
-    elif N % 2 != 0 and N >= 6 or N<=20:
+    elif N % 2 != 0 and N >= 6 or N <= 20:
         print("Weird")
     elif N % 2 == 0 and N > 20:
-        print("Not Weird")       
+        print("Not Weird")
 
-##################################
-##   Given the meal price (base cost of a meal), tip percent (the percentage of the meal price being added as tip), 
-##   and tax percent (the percentage of the meal price being added as tax) for a meal, find and print the meal's total cost. 
+    ##################################
+##   Given the meal price (base cost of a meal), tip percent (the percentage of the meal price being added as tip),
+##   and tax percent (the percentage of the meal price being added as tax) for a meal, find and print the meal's total cost.
 ##   Round the result to the nearest integer.
 ##################################
 
@@ -1530,10 +1595,9 @@ tip_percent = int(input().strip())
 tax_percent = int(input().strip())
 solve(meal_cost, tip_percent, tax_percent)
 
-
 ##################################
-## Given an array, , of size  distinct elements, sort the array in ascending order 
-## using the Bubble Sort algorithm above. 
+## Given an array, , of size  distinct elements, sort the array in ascending order
+## using the Bubble Sort algorithm above.
 ## Once sorted, print the following lines: array sorted, first and last element
 ##################################
 
@@ -1549,7 +1613,7 @@ for i in range(n):
             num_swaps += 1
     if num_swaps == 0:
         break
-   
+
 print(f'Array is sorted in {numberOfSwaps} swaps.')
 print(f'First Element: {min(a)}')
 print(f'Last Element: {max(a)}')
@@ -1563,8 +1627,8 @@ print(f'Last Element: {max(a)}')
 
 a = int(input())
 b = int(input())
-div = a/b
-module = a%b
+div = a / b
+module = a % b
 result = (int(div), module)
 
 print(int(div))
@@ -1572,16 +1636,16 @@ print(module)
 print(result)
 
 ##################################
-##	Given an integer, n, print the following values for each integer i from 1 to n: Decimal, Octal, Hexa and Binary. 
-##	The four values must be printed on a single line in the order specified above for each i from 1 to n. 
+##	Given an integer, n, print the following values for each integer i from 1 to n: Decimal, Octal, Hexa and Binary.
+##	The four values must be printed on a single line in the order specified above for each i from 1 to n.
 ##	Each value should be space-padded to match the width of the binary value of n.
-##################################       
+##################################
 n = int(input())
 print_formatted(n)
 
 ##################################
-##  Rupal has a huge collection of country stamps. She decided to count the total number of distinct 
-##  country stamps in her collection. She asked for your help. You pick the stamps one by one from a 
+##  Rupal has a huge collection of country stamps. She decided to count the total number of distinct
+##  country stamps in her collection. She asked for your help. You pick the stamps one by one from a
 ##  stack of  country stamps. Find the total number of distinct country stamps.
 ##################################
 
@@ -1591,18 +1655,17 @@ list_country = set('')
 
 for put in range(N):
     country = input()
-    
+
     if country not in list_country:
         list_country.add(country)
         total += 1
 
 print(total)
 
-
 ##################################
-##  The provided code stub will read in a dictionary 
-##  containing key/value pairs of name:[marks] for a list of students. 
-##  Print the average of the marks array for the student name provided, 
+##  The provided code stub will read in a dictionary
+##  containing key/value pairs of name:[marks] for a list of students.
+##  Print the average of the marks array for the student name provided,
 ##  showing 2 places after the decimal.
 ##################################
 
@@ -1615,16 +1678,16 @@ if __name__ == '__main__':
         student_marks[name] = scores
     query_name = input()
     subtotal, total = 0, 0
-    
+
     for rate in student_marks[query_name]:
         subtotal += rate
-        
-    total = float(subtotal/len(student_marks[query_name]))
+
+    total = float(subtotal / len(student_marks[query_name]))
     print("%.2f" % total)
 
 ##################################
-## An extra day is added to the calendar almost every four years as February 29, and the day is called a leap day. 
-## It corrects the calendar for the fact that our planet takes approximately 365.25 days to orbit the sun. 
+## An extra day is added to the calendar almost every four years as February 29, and the day is called a leap day.
+## It corrects the calendar for the fact that our planet takes approximately 365.25 days to orbit the sun.
 ## A leap year contains a leap day.
 ##
 ## In the Gregorian calendar, three conditions are used to identify leap years:
@@ -1632,10 +1695,10 @@ if __name__ == '__main__':
 ## The year can be evenly divided by 4, is a leap year, unless:
 ## The year can be evenly divided by 100, it is NOT a leap year, unless:
 ## The year is also evenly divisible by 400. Then it is a leap year.
-## This means that in the Gregorian calendar, the years 2000 and 2400 are leap years, 
+## This means that in the Gregorian calendar, the years 2000 and 2400 are leap years,
 ## while 1800, 1900, 2100, 2200, 2300 and 2500 are NOT leap years
 ###################################
-    
+
 year = int(input())
 print(is_leap(year))
 
@@ -1647,21 +1710,21 @@ print(sum_values(5, 2))
 
 array_notas = []
 
-for i in range(1,5):
+for i in range(1, 5):
     nota = int(input(f"Input the note {i}: "))
     array_notas.append(nota)
     i += 1
 
 if statistics.mean(array_notas) >= 7:
-   print("APPROVED")
+    print("APPROVED")
 else:
-   store_final_prove=int(input("Should study more :(\nStore final exam score: "))
-   array_notas.append(store_final_prove)
+    store_final_prove = int(input("Should study more :(\nStore final exam score: "))
+    array_notas.append(store_final_prove)
 
-   if statistics.mean(array_notas) >= 5:
-      print("APPROVED!!")
-   else:
-      print("REPROVED!!")
+    if statistics.mean(array_notas) >= 5:
+        print("APPROVED!!")
+    else:
+        print("REPROVED!!")
 
 ### Figure out the next number and the ancestor number ####
 
@@ -1675,24 +1738,24 @@ remove_data(number_list)
 ### Get the number before and the after number ###
 
 number = int(input("Write a number (not a float)"))
-print(f"The number before is {number-1} and number after is {number+1}")
+print(f"The number before is {number - 1} and number after is {number + 1}")
 
 ### Get a float number with 2 decimais houses ####
 
-print(f"The number with 2 decimals {number:.2f} ") 
+print(f"The number with 2 decimals {number:.2f} ")
 
 ### Develop a program to save a median rounded 2 decimal houses #####
 
-array_notas = [55,25,58,88,787,551]
+array_notas = [55, 25, 58, 88, 787, 551]
 
-print(f"The avarage is {round(statistics.mean(array_notas),2)}")
+print(f"The avarage is {round(statistics.mean(array_notas), 2)}")
 
-### Display all duplicate items from a list ### 
+### Display all duplicate items from a list ###
 
 sample_list = [10, 20, 60, 30, 20, 40, 30, 60, 70, 80]
 
 list_number_dupl = []
-for i in range (0, len(sample_list)):
+for i in range(0, len(sample_list)):
     if int(sample_list.count(sample_list[i])) >= 2:
         if sample_list[i] not in (list_number_dupl):
             list_number_dupl.append(sample_list[i])
@@ -1718,7 +1781,7 @@ is_pair_or_not(15)
 
 array_notas = []
 
-for i in range(1,5):
+for i in range(1, 5):
     nota = int(input(f"Input the note {i}: "))
     array_notas.append(nota)
     i += 1
@@ -1732,21 +1795,21 @@ print(f"A média de todas as notas é {(sum(array_notas) / len(array_notas))}")
 
 print("Number\tSquare\tCube")
 
-print("1\t"+str(square_number(1))+"\t"+str(square_number(1)*1))
-print("2\t"+str(square_number(2))+"\t"+str(square_number(2)*2))
-print("3\t"+str(square_number(3))+"\t"+str(square_number(3)*3))
-print("4\t"+str(square_number(4))+"\t"+str(square_number(4)*4))
-print("5\t"+str(square_number(5))+"\t"+str(square_number(5)*5))
+print("1\t" + str(square_number(1)) + "\t" + str(square_number(1) * 1))
+print("2\t" + str(square_number(2)) + "\t" + str(square_number(2) * 2))
+print("3\t" + str(square_number(3)) + "\t" + str(square_number(3) * 3))
+print("4\t" + str(square_number(4)) + "\t" + str(square_number(4) * 4))
+print("5\t" + str(square_number(5)) + "\t" + str(square_number(5) * 5))
 
 ###############################################################
 
-x = randint(0,99)
+x = randint(0, 99)
 print(x)
 
 y = int(input("Give a number: "))
 
 if y == x:
-    print ("Great!! You got it!!")
+    print("Great!! You got it!!")
 else:
     print("Try more later...!!")
 
@@ -1756,7 +1819,7 @@ else:
 
 weight = float(input("What is your weight (in pounds)? "))
 
-print(f"{weight*0.45} Kg")
+print(f"{weight * 0.45} Kg")
 
 ###############################################################
 # THE PROGRAMMER IS BUILT FOR CAR RUN ON THE STREET
@@ -1797,7 +1860,7 @@ base = float(input("Input the value of base: "))
 height = float(input("Input the value of height: "))
 
 area_rect = base * height
-print (f"The area of rectangle is {area_rect}")
+print(f"The area of rectangle is {area_rect}")
 
 ###############################################################
 # Escreva um programa para ler o número total de eleitores de um município, o
@@ -1816,11 +1879,10 @@ percentage_blank_votes = (blank_votes / votes) * 100 if valid_votes > 0 else 0  
 percentage_null_votes = (null_votes / votes) * 100 if valid_votes > 0 else 0
 percentage_votes = (votes / people) * 100 if valid_votes > 0 else 0
 
-print (f'''
+print(f'''
 There are {percentage_votes:.2f}% votes in {city}, which {valid_votes} votes are valid.
 At last elections, there was {percentage_blank_votes:.2f} % of electors did a blank vote and {percentage_null_votes:.2f}% for null votes.
 ''')
-
 
 ##########################################
 # Print the following number pattern
@@ -1837,7 +1899,7 @@ for num in range(rows, 0, -1):
 #######################################
 # Calculate the sum of price of products there in store shop.
 #######################################
-prices = [22,10,5,5,8,3]
+prices = [22, 10, 5, 5, 8, 3]
 total_prices = 0
 
 for total in prices:
@@ -1848,7 +1910,7 @@ print(f"o valor total é {total_prices}")
 #########################################
 # Get a largest number in a list variable
 #########################################
-number_list = [10,2,20,14,3,7,1,4,5]
+number_list = [10, 2, 20, 14, 3, 7, 1, 4, 5]
 
 size = number_list[0]
 
@@ -1860,7 +1922,7 @@ print(size)
 
 ######### other example ###############
 
-number_list = [10,10,20,20,2,7,7,5]
+number_list = [10, 10, 20, 20, 2, 7, 7, 5]
 check = number_list[0]
 number = 0
 numbers_list = []
@@ -1892,17 +1954,17 @@ print(emojis(message))
 wb = Workbook()
 ws = wb.active
 data = [
-    ["Data Subscribe","Value Subscribe","Data Renew","Debs Tax","Recover"],
-    ["28/12/2022",100, '28/03/2023', "284%","TRUE" ],
-    ["06/01/2023",4000, '06/04/2023', "3,09%","TRUE" ],
-    ["23/01/2023",1100, '23/04/2023', "3,09%","TRUE" ],
-    ["06/03/2023",2000, '06/06/2023', "3,50%","TRUE" ],
-    ["22/05/2023",2000, '22/08/2023', "3,50%","TRUE" ],
-    ["31/07/2023",3000, '31/10/2023', "2,75%","TRUE" ],
-    ["25/09/2023",2500, '25/12/2023', "2,75%","TRUE" ],
-    ["01/02/2024",3000, '01/05/2024', "2,75%","FALSE" ],
-    ["27/03/2024",1500, '27/06/2024', "2,75%","FALSE" ],
-   ]
+    ["Data Subscribe", "Value Subscribe", "Data Renew", "Debs Tax", "Recover"],
+    ["28/12/2022", 100, '28/03/2023', "284%", "TRUE"],
+    ["06/01/2023", 4000, '06/04/2023', "3,09%", "TRUE"],
+    ["23/01/2023", 1100, '23/04/2023', "3,09%", "TRUE"],
+    ["06/03/2023", 2000, '06/06/2023', "3,50%", "TRUE"],
+    ["22/05/2023", 2000, '22/08/2023', "3,50%", "TRUE"],
+    ["31/07/2023", 3000, '31/10/2023', "2,75%", "TRUE"],
+    ["25/09/2023", 2500, '25/12/2023', "2,75%", "TRUE"],
+    ["01/02/2024", 3000, '01/05/2024', "2,75%", "FALSE"],
+    ["27/03/2024", 1500, '27/06/2024', "2,75%", "FALSE"],
+]
 
 for r in data:
     ws.append(r)
@@ -1932,10 +1994,10 @@ b = int(input("Input the base of rectangule: "))
 h = int(input("Input the height of rectangule: "))
 calc_area_rect(b, h)
 
-#################################################################	
+#################################################################
 ################## PDF Exercicios em Python #####################
 
-#################################################################	
+#################################################################
 ## Escreva um programa para ler uma determinada data de aniversário e calcular os anos, meses e dias que tem.
 #################################################################
 
@@ -1953,7 +2015,7 @@ month_now = int(now.strftime("%m"))
 day_now = int(now.strftime("%d"))
 year_birth = birthday_date.split("/")
 
-print(f"Your age is {year_now - int(year_birth[2])} years, {12-month_now} months and {day_now} days")
+print(f"Your age is {year_now - int(year_birth[2])} years, {12 - month_now} months and {day_now} days")
 
 #################################################################
 ## Escreva um programa que a partir da idade de uma pessoa expressa em anos,
@@ -1994,7 +2056,7 @@ while age >= 0:
         print("Oops!! Sorry but you are a baby 👶\nYou can't be a athlete!!")
 
 #################################################################
-## Escreva um programa que ajude um comerciante a calcular o valor de venda 
+## Escreva um programa que ajude um comerciante a calcular o valor de venda
 ## a partir de um valor de compra de um dado produto
 #################################################################
 
@@ -2022,7 +2084,7 @@ if total_buy >= 50.00:
 #################################################################
 ## Escreva um programa para determinar a situação de uma aluno
 ## (Aprovado/Exame/Reprovado) dada a sua assiduidade em percentagem e a nota
-## do teste (0 a 20),
+## do teste (0 a 20), considerando tabela definida
 #################################################################
 
 assid = int(input("What's the rate of assiduity?"))
@@ -2037,10 +2099,124 @@ elif assid >= 75 and 5 <= test <= 9.5:
 elif assid >= 75 and 10 <= test <= 20:
     print("Approved!!")
 
-################################################################							
+##################################################################
+## Escreva um programa que leia os limites inferior e superior de um intervalo e
+## imprima todos os números pares no intervalo aberto e o seu somatório.
+##################################################################
+
+min_val = int(input("Value minimum: "))
+max_val = int(input("Value minimum: "))
+list_num_pairs = []
+
+for num in range(min_val, max_val + 1):
+    if num % 2 == 0:
+        list_num_pairs.append(num)
+
+print(f"The pair numbers for range is {list_num_pairs}")
+total = 0
+
+for num in list_num_pairs:
+    total += num
+print(f"Total of pair numbers is {total}")
+
+##################################################################
+## Criar um programa que leia 10 números inteiros e imprima o maior e o menor número.
+##################################################################
+
+list_numbers = []
+
+for i in range(0, 10):
+    get_num = random.randint(1, 100)
+    list_numbers.append(get_num)
+
+print(list_numbers)
+print(f"The value max is {max(list_numbers)} and the value min is {min(list_numbers)}")
+
+##################################################################
+## Escreva um programa que receba várias idades e que calcule e mostre a
+## média das idades. O programa deve finalizar apenas quando for digitada a
+## idade igual a zero
+##################################################################
+
+list_age_ppl = []
+
+for i in range(1, 1000):
+    age = int(input(f"How old are you, stranger {i}?"))
+    save_age(age)
+
+###################################################################
+## Escreva um programa que permita registar o nome, a altura e
+## o peso de duas pessoas e apresente o nome da mais pesada e o nome da mais alta.
+###################################################################
+
+list_name, list_height, list_weight = [], [], []
+
+for i in range(1, 3):
+    name = input("Name: ")
+    height = float(input("Height (cm): "))
+    weight = float(input("Weight (kg): "))
+
+    list_name.append(name)
+    list_height.append(height)
+    list_weight.append(weight)
+
+for x in range(0, 1):
+    for y in range(1, 2):
+        if list_height[x] > list_height[y]:
+            print(f"The highest is {list_name[x]}")
+        elif list_height[x] < list_height[y]:
+            print(f"The highest is {list_name[y]}")
+        elif list_height[x] == list_height[y]:
+            print(f"They are the same height!!")
+
+for a in range(0, 1):
+    for b in range(1, 2):
+        if list_weight[a] > list_weight[b]:
+            print(f"The heaviest is {list_name[a]}")
+        elif list_weight[a] < list_weight[b]:
+            print(f"The heaviest is {list_name[b]}")
+        elif list_weight[a] == list_weight[b]:
+            print(f"They are the same height!!")
+
+##########################################################################
+## O Zodíaco chinês é composto por animais com ciclo de 12 anos. Uma
+## maneira simplificada de identificá-lo é verificando-se apenas o ano de seu nascimento
+##########################################################################
+
+year = int(input("Type the year and I told you which is the Chinese Zodiac: "))
+
+value = year % 12
+
+match value:
+    case 0:
+        print("Macaco")
+    case 1:
+        print("Galo")
+    case 2:
+        print("Cão")
+    case 3:
+        print("Porco")
+    case 4:
+        print("Rato")
+    case 5:
+        print("Boi")
+    case 6:
+        print("Tigre")
+    case 7:
+        print("Coelho")
+    case 8:
+        print("Dragão")
+    case 9:
+        print("Serpente")
+    case 10:
+        print("Cavalo")
+    case 11:
+        print("Carneiro")
+
+################################################################
 ## Livro de Introduçcao a Algoritmia e Programação com Python ##
 ################################################################
-	
+
 #### E.2.1.1 Exercise 1, Page 256 ####
 
 A, B = 4.0, 6.0
@@ -2063,18 +2239,16 @@ print(f"The result of the sixth operation is {K}")
 
 a, b, c, d, e, f = 1, 5, 3, 6, 5, 4
 
-print(f"The result of the first operation is {a/b + 1}") 
-print(f"The result of the second operation is {(a + b) / (c-d)}")
-print(f"The result of the third operation is {a + (b/c) / d + (e/f)}")
+print(f"The result of the first operation is {a / b + 1}")
+print(f"The result of the second operation is {(a + b) / (c - d)}")
+print(f"The result of the third operation is {a + (b / c) / d + (e / f)}")
 print(f"The result of the fourth operation is {a + (b / (c - d))}")
-print(f"The result of the fifth operation is {(a+b) * b/d}")
-print(f"The result of the sixth operation is {((a+b) ** c)**d}")
-print(f"The result of the seventh operation is {math.sin(a) + math.cos(a)/math.tan(a):2f}")
-print(f"The result of the eight operation is {float(-b + math.sqrt(b**2 - 4*a*c)/2*a):2f}")
+print(f"The result of the fifth operation is {(a + b) * b / d}")
+print(f"The result of the sixth operation is {((a + b) ** c) ** d}")
+print(f"The result of the seventh operation is {math.sin(a) + math.cos(a) / math.tan(a):2f}")
+print(f"The result of the eight operation is {float(-b + math.sqrt(b ** 2 - 4 * a * c) / 2 * a):2f}")
 
 #### E.2.1.4 Exercise 4, Page 257 ####
-
-
 
 
 print("""##### MENU #####\n(1) Hamburger -> 6,50€\n(2) Cheeseburger -> 7,50€\n(3) Sheep -> 3, 50€\n(4) Ice Tea -> 0,70€
@@ -2090,7 +2264,6 @@ subtotal = calc_price(qtd_hamb, qtd_cheese, qtd_sheep, qtd_tea, qtd_shake)
 total = subtotal * 0.23
 print(f"The total of the shop is {total:.2f} €.\nThanks for your visit!! See you soon!!\n")
 
-
 #### E.2.2.1 Exercise 5, Page 257 ####
 
 print("Let's calculate the quadratic equation:")
@@ -2105,23 +2278,18 @@ a = int(input("Value of a: "))
 b = int(input("Value of b: "))
 c = int(input("Value of c: "))
 
-x = (-b + sqrt((b**2)-4*a*c))/(2*a)
-y = (-b - sqrt((b**2)-4*a*c))/(2*a)
+x = (-b + sqrt((b ** 2) - 4 * a * c)) / (2 * a)
+y = (-b - sqrt((b ** 2) - 4 * a * c)) / (2 * a)
 
 print(f"The roots are {x} and {y}")
 
 #### E.2.2.2 Exercise 6, Page 257 ####
 
 
-
-
 cost_factory = int(input("What's factory cost for a new car??\n"))
 consumer_price(cost_factory)
 
-
 #### E.2.2.3 Exercise 7, Page 258 ####
-
-
 
 
 s1 = int(input("Measure 1: "))
@@ -2130,18 +2298,13 @@ s3 = int(input("Measure 3: "))
 
 calc_area(s1, s2, s3)
 
-
 #### E.2.2.4 Exercise 8, Page 258 ####
-
 
 
 number = float(input("Input the number float: "))
 round_number(number)
 
-
 #### E.2.2.4 Exercise 8, Page 258 ####
-
-
 
 
 round_number(float(input("Input the number float: ")))
@@ -2159,7 +2322,6 @@ thought_exame(first_exam, second_exam, work_exam)
 #### E.2.2.6 Exercise 10, Page 258 ####
 
 
-
 base = float(input("What's the measure of base of triangle? "))
 hight = float(input("What's the measure of hight of triangle? "))
 calc_area(base, hight)
@@ -2168,18 +2330,19 @@ calc_area(base, hight)
 
 import colorama
 from colorama import Style, Fore
-listA = ['Vista Alegre', 'Quinta Nova','Magres']
-listB = ['Teka', 'MarketShop','Porcel']
-listC = ['Cimpor', 'AEK','Mitsub']
+
+listA = ['Vista Alegre', 'Quinta Nova', 'Magres']
+listB = ['Teka', 'MarketShop', 'Porcel']
+listC = ['Cimpor', 'AEK', 'Mitsub']
 
 value_pol = float(input("What's rate of polution? "))
 
-if  value_pol >= 0.05 and value_pol <= 0.29:
+if value_pol >= 0.05 and value_pol <= 0.29:
     print(Fore.GREEN + Style.BRIGHT + "Good!! You contribute for a greeen environment!! 🍀")
 if value_pol >= 0.30 and value_pol <= 0.39:
     print(Fore.YELLOW + Style.BRIGHT + f"{listA} should suspend operations until values will be normal!!")
 if value_pol >= 0.40 and value_pol <= 0.49:
-    print(Fore.YELLOW + Style.BRIGHT +f"{listA + listB} should suspend operations until values will be normal!!")
+    print(Fore.YELLOW + Style.BRIGHT + f"{listA + listB} should suspend operations until values will be normal!!")
 if value_pol >= 0.50:
     print(Fore.RED + Style.BRIGHT + f"{listA + listB + listC} all activities should be suspended!! ")
 
