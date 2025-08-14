@@ -50,3 +50,5 @@ If you do not want to use pip, even though it is highly recommended, and prefer 
 
 > [!CAUTION]
 > NOT USE IT WITH A VPN
+
+File HelloWorld.ipynb -> last exercises from https://github.com/alexandercooper97/300-Python-Exercises/blob/main/01_Simple/ (BEING UPDATING)
