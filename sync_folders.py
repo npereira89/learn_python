@@ -35,17 +35,15 @@ def list_all_files(dire, replica):
             replica_folder = os.path.join(replica, content)
             if len(os.listdir(path_folder)) != 0 and not os.path.exists(replica_folder):
                 os.mkdir(replica_folder)
-            if os.path.isdir(path_folder):
+            elif os.path.isdir(path_folder):
                 list_all_files(path_folder, replica_folder)
             elif os.path.isfile(path_folder):
                 files += [path_folder]
                 replica_folder = os.path.join(replica, content)
-                if (not os.path.exists(replica_folder)
-                        or calculate_md5(path_folder) != calculate_md5(replica_folder)):
+                if not os.path.exists(replica_folder) or calculate_md5(path_folder) != calculate_md5(replica_folder):
                     os.system(f"copy {path_folder} {replica} | clip")
                     print(f"Copying... {path_folder}")
         return files[-1:]
-
 
 while True:
     print("Beginning...\n")
