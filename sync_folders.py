@@ -37,7 +37,7 @@ def list_all_files(dire, replica):
                 os.mkdir(replica_folder)
             if os.path.isdir(path_folder):
                 list_all_files(path_folder, replica_folder)
-            if os.path.isfile(path_folder):
+            elif os.path.isfile(path_folder):
                 files += [path_folder]
                 replica_folder = os.path.join(replica, content)
                 if (not os.path.exists(replica_folder)
