@@ -150,15 +150,15 @@ print(is_right_angled_triangle(5, 3, 4))  # Output: False
 def assign_grade(marks):
     if marks < 50:
         return "F"
-    elif marks >= 50 and marks < 60:
+    elif marks < 60: # Removed the redundant 'marks >= 50'
         return "E"
-    elif marks >= 60 and marks < 70:
+    elif marks < 70: # Removed the redundant 'marks >= 60'
         return "D"
-    if marks >= 70 and marks < 80:
+    elif marks < 80:
         return "C"
-    elif marks >= 80 and marks < 90:
+    elif marks < 90:
         return "B"
-    if marks >= 90:
+    else: # If all the above are false, the mark must be 90 or more
         return "A"
         
 print(assign_grade(85))  # Output: 'B'
