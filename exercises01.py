@@ -119,7 +119,7 @@ while len(numeros_aleatorios) < 10:
     if numero % 2 == 0:
         numeros_aleatorios.add(numero)
 
-print(sorted(list(numeros_aleatorios)))
+print(sorted(numeros_aleatorios))
 
 ##################################
 ## EXERCICIO 2
