@@ -19,7 +19,7 @@ remove_files(dst)
 
 # Copy all files to zip
 try:
-    valid_files = [".jpg", ".jpeg", ".gif", ".png", ".rar", ".mp4", ".jfif", ".webp", ".webm", ".mov"]
+    valid_files = [".jpg", ".jpeg", ".gif", ".png", ".rar", ".mp4", ".jfif", ".webp", ".webm", ".mov", ".m4v"]
     for files in os.listdir(path_folder):
         ext = os.path.splitext(files)[1]
         if ext.lower() in valid_files:
