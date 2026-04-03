@@ -5,7 +5,7 @@ import hashlib
 def calculate_md5(data):
     with open(data, 'rb') as f:
         buffer_size = 65536
-        hasher = hashlib.md5()
+        hasher = hashlib.sha512()
         while True:
             data = f.read(buffer_size)
             if not data:
