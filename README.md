@@ -16,6 +16,8 @@
 
 * **zip_folder.py**: Zipping all the image with a range of image's extension.
 
+* **remove_duplicate_files.py**: Remove files with same content and same md5 hash. To run, must input the folder, pe: python .\remove_duplicate_files.py -p path_to_validate
+
 * **sync_folders.py**: Synchronize the folders between source and destiny where the path is defined. 
 
 * **search_lyrics.py**: Get the lyrics about the song. Only input the name of the song and the band.
