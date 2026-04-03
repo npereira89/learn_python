@@ -24,9 +24,10 @@ try:
         ext = os.path.splitext(files)[1]
         if ext.lower() in valid_files:
             image_path = os.path.join(path_folder, files)
-            os.system(f'copy "{image_path}" "{dst}" | clip')
-            os.unlink(image_path)
-    print("Copy finished!!")
+            if os.path.isfile(image_path):
+                os.system(f'copy "{image_path}" "{dst}" | clip')
+                os.unlink(image_path)
+        print("Copy finished!!")
 except OSError as e:
     print(f"{e}")
 
@@ -35,7 +36,8 @@ try:
     shutil.make_archive(f"zip_file_{now.strftime('%m%d%Y_%H%M%S')}", 'zip', dst)
     zip_files_str = ", ".join(glob.glob("*.zip"))
     file_to_copy = os.path.join(os.getcwd(), f"{zip_files_str}")
-    shutil.move(f"{file_to_copy}", 'C:\\Users\\Nuno\\Documents\\X\\')
+    #shutil.move(f"{file_to_copy}", 'C:\\Users\\Nuno\\Documents\\X\\')
+    shutil.move(f"{file_to_copy}", 'C:\\Users\\Nuno\\Desktop\\')
     print("Zip file done and moved with success!!")
 except FileNotFoundError:
     print("Error: Zip file not found")
