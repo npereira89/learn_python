@@ -6,7 +6,7 @@ from PIL import Image, UnidentifiedImageError
 now = datetime.now()
 
 path = "C://Users//Nuno//Pictures//"
-valid_files = [".jpg", ".gif", ".png", ".jpeg", ".webp"]
+valid_files = [".jpg", ".gif", ".png", ".jpeg", ".webp", ".jfif", ".webm"]
 
 for f in os.listdir(path):
     ext = os.path.splitext(f)[1]
