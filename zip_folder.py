@@ -20,7 +20,6 @@ def load_list_files(path_src):
                         os.unlink(path_f)
                 elif ext.lower() == '':
                     load_list_files(os.path.join(path_src, f))
-            print("Copy finished!!")
     except OSError as e:
         print(f"{e}")
 
@@ -36,6 +35,7 @@ remove_files(dst)
 
 # Copy all files to zip
 load_list_files(path_folder)
+print("Copy finished!!")
     
 # Create and Move the file
 try:
