@@ -20,7 +20,6 @@ def clear_window():
 
 
 def form_insert_data():
-    frm_insert = tk.Frame(windows, padx=50, pady=25)
     frm_insert.pack(fill="both", expand=True)
 
 def on_click_data(tree, file, sheet):
