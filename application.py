@@ -20,6 +20,7 @@ def clear_window():
 
 
 def form_insert_data():
+    frm_insert = tk.Frame(windows, padx=50, pady=25)
     frm_insert.pack(fill="both", expand=True)
 
 def on_click_data(tree, file, sheet):
@@ -62,14 +63,15 @@ def update_data_excel(tree_updt, cell_value, value_upd, id_row, file_xlsx, frm_u
         if sheet.cell(row=int(id_row), column=2).value == 0:
             tree_updt.delete(id_row)
             sheet.delete_rows(int(id_row), amount=1)
-
         workbook.save(file_xlsx)
         workbook.close()
-    frm_update.destroy()
+        messagebox.showinfo("SUCCESS", "The value invested is updated with success!")
+    #frm_update.destroy()
     on_click_data(tree_updt, file_xlsx, sheet)
+    clear_window()
 
 def load_excel_data():
-    frm_insert.forget()
+    #frm_insert.forget()
     file_xlsx = load_file()
     if file_xlsx:
         workbook = load_workbook(file_xlsx)
@@ -130,11 +132,11 @@ def save_excel_info(value_invest):
                     cell.number_format = '#,##0€'
                 elif col == 4:  # Format tax applied
                     cell.value = round(cell.value * 100, 2)
-
         wb.save(file)
-        messagebox.showinfo("SUCCESS", "The invest was added with success!")
         wb.close()
-
+        messagebox.showinfo("SUCCESS", "The invest was added with success!")
+        clear_window()
+        
 # Create the main window
 windows = tk.Tk()
 windows.title("AforroApp")
