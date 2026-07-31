@@ -15,8 +15,8 @@ def load_file():
 
 def clear_window():
     for widget in windows.winfo_children():
-        if widget not in (menubar, menu, menu_2):
-            widget.destroy()
+        if widget not in (menubar, menu, menu_2, frm_insert):
+            widget.forget()
 
 
 def form_insert_data():
@@ -24,10 +24,8 @@ def form_insert_data():
 
 def on_click_data(tree, file, sheet):
     if file:
-        for widget in windows.winfo_children():
-            if widget not in (menubar, menu, menu_2, tree, frm_insert):
-                widget.destroy()
-        selected_item = tree.selection()
+        clear_window()
+        selected_item = tree.selection() #selecionado a linha a alterar vai atualizar com o valor indicado
         if selected_item:
             item_id = selected_item[0]
             value_cell = sheet.cell(row=int(item_id), column=2).value
@@ -42,9 +40,9 @@ def on_click_data(tree, file, sheet):
             update_value.pack()
 
             update_button = tk.Button(frm_update, text="OK", width=4, height=2,
-                                      command=lambda: update_data_excel(tree, value_cell, int(update_value.get()),
+                                    command=lambda: update_data_excel(tree, value_cell, int(update_value.get()),
                                                                         item_id, file, frm_update),
-                                      fg="blue", font=font.Font(weight="bold"))
+                                    fg="blue", font=font.Font(weight="bold"))
 
             update_button.pack()
 
@@ -53,7 +51,7 @@ def update_data_excel(tree_updt, cell_value, value_upd, id_row, file_xlsx, frm_u
     workbook = load_workbook(file_xlsx)
     sheet = workbook.active
 
-    if value_upd == '' or value_upd == ' ' or value_upd == 0 or value_upd is None:
+    if value_upd == '' or value_upd == 0 or value_upd is None:
         messagebox.showwarning("WARNING", "The value updated be above 0")
     else:
         tree_updt.set(id_row, column=1, value=cell_value - value_upd)
@@ -62,11 +60,11 @@ def update_data_excel(tree_updt, cell_value, value_upd, id_row, file_xlsx, frm_u
         if sheet.cell(row=int(id_row), column=2).value == 0:
             tree_updt.delete(id_row)
             sheet.delete_rows(int(id_row), amount=1)
-
         workbook.save(file_xlsx)
         workbook.close()
-    frm_update.destroy()
+        messagebox.showinfo("SUCCESS", "The value invested is updated with success!")
     on_click_data(tree_updt, file_xlsx, sheet)
+    clear_window()
 
 def load_excel_data():
     frm_insert.forget()
@@ -94,10 +92,8 @@ def load_excel_data():
         # Insert data into the Treeview
         for row_num, row in enumerate(sheet.iter_rows(min_row=3, values_only=True), start=3):
             tree.insert("", "end", iid=row_num, values=row)
-
         messagebox.showinfo("SUCCESS", "All information was loaded.")
         tree.bind("<<TreeviewSelect>>", lambda event: on_click_data(tree, file_xlsx, sheet))
-
 
 def save_excel_info(value_invest):
     file = load_file()
@@ -130,11 +126,10 @@ def save_excel_info(value_invest):
                     cell.number_format = '#,##0€'
                 elif col == 4:  # Format tax applied
                     cell.value = round(cell.value * 100, 2)
-
         wb.save(file)
-        messagebox.showinfo("SUCCESS", "The invest was added with success!")
         wb.close()
-
+        messagebox.showinfo("SUCCESS", "The invest was added with success!")
+        
 # Create the main window
 windows = tk.Tk()
 windows.title("AforroApp")
@@ -160,6 +155,8 @@ menubar.add_cascade(label="Windows", menu=menu_2)
 menu_2.add_command(label="Exit", command=windows.quit)
 
 # Frame to insert investment value
+global frm_insert
+
 frm_insert = tk.Frame(windows, padx=50, pady=25)
 frm_insert.pack(expand=True, fill="both")
 
@@ -171,5 +168,4 @@ tk.Button(frm_insert, text="OK", width=4, height=2, command=lambda: save_excel_i
           font=font.Font(weight="bold")).grid(row=0, column=2, padx=5, pady=5)
 
 frm_insert.forget()
-
 windows.mainloop()
