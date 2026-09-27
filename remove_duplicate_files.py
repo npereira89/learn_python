@@ -14,13 +14,15 @@ def calculate_md5(data):
         return hasher.hexdigest()
 
 def remove_file(directory):
+    global files_removed 
+
     if calculate_md5(directory) in list_md5:
         os.remove(directory)
+        files_removed += 1
     else:
         list_md5.append(calculate_md5(directory))
 
 def get_files(folder):
-    c_files = 0
     if len(os.listdir(folder))>0:
         for f in os.listdir(folder):
             image_path = os.path.join(folder, f)
@@ -28,8 +30,6 @@ def get_files(folder):
                 get_files(image_path)
             else:
                 remove_file(image_path)
-                c_files += 1
-        print(f"Were removed {c_files} duplicate files.")
     else:
         exit(0)
 
@@ -37,11 +37,15 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--path")
 args = parser.parse_args()
 
+files_removed = 0
+total_files_removed = 0
 list_md5 = []
+
 path = args.path
 
 if len(os.listdir(path))>0:
     get_files(path)
-    print("Done!!")
+    total_files_removed += files_removed
+    print(f"Done!! {total_files_removed} files removed.")
 else:
     exit(0)
