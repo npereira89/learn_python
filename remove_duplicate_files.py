@@ -20,6 +20,7 @@ def remove_file(directory):
         list_md5.append(calculate_md5(directory))
 
 def get_files(folder):
+    c_files = 0
     if len(os.listdir(folder))>0:
         for f in os.listdir(folder):
             image_path = os.path.join(folder, f)
@@ -27,6 +28,8 @@ def get_files(folder):
                 get_files(image_path)
             else:
                 remove_file(image_path)
+                c_files += 1
+        print(f"Were removed {c_files} duplicate files.")
     else:
         exit(0)
 
